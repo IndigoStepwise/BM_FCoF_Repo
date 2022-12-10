@@ -1730,7 +1730,7 @@ public class BM_LevelManager : MonoBehaviour
     // next button during stages with more
     private void OnClickNext()
     {
-        Debug.Log("Submit");
+        Debug.Log("Next");
         BM_AudioManager.instance.Play("Button");
         clearButton.gameObject.SetActive(false);
 
@@ -2916,7 +2916,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
-
+                Debug.Log("Correct");
                 flipMap.gameObject.SetActive(true);
 
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
@@ -2931,6 +2931,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -2946,7 +2947,7 @@ public class BM_LevelManager : MonoBehaviour
                 submitButton.gameObject.SetActive(false);
 
                 flipMap.gameObject.SetActive(true);
-
+                Debug.Log("Correct");
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -2966,6 +2967,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -2986,7 +2988,7 @@ public class BM_LevelManager : MonoBehaviour
                     submitButton.gameObject.SetActive(false);
 
                     flipMap.gameObject.SetActive(true);
-
+                    Debug.Log("Correct");
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                     levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3013,6 +3015,7 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
                 }
 
             }
@@ -3032,7 +3035,7 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(false);
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
-
+                    Debug.Log("Correct");
                     flipMap.gameObject.SetActive(true);
 
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3061,6 +3064,7 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
                 }
             }
 
@@ -3074,7 +3078,7 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(false);
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
-
+                    Debug.Log("Correct");
                     flipMap.gameObject.SetActive(true);
 
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3109,6 +3113,7 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
                 }
             }
 
@@ -3122,7 +3127,7 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(false);
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
-
+                    Debug.Log("Correct");
                     flipMap.gameObject.SetActive(true);
 
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3157,6 +3162,7 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
                 }
             }
 
@@ -3175,7 +3181,7 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(false);
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
-
+                    Debug.Log("Correct");
                     flipMap.gameObject.SetActive(true);
 
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3210,6 +3216,7 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
                 }
             }
 
@@ -3228,7 +3235,7 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(false);
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
-
+                    Debug.Log("Correct");
                     flipMap.gameObject.SetActive(true);
 
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3262,11 +3269,12 @@ public class BM_LevelManager : MonoBehaviour
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
                 }
             }
 
         // if Sun2A world state and 1st question
-        if (sun2AGameNode.gameObject.activeInHierarchy || level == 3.1f)
+        if (sun2AGameNode.gameObject.activeInHierarchy && level == 3.1f)
         {
             if ( // 3/8 X 2/5 = 3/20
                     bigTop0[3].gameObject.activeInHierarchy && bigTop1[2].gameObject.activeInHierarchy && bigTop2[3].gameObject.activeInHierarchy &&
@@ -3280,6 +3288,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             // wrong input
@@ -3289,12 +3298,12 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
-
         }
 
         // if Sun2A world state and 2nd question
-        if (sun2AGameNode.gameObject.activeInHierarchy || level == 3.15f)
+        if (sun2AGameNode.gameObject.activeInHierarchy && level == 3.15f)
         {
             if ( // 560
                 hunHundredNum[5].gameObject.activeInHierarchy && hunTenNum[6].gameObject.activeInHierarchy && hunOneNum[0].gameObject.activeInHierarchy )
@@ -3303,7 +3312,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
-
+                Debug.Log("Correct");
                 flipMap.gameObject.SetActive(true);
 
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3341,11 +3350,12 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
         // if Moon2A world state and 1st question
-        if (moon2AGameNode.gameObject.activeInHierarchy || level == 3.2f)
+        if (moon2AGameNode.gameObject.activeInHierarchy && level == 3.2f)
         {
             if ( // 1/9 X 2/5 = 2/45
                     bigTop0[1].gameObject.activeInHierarchy && bigTop1[2].gameObject.activeInHierarchy && bigTop2[2].gameObject.activeInHierarchy &&
@@ -3359,6 +3369,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             // wrong input
@@ -3368,11 +3379,12 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
         // if Moon2A world state and 2nd question
-        if (moon2AGameNode.gameObject.activeInHierarchy || level == 3.25f)
+        if (moon2AGameNode.gameObject.activeInHierarchy && level == 3.25f)
         {
             if ( // 2315 
                  thouThousandNum[2].gameObject.activeInHierarchy && thouHundredNum[3].gameObject.activeInHierarchy && thouTenNum[1].gameObject.activeInHierarchy && thouOneNum[5].gameObject.activeInHierarchy)
@@ -3381,7 +3393,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
-
+                Debug.Log("Correct");
                 flipMap.gameObject.SetActive(true);
 
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3419,6 +3431,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3428,7 +3441,7 @@ public class BM_LevelManager : MonoBehaviour
             if ( // 1/8 X 3/8 = 3/64
                  bigTop0[1].gameObject.activeInHierarchy && bigTop1[3].gameObject.activeInHierarchy && bigTop2[3].gameObject.activeInHierarchy &&
                  bigBottom0[8].gameObject.activeInHierarchy && bigBottom1[8].gameObject.activeInHierarchy && bigBottom2_0[6].gameObject.activeInHierarchy && bigBottom2_1[4].gameObject.activeInHierarchy
-                    ||
+                 ||
                  // 3/8 X 1/8 = 3/64
                  bigTop0[3].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[3].gameObject.activeInHierarchy &&
                  bigBottom0[8].gameObject.activeInHierarchy && bigBottom1[8].gameObject.activeInHierarchy && bigBottom2_0[6].gameObject.activeInHierarchy && bigBottom2_1[4].gameObject.activeInHierarchy)
@@ -3437,6 +3450,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             // wrong input
@@ -3446,6 +3460,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3459,7 +3474,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
-
+                Debug.Log("Correct");
                 flipMap.gameObject.SetActive(true);
 
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3497,17 +3512,18 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
         // if moon2B state and 1st question
         if (moon2BGameNode.gameObject.activeInHierarchy && level == 3.4f)
         {
-            if ( // 1/8 X 1/9 = 3/72
+            if ( // 1/8 X 1/9 = 1/72
                  bigTop0[1].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
                  bigBottom0[8].gameObject.activeInHierarchy && bigBottom1[9].gameObject.activeInHierarchy && bigBottom2_0[7].gameObject.activeInHierarchy && bigBottom2_1[2].gameObject.activeInHierarchy
                     ||
-                 // 1/9 X 1/8 = 3/72
+                 // 1/9 X 1/8 = 1/72
                  bigTop0[1].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
                  bigBottom0[9].gameObject.activeInHierarchy && bigBottom1[8].gameObject.activeInHierarchy && bigBottom2_0[7].gameObject.activeInHierarchy && bigBottom2_1[2].gameObject.activeInHierarchy)
             {
@@ -3515,6 +3531,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             // wrong input
@@ -3524,14 +3541,15 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
         // if moon2B state and 2nd question
         if (moon2BGameNode.gameObject.activeInHierarchy && level == 3.45f)
         {
-            if ( // 625
-                 hunHundredNum[6].gameObject.activeInHierarchy && hunTenNum[2].gameObject.activeInHierarchy && hunOneNum[5].gameObject.activeInHierarchy)
+            if ( // 728
+                 hunHundredNum[7].gameObject.activeInHierarchy && hunTenNum[2].gameObject.activeInHierarchy && hunOneNum[8].gameObject.activeInHierarchy)
             {
                 correctText.gameObject.SetActive(true);
                 incorrectText.gameObject.SetActive(false);
@@ -3539,7 +3557,7 @@ public class BM_LevelManager : MonoBehaviour
                 submitButton.gameObject.SetActive(false);
 
                 flipMap.gameObject.SetActive(true);
-
+                Debug.Log("Correct");
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3575,6 +3593,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3593,6 +3612,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             // wrong input
@@ -3602,6 +3622,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3617,7 +3638,7 @@ public class BM_LevelManager : MonoBehaviour
                 submitButton.gameObject.SetActive(false);
 
                 flipMap.gameObject.SetActive(true);
-
+                Debug.Log("Correct");
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3652,6 +3673,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3665,6 +3687,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             // wrong input
@@ -3674,6 +3697,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3694,7 +3718,7 @@ public class BM_LevelManager : MonoBehaviour
                 submitButton.gameObject.SetActive(false);
 
                 flipMap.gameObject.SetActive(true);
-
+                Debug.Log("Correct");
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3730,6 +3754,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3748,6 +3773,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             // wrong input
@@ -3757,6 +3783,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3772,7 +3799,7 @@ public class BM_LevelManager : MonoBehaviour
                 submitButton.gameObject.SetActive(false);
 
                 flipMap.gameObject.SetActive(true);
-
+                Debug.Log("Correct");
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3808,6 +3835,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3826,6 +3854,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             // wrong input
@@ -3835,6 +3864,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3850,7 +3880,7 @@ public class BM_LevelManager : MonoBehaviour
                 submitButton.gameObject.SetActive(false);
 
                 flipMap.gameObject.SetActive(true);
-
+                Debug.Log("Correct");
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3886,6 +3916,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3903,6 +3934,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             else
@@ -3911,6 +3943,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3923,6 +3956,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             else
@@ -3931,6 +3965,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
 
@@ -3948,6 +3983,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
             }
 
             else
@@ -3956,6 +3992,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+                Debug.Log("Incorrect");
             }
         }
     }
