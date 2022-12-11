@@ -337,8 +337,8 @@ public class BM_LevelManager : MonoBehaviour
         submitButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
-        //newGameButton.gameObject.SetActive(true);
-        //continueButton.gameObject.SetActive(true);
+        newGameButton.gameObject.SetActive(true);
+        continueButton.gameObject.SetActive(true);
         clearButton.gameObject.SetActive(false);
 
         questionT_Text.gameObject.SetActive(false);
@@ -447,7 +447,7 @@ public class BM_LevelManager : MonoBehaviour
 
         finalGameNode.gameObject.SetActive(false);
 
-        //Helper.StateButtonInitialize<BM_SaveData>(newGameButton, continueButton, OnLoad);
+        Helper.StateButtonInitialize<BM_SaveData>(newGameButton, continueButton, OnLoad);
     }
 
     // run on awake
@@ -457,8 +457,6 @@ public class BM_LevelManager : MonoBehaviour
         submitButton.onClick.AddListener(OnClickSubmit);
         nextButton.onClick.AddListener(OnClickNext);
         retryButton.onClick.AddListener(OnClickRetry);
-        //newGameButton.onClick.AddListener(OnClickNew);
-        //continueButton.onClick.AddListener(OnClickContinue);
         clearButton.onClick.AddListener(OnClickClear);
     }
 
@@ -514,217 +512,162 @@ public class BM_LevelManager : MonoBehaviour
         if (bm_SaveData.level == 0.1f)
         {
             spellCardT.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             tutorGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 0.5f)
         {
             spellCard0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             level0GameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 1.1f)
         {
             spellCardSun0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun0GameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 1.2f)
         {
             spellCardMoon0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon0GameNode.gameObject.SetActive(true);
-            sun1AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 2.1f)
         {
             spellCardSun1A.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun1AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 2.2f)
         {
             spellCardMoon1A.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon1AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 2.3f)
         {
             spellCardSun1B.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun1BGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 2.4f)
         {
             spellCardMoon1B.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon1BGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.1f)
         {
             spellCardSun2A_0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.15f)
         {
             spellCardSun2A_1.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.2f)
         {
             spellCardMoon2A_0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.25f)
         {
             spellCardMoon2A_1.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.3f)
         {
             spellCardSun2B_0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.35f)
         {
             spellCardSun2B_1.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.4f)
         {
             spellCardMoon2B_0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon2BGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.45f)
         {
             spellCardMoon2B_1.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon2BGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.5f)
         {
             spellCardSun2C_0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun2CGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.55f)
         {
             spellCardSun2C_1.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun2CGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.6f)
         {
             spellCardMoon2C_0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon2CGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.65f)
         {
             spellCardMoon2C_1.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon2CGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.7f)
         {
             spellCardSun2D_0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun2DGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.75f)
         {
             spellCardSun2D_1.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             sun2DGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.8f)
         {
             spellCardMoon2D_0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon2DGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.85f)
         {
             spellCardMoon2D_1.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             moon2DGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 4.1f)
         {
             spellCardFractionFinal_0.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             finalGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 4.2f)
         {
             spellCardFinalSurvey.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             finalGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 4.3f)
         {
             spellCardFractionFinal_1.gameObject.SetActive(true);
-            newGameButton.gameObject.SetActive(false);
-            continueButton.gameObject.SetActive(false);
             finalGameNode.gameObject.SetActive(true);
         }
         // I use an init flag so I can call the same Set methods during initial load and during gameplay.
@@ -745,9 +688,6 @@ public class BM_LevelManager : MonoBehaviour
     //private void OnClickContinue()
     //{
     //    Debug.Log("Clicked Continue");
-
-        
-
     //}
 
     // on click retry button
