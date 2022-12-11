@@ -7,16 +7,24 @@ using SimpleJSON;
 using LoLSDK;
 using TMPro;
 
-
+[System.Serializable]
+public class BM_SaveData
+{
+    public float level = 0.0f;
+}
 public class BM_LevelManager : MonoBehaviour
 {
+    [SerializeField] BM_SaveData bm_SaveData;
+    JSONNode _langNode;
+    bool _init;
+
     // Buttons
     public Button flipButton;
     public Button submitButton;
     public Button nextButton;
     public Button retryButton;
-    public Button newGameButton;
-    public Button continueButton;
+    [SerializeField] Button newGameButton;
+    [SerializeField] Button continueButton;
     public Button clearButton;
 
     // question nodes
@@ -305,6 +313,11 @@ public class BM_LevelManager : MonoBehaviour
     public GameObject[] thouTenNum;
     public GameObject[] thouOneNum;
 
+    Coroutine _feedbackMethod;
+    WaitForSeconds _feedbackTimer = new WaitForSeconds(2);
+    [SerializeField]
+    TextMeshProUGUI feedbackText;
+
     // level variable
     public float level = 0f;
 
@@ -315,7 +328,8 @@ public class BM_LevelManager : MonoBehaviour
 
     // runs at start
     private void Start()
-    { 
+    {
+
         correctText.gameObject.SetActive(false);
         incorrectText.gameObject.SetActive(false);
 
@@ -323,8 +337,8 @@ public class BM_LevelManager : MonoBehaviour
         submitButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
-        newGameButton.gameObject.SetActive(true);
-        continueButton.gameObject.SetActive(true);
+        //newGameButton.gameObject.SetActive(true);
+        //continueButton.gameObject.SetActive(true);
         clearButton.gameObject.SetActive(false);
 
         questionT_Text.gameObject.SetActive(false);
@@ -433,6 +447,7 @@ public class BM_LevelManager : MonoBehaviour
 
         finalGameNode.gameObject.SetActive(false);
 
+        //Helper.StateButtonInitialize<BM_SaveData>(newGameButton, continueButton, OnLoad);
     }
 
     // run on awake
@@ -442,26 +457,298 @@ public class BM_LevelManager : MonoBehaviour
         submitButton.onClick.AddListener(OnClickSubmit);
         nextButton.onClick.AddListener(OnClickNext);
         retryButton.onClick.AddListener(OnClickRetry);
-        newGameButton.onClick.AddListener(OnClickNew);
-        continueButton.onClick.AddListener(OnClickContinue);
+        //newGameButton.onClick.AddListener(OnClickNew);
+        //continueButton.onClick.AddListener(OnClickContinue);
         clearButton.onClick.AddListener(OnClickClear);
     }
 
+    private void OnDestroy()
+    {
+#if UNITY_EDITOR
+        if (!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
+            return;
+#endif
+        LOLSDK.Instance.SaveResultReceived -= OnSaveResult;
+    }
+
+    void Save()
+    {
+        LOLSDK.Instance.SaveState(bm_SaveData);
+    }
+
+    void OnSaveResult(bool success)
+    {
+        if (!success)
+        {
+            Debug.LogWarning("Saving not successful");
+            return;
+        }
+
+        if (_feedbackMethod != null)
+            StopCoroutine(_feedbackMethod);
+        // ...Auto Saving Complete
+        _feedbackMethod = StartCoroutine(_Feedback(GetText("autoSave")));
+    }
+
+    string GetText(string key)
+    {
+        string value = _langNode?[key];
+        return value ?? "--missing--";
+    }
+
+    void OnLoad(BM_SaveData loadedSaveData)
+    {
+        // Overrides serialized state data or continues with editor serialized values.
+        if (loadedSaveData != null)
+            bm_SaveData = loadedSaveData;
+
+            level = bm_SaveData.level;
+
+            PickLevel();
+
+            _init = true;
+    }
+
+    public void PickLevel()
+    {
+        if (bm_SaveData.level == 0.1f)
+        {
+            spellCardT.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            tutorGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 0.5f)
+        {
+            spellCard0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            level0GameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 1.1f)
+        {
+            spellCardSun0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun0GameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 1.2f)
+        {
+            spellCardMoon0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon0GameNode.gameObject.SetActive(true);
+            sun1AGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 2.1f)
+        {
+            spellCardSun1A.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun1AGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 2.2f)
+        {
+            spellCardMoon1A.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon1AGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 2.3f)
+        {
+            spellCardSun1B.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun1BGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 2.4f)
+        {
+            spellCardMoon1B.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon1BGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.1f)
+        {
+            spellCardSun2A_0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun2AGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.15f)
+        {
+            spellCardSun2A_1.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun2AGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.2f)
+        {
+            spellCardMoon2A_0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon2AGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.25f)
+        {
+            spellCardMoon2A_1.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon2AGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.3f)
+        {
+            spellCardSun2B_0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun2AGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.35f)
+        {
+            spellCardSun2B_1.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun2AGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.4f)
+        {
+            spellCardMoon2B_0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon2BGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.45f)
+        {
+            spellCardMoon2B_1.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon2BGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.5f)
+        {
+            spellCardSun2C_0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun2CGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.55f)
+        {
+            spellCardSun2C_1.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun2CGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.6f)
+        {
+            spellCardMoon2C_0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon2CGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.65f)
+        {
+            spellCardMoon2C_1.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon2CGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.7f)
+        {
+            spellCardSun2D_0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun2DGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.75f)
+        {
+            spellCardSun2D_1.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            sun2DGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.8f)
+        {
+            spellCardMoon2D_0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon2DGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 3.85f)
+        {
+            spellCardMoon2D_1.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            moon2DGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 4.1f)
+        {
+            spellCardFractionFinal_0.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            finalGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 4.2f)
+        {
+            spellCardFinalSurvey.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            finalGameNode.gameObject.SetActive(true);
+        }
+
+        if (bm_SaveData.level == 4.3f)
+        {
+            spellCardFractionFinal_1.gameObject.SetActive(true);
+            newGameButton.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
+            finalGameNode.gameObject.SetActive(true);
+        }
+        // I use an init flag so I can call the same Set methods during initial load and during gameplay.
+        // You don't have to follow this pattern, you can have init methods and gameplay methods separated.
+    }
+
     // on click new button
-    private void OnClickNew()
-    {
-        spellCardT.gameObject.SetActive(true);
-        newGameButton.gameObject.SetActive(false);
-        continueButton.gameObject.SetActive(false);
+    //private void OnClickNew()
+    //{
+    //    spellCardT.gameObject.SetActive(true);
+    //    BM_newGameButton.gameObject.SetActive(false);
+    //    BM_continueButton.gameObject.SetActive(false);
 
-        level = 0.1f;
-    }
+    //    bm_SaveData.level = 0.1f;
+    //}
 
-    // on click continue button
-    private void OnClickContinue()
-    {
-        Debug.Log("Clicked Continue");
-    }
+    //// on click continue button
+    //private void OnClickContinue()
+    //{
+    //    Debug.Log("Clicked Continue");
+
+        
+
+    //}
 
     // on click retry button
     private void OnClickRetry()
@@ -473,7 +760,7 @@ public class BM_LevelManager : MonoBehaviour
         questionNodeSurveyThou.gameObject.SetActive(false);
         questionNodeSurveyHun.gameObject.SetActive(false);
 
-        if (level == 0.1f)
+        if (bm_SaveData.level == 0.1f)
         {
             spellCardT.gameObject.SetActive(true);
 
@@ -484,7 +771,7 @@ public class BM_LevelManager : MonoBehaviour
             retryButton.gameObject.SetActive(false);
         }
 
-        if (level == 0.5f)
+        if (bm_SaveData.level == 0.5f)
         {
             spellCard0.gameObject.SetActive(true);
 
@@ -495,7 +782,7 @@ public class BM_LevelManager : MonoBehaviour
             retryButton.gameObject.SetActive(false);
         }
 
-        if (level == 1.1f || level == 1.2f)
+        if (bm_SaveData.level == 1.1f || bm_SaveData.level == 1.2f)
         {
             if (sun0GameNode.gameObject.activeInHierarchy)
             {
@@ -522,7 +809,7 @@ public class BM_LevelManager : MonoBehaviour
             }
         }
 
-        if (level == 2.1f || level == 2.2f || level == 2.3f || level == 2.4f)
+        if (bm_SaveData.level == 2.1f || bm_SaveData.level == 2.2f || bm_SaveData.level == 2.3f || bm_SaveData.level == 2.4f)
         {
             if (sun1AGameNode.gameObject.activeInHierarchy)
             {
@@ -570,7 +857,8 @@ public class BM_LevelManager : MonoBehaviour
             }
         }
 
-        if (level == 3.1f || level == 3.2f || level == 3.3f || level == 3.4f || level == 3.5f || level == 3.6f || level == 3.7f || level == 3.8f)
+        if (bm_SaveData.level == 3.1f || bm_SaveData.level == 3.2f || bm_SaveData.level == 3.3f || bm_SaveData.level == 3.4f 
+            || bm_SaveData.level == 3.5f || bm_SaveData.level == 3.6f || bm_SaveData.level == 3.7f || bm_SaveData.level == 3.8f)
         {
 
             if (sun2AGameNode.gameObject.activeInHierarchy)
@@ -664,7 +952,8 @@ public class BM_LevelManager : MonoBehaviour
             }
         }
 
-        if (level == 3.15f || level == 3.25f || level == 3.35f || level == 3.45f || level == 3.55f || level == 3.65f || level == 3.75f || level == 3.85f)
+        if (bm_SaveData.level == 3.15f || bm_SaveData.level == 3.25f || bm_SaveData.level == 3.35f || bm_SaveData.level == 3.45f 
+            || bm_SaveData.level == 3.55f || bm_SaveData.level == 3.65f || bm_SaveData.level == 3.75f || bm_SaveData.level == 3.85f)
         {
 
             if (sun2AGameNode.gameObject.activeInHierarchy)
@@ -750,7 +1039,7 @@ public class BM_LevelManager : MonoBehaviour
             }
         }
 
-        if (level == 4.1f)
+        if (bm_SaveData.level == 4.1f)
         {
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
@@ -760,7 +1049,7 @@ public class BM_LevelManager : MonoBehaviour
             retryButton.gameObject.SetActive(false);
         }
 
-        if (level == 4.2f)
+        if (bm_SaveData.level == 4.2f)
         {
             spellCardFinalSurvey.gameObject.SetActive(true);
 
@@ -771,7 +1060,7 @@ public class BM_LevelManager : MonoBehaviour
             retryButton.gameObject.SetActive(false);
         }
 
-        if (level == 4.3f)
+        if (bm_SaveData.level == 4.3f)
         {
             spellCardFractionFinal_1.gameObject.SetActive(true);
 
@@ -781,6 +1070,14 @@ public class BM_LevelManager : MonoBehaviour
             correctText.gameObject.SetActive(false);
             retryButton.gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator _Feedback(string text)
+    {
+        feedbackText.text = text;
+        yield return _feedbackTimer;
+        feedbackText.text = string.Empty;
+        _feedbackMethod = null;
     }
 
     private void Clear()
@@ -1042,17 +1339,17 @@ public class BM_LevelManager : MonoBehaviour
     {
         Clear();
 
-        if (level == 0.5f)
+        if (bm_SaveData.level == 0.5f)
         {
             StartCoroutine(CoinFlip0());
         }
 
-        if (level == 1.1f || level == 1.2f)
+        if (bm_SaveData.level == 1.1f || bm_SaveData.level == 1.2f)
         {
             StartCoroutine(CoinFlip1());
         }
 
-        if (level == 2.1f || level == 2.2f || level == 2.3f || level == 2.4f)
+        if (bm_SaveData.level == 2.1f || bm_SaveData.level == 2.2f || bm_SaveData.level == 2.3f || bm_SaveData.level == 2.4f)
         {
             StartCoroutine(CoinFlip2());
         }
@@ -1096,7 +1393,7 @@ public class BM_LevelManager : MonoBehaviour
 
             spellCardSun0.gameObject.SetActive(true);
 
-            level = 1.1f;
+            bm_SaveData.level = 1.1f;
         }
 
         // and ranNum is 1, output Moon
@@ -1130,10 +1427,11 @@ public class BM_LevelManager : MonoBehaviour
 
             spellCardMoon0.gameObject.SetActive(true);
 
-            level = 1.2f;
+            bm_SaveData.level = 1.2f;
         }
 
         LOLSDK.Instance.SubmitProgress(100, 20, 100);
+        Save();
         Debug.Log("Timer Done");
     }
 
@@ -1186,7 +1484,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 spellCardSun1A.gameObject.SetActive(true);
 
-                level = 2.1f;
+                bm_SaveData.level = 2.1f;
             }
 
             // and ranNum is 1, output Moon
@@ -1228,7 +1526,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 spellCardMoon1A.gameObject.SetActive(true);
 
-                level = 2.2f;
+                bm_SaveData.level = 2.2f;
             }
 
         }
@@ -1274,7 +1572,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 spellCardSun1B.gameObject.SetActive(true);
 
-                level = 2.3f;
+                bm_SaveData.level = 2.3f;
             }
 
             // and ranNum is 1, output Moon
@@ -1315,11 +1613,12 @@ public class BM_LevelManager : MonoBehaviour
 
                 spellCardMoon1B.gameObject.SetActive(true);
 
-                level = 2.4f;
+                bm_SaveData.level = 2.4f;
             }
         }
 
         LOLSDK.Instance.SubmitProgress(100, 40, 100);
+        Save();
         Debug.Log("Timer Done");
     }
 
@@ -1374,7 +1673,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
 
-                level = 3.3f;
+                bm_SaveData.level = 3.3f;
 
                 spellCardSun2B_0.gameObject.SetActive(true);
 
@@ -1421,7 +1720,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
 
-                level = 3.4f;
+                bm_SaveData.level = 3.4f;
 
                 spellCardMoon2B_0.gameObject.SetActive(true);
             }
@@ -1471,7 +1770,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
 
-                level = 3.1f;
+                bm_SaveData.level = 3.1f;
 
                 spellCardSun2A_0.gameObject.SetActive(true);
 
@@ -1518,7 +1817,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
 
-                level = 3.2f;
+                bm_SaveData.level = 3.2f;
 
                 spellCardMoon2A_0.gameObject.SetActive(true);
             }
@@ -1568,7 +1867,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
 
-                level = 3.8f;
+                bm_SaveData.level = 3.8f;
 
                 spellCardSun2D_0.gameObject.SetActive(true);
 
@@ -1616,7 +1915,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
 
-                level = 3.7f;
+                bm_SaveData.level = 3.7f;
 
                 spellCardMoon2D_0.gameObject.SetActive(true);
             }
@@ -1668,7 +1967,7 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
 
-                level = 3.5f;
+                bm_SaveData.level = 3.5f;
 
                 spellCardSun2C_0.gameObject.SetActive(true);
 
@@ -1717,13 +2016,16 @@ public class BM_LevelManager : MonoBehaviour
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
 
-                level = 3.6f;
+                bm_SaveData.level = 3.6f;
 
                 spellCardMoon2C_0.gameObject.SetActive(true);
             }
         }
 
+
         LOLSDK.Instance.SubmitProgress(100, 60, 100);
+
+        Save();
         Debug.Log("Timer Done");
     }
 
@@ -1736,32 +2038,34 @@ public class BM_LevelManager : MonoBehaviour
 
         Clear();
 
-        if (level == 0.1f)
+        if (bm_SaveData.level == 0.1f)
         {
             StartCoroutine(Next_T());
         }
 
-        if (level == 3.1f || level == 3.2f ||  level == 3.3f || level == 3.4f || level == 3.5f || level == 3.6f || level == 3.7f ||level == 3.8f)
+        if (bm_SaveData.level == 3.1f || bm_SaveData.level == 3.2f || bm_SaveData.level == 3.3f || bm_SaveData.level == 3.4f 
+            || bm_SaveData.level == 3.5f || bm_SaveData.level == 3.6f || bm_SaveData.level == 3.7f || bm_SaveData.level == 3.8f)
         {
             StartCoroutine(Next_4());
         }
 
-        if (level == 3.15f || level == 3.25f || level == 3.35f || level == 3.45f || level == 3.55f || level == 3.65f || level == 3.75f || level == 3.85f)
+        if (bm_SaveData.level == 3.15f || bm_SaveData.level == 3.25f || bm_SaveData.level == 3.35f || bm_SaveData.level == 3.45f 
+            || bm_SaveData.level == 3.55f || bm_SaveData.level == 3.65f || bm_SaveData.level == 3.75f || bm_SaveData.level == 3.85f)
         {
             StartCoroutine(Next_4_5());
         }
 
-        if (level == 4.1f)
+        if (bm_SaveData.level == 4.1f)
         {
             StartCoroutine(Next_Final0());
         }
 
-        if (level == 4.2f)
+        if (bm_SaveData.level == 4.2f)
         {
             StartCoroutine(Next_Final1());
         }
 
-        if (level == 4.3f)
+        if (bm_SaveData.level == 4.3f)
         {
             StartCoroutine(Next_Final2());
         }
@@ -1785,18 +2089,20 @@ public class BM_LevelManager : MonoBehaviour
         correctText.gameObject.SetActive(false);
         incorrectText.gameObject.SetActive(false);
 
-        level = 0.5f;
+        bm_SaveData.level = 0.5f;
 
         flipMap.gameObject.SetActive(false);
         spellCard0.gameObject.SetActive(true);
 
         LOLSDK.Instance.SubmitProgress(100, 10, 100);
+
+        Save();
     }
 
     IEnumerator Next_4()
     {
 
-        if (level == 3.1f)
+        if (bm_SaveData.level == 3.1f)
         {
 
             nextButton.gameObject.SetActive(false);
@@ -1816,10 +2122,10 @@ public class BM_LevelManager : MonoBehaviour
 
             spellCardSun2A_1.gameObject.SetActive(true);
 
-            level = 3.15f;
+            bm_SaveData.level = 3.15f;
         }
 
-        if (level == 3.2f)
+        if (bm_SaveData.level == 3.2f)
         {
             nextButton.gameObject.SetActive(false);
 
@@ -1838,10 +2144,10 @@ public class BM_LevelManager : MonoBehaviour
 
             spellCardMoon2A_1.gameObject.SetActive(true);
 
-            level = 3.25f;
+            bm_SaveData.level = 3.25f;
         }
 
-        if (level == 3.3f)
+        if (bm_SaveData.level == 3.3f)
         {
             nextButton.gameObject.SetActive(false);
 
@@ -1852,15 +2158,15 @@ public class BM_LevelManager : MonoBehaviour
             questionNodeBigFraction.gameObject.SetActive(false);
             questionNodeSmolFraction.gameObject.SetActive(false);
             questionNodeSurveyThou.gameObject.SetActive(false);
-            questionNodeSurveyHun.gameObject.SetActive(false); correctText.gameObject.SetActive(false);
+            questionNodeSurveyHun.gameObject.SetActive(false);
+            correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
             spellCardSun2B_1.gameObject.SetActive(true);
 
-            level = 3.35f;
+            bm_SaveData.level = 3.35f;
         }
 
-        if (level == 3.4f)
+        if (bm_SaveData.level == 3.4f)
         {
             nextButton.gameObject.SetActive(false);
 
@@ -1877,10 +2183,10 @@ public class BM_LevelManager : MonoBehaviour
 
             spellCardMoon2B_1.gameObject.SetActive(true);
 
-            level = 3.45f;
+            bm_SaveData.level = 3.45f;
         }
 
-        if (level == 3.5f)
+        if (bm_SaveData.level == 3.5f)
         {
             nextButton.gameObject.SetActive(false);
 
@@ -1898,10 +2204,10 @@ public class BM_LevelManager : MonoBehaviour
 
             spellCardSun2C_1.gameObject.SetActive(true);
 
-            level = 3.55f;
+            bm_SaveData.level = 3.55f;
         }
 
-        if (level == 3.6f)
+        if (bm_SaveData.level == 3.6f)
         {
             nextButton.gameObject.SetActive(false);
 
@@ -1917,10 +2223,10 @@ public class BM_LevelManager : MonoBehaviour
 
             spellCardMoon2C_1.gameObject.SetActive(true);
 
-            level = 3.65f;
+            bm_SaveData.level = 3.65f;
         }
 
-        if (level == 3.7f)
+        if (bm_SaveData.level == 3.7f)
         {
             nextButton.gameObject.SetActive(false);
 
@@ -1936,10 +2242,10 @@ public class BM_LevelManager : MonoBehaviour
 
             spellCardSun2D_1.gameObject.SetActive(true);
 
-            level = 3.75f;
+            bm_SaveData.level = 3.75f;
         }
 
-        if (level == 3.8f)
+        if (bm_SaveData.level == 3.8f)
         {
             nextButton.gameObject.SetActive(false);
 
@@ -1956,16 +2262,18 @@ public class BM_LevelManager : MonoBehaviour
 
             spellCardMoon2D_1.gameObject.SetActive(true);
 
-            level = 3.85f;
+            bm_SaveData.level = 3.85f;
         }
 
         LOLSDK.Instance.SubmitProgress(100, 70, 100);
+
+        Save();
     }
 
     IEnumerator Next_4_5()
     {
 
-        if (level == 3.15f)
+        if (bm_SaveData.level == 3.15f)
         {
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
@@ -2029,12 +2337,12 @@ public class BM_LevelManager : MonoBehaviour
             flipMap.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
-            level = 4.1f;
+            bm_SaveData.level = 4.1f;
 
             Debug.Log("Final from sun2A");
         }
 
-        if (level == 3.25f)
+        if (bm_SaveData.level == 3.25f)
         {
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
@@ -2098,12 +2406,12 @@ public class BM_LevelManager : MonoBehaviour
             flipMap.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
-            level = 4.1f;
+            bm_SaveData.level = 4.1f;
 
             Debug.Log("Final from moon2A");
         }
 
-        if (level == 3.35f)
+        if (bm_SaveData.level == 3.35f)
         {
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
@@ -2167,12 +2475,12 @@ public class BM_LevelManager : MonoBehaviour
             flipMap.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
-            level = 4.1f;
+            bm_SaveData.level = 4.1f;
 
             Debug.Log("Final from sun2B");
         }
 
-        if (level == 3.45f)
+        if (bm_SaveData.level == 3.45f)
         {
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
@@ -2236,12 +2544,12 @@ public class BM_LevelManager : MonoBehaviour
             flipMap.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
-            level = 4.1f;
+            bm_SaveData.level = 4.1f;
 
             Debug.Log("Final from moon2B");
         }
 
-        if (level == 3.55f)
+        if (bm_SaveData.level == 3.55f)
         {
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
@@ -2305,12 +2613,12 @@ public class BM_LevelManager : MonoBehaviour
             flipMap.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
-            level = 4.1f;
+            bm_SaveData.level = 4.1f;
 
             Debug.Log("Final from sun2C");
         }
 
-        if (level == 3.65f)
+        if (bm_SaveData.level == 3.65f)
         {
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
@@ -2377,12 +2685,12 @@ public class BM_LevelManager : MonoBehaviour
             flipMap.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
-            level = 4.1f;
+            bm_SaveData.level = 4.1f;
 
             Debug.Log("Final from moon2C");
         }
 
-        if (level == 3.75f)
+        if (bm_SaveData.level == 3.75f)
         {
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
@@ -2446,12 +2754,12 @@ public class BM_LevelManager : MonoBehaviour
             flipMap.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
-            level = 4.1f;
+            bm_SaveData.level = 4.1f;
 
             Debug.Log("Final from sun2D");
         }
 
-        if (level == 3.85f)
+        if (bm_SaveData.level == 3.85f)
         {
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
@@ -2515,7 +2823,7 @@ public class BM_LevelManager : MonoBehaviour
             flipMap.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
-            level = 4.1f;
+            bm_SaveData.level = 4.1f;
 
             Debug.Log("Final from moon2D");
         }
@@ -2526,12 +2834,14 @@ public class BM_LevelManager : MonoBehaviour
         questionNodeSmolFraction.gameObject.SetActive(false);
         questionNodeSurveyThou.gameObject.SetActive(false);
         questionNodeSurveyHun.gameObject.SetActive(false);
+
+        Save();
     }
 
     IEnumerator Next_Final0()
     {
 
-        if (level == 4.1f)
+        if (bm_SaveData.level == 4.1f)
         {
             nextButton.gameObject.SetActive(false);
             yield return new WaitForSecondsRealtime(3);
@@ -2543,20 +2853,24 @@ public class BM_LevelManager : MonoBehaviour
 
             spellCardFinalSurvey.gameObject.SetActive(true);
 
-            level = 4.2f;
-            LOLSDK.Instance.SubmitProgress(100, 90, 100);
+            bm_SaveData.level = 4.2f;
+
         }
+
+        LOLSDK.Instance.SubmitProgress(100, 90, 100);
 
         questionNodeBigFraction.gameObject.SetActive(false);
         questionNodeSmolFraction.gameObject.SetActive(false);
         questionNodeSurveyThou.gameObject.SetActive(false);
         questionNodeSurveyHun.gameObject.SetActive(false);
+
+        Save();
     }
 
     IEnumerator Next_Final1()
     {
 
-        if (level == 4.2f)
+        if (bm_SaveData.level == 4.2f)
         {
             nextButton.gameObject.SetActive(false);
             yield return new WaitForSecondsRealtime(3);
@@ -2566,7 +2880,7 @@ public class BM_LevelManager : MonoBehaviour
             incorrectText.gameObject.SetActive(false);
             spellCardFractionFinal_1.gameObject.SetActive(true);
 
-            level = 4.3f;
+            bm_SaveData.level = 4.3f;
 
             LOLSDK.Instance.SubmitProgress(100, 95, 100);
         }
@@ -2575,12 +2889,13 @@ public class BM_LevelManager : MonoBehaviour
         questionNodeSmolFraction.gameObject.SetActive(false);
         questionNodeSurveyThou.gameObject.SetActive(false);
         questionNodeSurveyHun.gameObject.SetActive(false);
+        Save();
     }
 
     IEnumerator Next_Final2()
     {
 
-        if (level == 4.3f)
+        if (bm_SaveData.level == 4.3f)
         {
             questionNodeBigFraction.gameObject.SetActive(false);
             questionNodeSmolFraction.gameObject.SetActive(false);
@@ -2906,7 +3221,7 @@ public class BM_LevelManager : MonoBehaviour
         clearButton.gameObject.SetActive(false);
 
         // if Tutorial
-        if (level == 0.1f)
+        if (bm_SaveData.level == 0.1f)
         {
             if ( // 1/2 X 1/2 = 1/4
                 smolTop0[1].gameObject.activeInHierarchy && smolTop1[1].gameObject.activeInHierarchy && smolTop2[1].gameObject.activeInHierarchy &&
@@ -2936,7 +3251,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if level 0
-        if (level == 0.5f)
+        if (bm_SaveData.level == 0.5f)
         {
             if (// 110
                 hunHundredNum[1].gameObject.activeInHierarchy && hunTenNum[1].gameObject.activeInHierarchy && hunOneNum[0].gameObject.activeInHierarchy)
@@ -2972,7 +3287,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
             // if current world state is Sun0
-            if (sun0GameNode.gameObject.activeInHierarchy && level == 1.1f)
+            if (sun0GameNode.gameObject.activeInHierarchy && bm_SaveData.level == 1.1f)
             {
                 if (// 1/4 X 1/8 = 1/32
                     bigTop0[1].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
@@ -3021,7 +3336,7 @@ public class BM_LevelManager : MonoBehaviour
             }
 
             // if current world state is Moon0
-            if (moon0GameNode.gameObject.activeInHierarchy && level == 1.2f)
+            if (moon0GameNode.gameObject.activeInHierarchy && bm_SaveData.level == 1.2f)
             {
                 if (// 1/2 X 1/6 = 1/12
                     bigTop0[1].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
@@ -3069,7 +3384,7 @@ public class BM_LevelManager : MonoBehaviour
             }
 
             // if current state is sun1A
-            if (sun1AGameNode.gameObject.activeInHierarchy && level == 2.1f)
+            if (sun1AGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 2.1f)
             {
                 if (// 400
                 hunHundredNum[4].gameObject.activeInHierarchy && hunTenNum[0].gameObject.activeInHierarchy && hunOneNum[0].gameObject.activeInHierarchy)
@@ -3118,7 +3433,7 @@ public class BM_LevelManager : MonoBehaviour
             }
 
             // if current state moon1A
-            if (moon1AGameNode.gameObject.activeInHierarchy && level == 2.2f)
+            if (moon1AGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 2.2f)
             {
                 if (// 475
                 hunHundredNum[4].gameObject.activeInHierarchy && hunTenNum[7].gameObject.activeInHierarchy && hunOneNum[5].gameObject.activeInHierarchy)
@@ -3167,7 +3482,7 @@ public class BM_LevelManager : MonoBehaviour
             }
 
             // if state is sun1B
-            if (sun1BGameNode.gameObject.activeInHierarchy && level == 2.3f)
+            if (sun1BGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 2.3f)
             {
                 if (// 3/8 X 1/8 = 3/64
                     bigTop0[3].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[3].gameObject.activeInHierarchy &&
@@ -3221,7 +3536,7 @@ public class BM_LevelManager : MonoBehaviour
             }
 
             // if state is moon1B
-            if (moon1BGameNode.gameObject.activeInHierarchy && level == 2.4f)
+            if (moon1BGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 2.4f)
             {
                 if (// 3/8 X 1/6 = 3/48
                     bigTop0[3].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[3].gameObject.activeInHierarchy &&
@@ -3274,7 +3589,7 @@ public class BM_LevelManager : MonoBehaviour
             }
 
         // if Sun2A world state and 1st question
-        if (sun2AGameNode.gameObject.activeInHierarchy && level == 3.1f)
+        if (sun2AGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.1f)
         {
             if ( // 3/8 X 2/5 = 3/20
                     bigTop0[3].gameObject.activeInHierarchy && bigTop1[2].gameObject.activeInHierarchy && bigTop2[3].gameObject.activeInHierarchy &&
@@ -3303,7 +3618,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if Sun2A world state and 2nd question
-        if (sun2AGameNode.gameObject.activeInHierarchy && level == 3.15f)
+        if (sun2AGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.15f)
         {
             if ( // 560
                 hunHundredNum[5].gameObject.activeInHierarchy && hunTenNum[6].gameObject.activeInHierarchy && hunOneNum[0].gameObject.activeInHierarchy )
@@ -3355,7 +3670,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if Moon2A world state and 1st question
-        if (moon2AGameNode.gameObject.activeInHierarchy && level == 3.2f)
+        if (moon2AGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.2f)
         {
             if ( // 1/9 X 2/5 = 2/45
                     bigTop0[1].gameObject.activeInHierarchy && bigTop1[2].gameObject.activeInHierarchy && bigTop2[2].gameObject.activeInHierarchy &&
@@ -3384,7 +3699,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if Moon2A world state and 2nd question
-        if (moon2AGameNode.gameObject.activeInHierarchy && level == 3.25f)
+        if (moon2AGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.25f)
         {
             if ( // 2315 
                  thouThousandNum[2].gameObject.activeInHierarchy && thouHundredNum[3].gameObject.activeInHierarchy && thouTenNum[1].gameObject.activeInHierarchy && thouOneNum[5].gameObject.activeInHierarchy)
@@ -3436,7 +3751,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if sun2B state and 1st question
-        if (sun2BGameNode.gameObject.activeInHierarchy && level == 3.3f)
+        if (sun2BGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.3f)
         {
             if ( // 1/8 X 3/8 = 3/64
                  bigTop0[1].gameObject.activeInHierarchy && bigTop1[3].gameObject.activeInHierarchy && bigTop2[3].gameObject.activeInHierarchy &&
@@ -3465,7 +3780,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if sun2B state and 2nd question
-        if (sun2BGameNode.gameObject.activeInHierarchy && level == 3.35f)
+        if (sun2BGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.35f)
         {
             if ( // 625
                  hunHundredNum[6].gameObject.activeInHierarchy && hunTenNum[2].gameObject.activeInHierarchy && hunOneNum[5].gameObject.activeInHierarchy)
@@ -3517,7 +3832,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if moon2B state and 1st question
-        if (moon2BGameNode.gameObject.activeInHierarchy && level == 3.4f)
+        if (moon2BGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.4f)
         {
             if ( // 1/8 X 1/9 = 1/72
                  bigTop0[1].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
@@ -3546,7 +3861,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if moon2B state and 2nd question
-        if (moon2BGameNode.gameObject.activeInHierarchy && level == 3.45f)
+        if (moon2BGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.45f)
         {
             if ( // 728
                  hunHundredNum[7].gameObject.activeInHierarchy && hunTenNum[2].gameObject.activeInHierarchy && hunOneNum[8].gameObject.activeInHierarchy)
@@ -3598,7 +3913,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if sun2C state and 1st question
-        if (sun2CGameNode.gameObject.activeInHierarchy && level == 3.5f)
+        if (sun2CGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.5f)
         {
             if ( // 1/8 X 2/5 = 1/20
                  bigTop0[1].gameObject.activeInHierarchy && bigTop1[2].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
@@ -3627,7 +3942,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if sun2C state and 2nd question
-        if (sun2CGameNode.gameObject.activeInHierarchy && level == 3.55f)
+        if (sun2CGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.55f)
         {
             if (// 1800 
                  thouThousandNum[1].gameObject.activeInHierarchy && thouHundredNum[8].gameObject.activeInHierarchy && thouTenNum[0].gameObject.activeInHierarchy && thouOneNum[0].gameObject.activeInHierarchy)
@@ -3678,7 +3993,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if moon2C state and 1st question
-        if (moon2CGameNode.gameObject.activeInHierarchy && level == 3.6f)
+        if (moon2CGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.6f)
         {
             if (// 944
                  hunHundredNum[9].gameObject.activeInHierarchy && hunTenNum[4].gameObject.activeInHierarchy && hunOneNum[4].gameObject.activeInHierarchy)
@@ -3702,7 +4017,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if moon2C and 2nd question
-        if (moon2CGameNode.gameObject.activeInHierarchy && level == 3.65f)
+        if (moon2CGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.65f)
         {
             if (// 1/9 X 1/5 = 1/45
                  bigTop0[1].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
@@ -3759,7 +4074,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if sun2D state and 1st question
-        if (sun2DGameNode.gameObject.activeInHierarchy && level == 3.7f)
+        if (sun2DGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.7f)
         {
             if (// 1/2 X 1/4 = 1/8
                 smolTop0[1].gameObject.activeInHierarchy && smolTop1[1].gameObject.activeInHierarchy && smolTop2[1].gameObject.activeInHierarchy &&
@@ -3788,7 +4103,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // if sun2D state and 2nd question
-        if (sun2DGameNode.gameObject.activeInHierarchy && level == 3.75f)
+        if (sun2DGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.75f)
         {
             if ( // 870
                  hunHundredNum[8].gameObject.activeInHierarchy && hunTenNum[7].gameObject.activeInHierarchy && hunOneNum[0].gameObject.activeInHierarchy)
@@ -3840,7 +4155,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // moon2D state and 1st question
-        if (moon2DGameNode.gameObject.activeInHierarchy && level == 3.8f)
+        if (moon2DGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.8f)
         {
             if ( // 1/8 X 1/4 = 1/32
                  bigTop0[1].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
@@ -3869,7 +4184,7 @@ public class BM_LevelManager : MonoBehaviour
         }
 
         // moon2D state and 2nd question
-        if (moon2DGameNode.gameObject.activeInHierarchy && level == 3.85f)
+        if (moon2DGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.85f)
         {
             if (// 1840 
                  thouThousandNum[1].gameObject.activeInHierarchy && thouHundredNum[9].gameObject.activeInHierarchy && thouTenNum[4].gameObject.activeInHierarchy && thouOneNum[0].gameObject.activeInHierarchy)
@@ -3920,7 +4235,7 @@ public class BM_LevelManager : MonoBehaviour
             }
         }
 
-        if (finalGameNode.gameObject.activeInHierarchy && level == 4.1f)
+        if (finalGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 4.1f)
         {
             if (// 1/5 X 1/4 = 1/20
                  bigTop0[1].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
@@ -3947,7 +4262,7 @@ public class BM_LevelManager : MonoBehaviour
             }
         }
 
-        if (finalGameNode.gameObject.activeInHierarchy && level == 4.2f)
+        if (finalGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 4.2f)
         {
             if (// 3124 
                  thouThousandNum[3].gameObject.activeInHierarchy && thouHundredNum[1].gameObject.activeInHierarchy && thouTenNum[2].gameObject.activeInHierarchy && thouOneNum[4].gameObject.activeInHierarchy)
@@ -3969,7 +4284,7 @@ public class BM_LevelManager : MonoBehaviour
             }
         }
 
-        if (finalGameNode.gameObject.activeInHierarchy && level == 4.3f)
+        if (finalGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 4.3f)
         {
             if (// 1/9 X 3/8 = 1/24
                  bigTop0[1].gameObject.activeInHierarchy && bigTop1[3].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
