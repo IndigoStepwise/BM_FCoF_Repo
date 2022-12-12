@@ -98,26 +98,118 @@ public class BM_LevelManager : MonoBehaviour
     // world state level
 
     public GameObject tutorGameNode;
+    public GameObject tutorDFIdle;
+    public GameObject tutorDFTalk;
+    public GameObject tutorDFCheer;
+    //public GameObject tutorDFTrap;
+
     public GameObject level0GameNode;
+    public GameObject blob0;
+    public GameObject level0DFIdle;
+    public GameObject level0DFTalk;
+    public GameObject level0DFCheer;
+    public GameObject level0DFTrap;
 
     public GameObject sun0GameNode;
+    public GameObject blobSun0;
+    public GameObject levelSun0DFIdle;
+    public GameObject levelSun0DFTalk;
+    public GameObject levelSun0DFCheer;
+    public GameObject levelSun0DFTrap;
+
     public GameObject moon0GameNode;
+    public GameObject blobMoon0;
+    public GameObject levelMoon0DFIdle;
+    public GameObject levelMoon0DFTalk;
+    public GameObject levelMoon0DFCheer;
+    public GameObject levelMoon0DFTrap;
 
     public GameObject sun1AGameNode;
+    public GameObject blobSun1A;
+    public GameObject levelSun1ADFIdle;
+    public GameObject levelSun1ADFTalk;
+    public GameObject levelSun1ADFCheer;
+    public GameObject levelSun1ADFTrap;
+
     public GameObject moon1AGameNode;
+    public GameObject blobMoon1A;
+    public GameObject levelMoon1ADFIdle;
+    public GameObject levelMoon1ADFTalk;
+    public GameObject levelMoon1ADFCheer;
+    public GameObject levelMoon1ADFTrap;
+
     public GameObject sun1BGameNode;
+    public GameObject blobSun1B;
+    public GameObject levelSun1BDFIdle;
+    public GameObject levelSun1BDFTalk;
+    public GameObject levelSun1BDFCheer;
+    public GameObject levelSun1BDFTrap;
+
     public GameObject moon1BGameNode;
+    public GameObject blobMoon1B;
+    public GameObject levelMoon1BDFIdle;
+    public GameObject levelMoon1BDFTalk;
+    public GameObject levelMoon1BDFCheer;
+    public GameObject levelMoon1BDFTrap;
 
     public GameObject sun2AGameNode;
+    public GameObject blobSun2A;
+    public GameObject levelSun2ADFIdle;
+    public GameObject levelSun2ADFTalk;
+    public GameObject levelSun2ADFCheer;
+    public GameObject levelSun2ADFTrap;
+
     public GameObject moon2AGameNode;
+    public GameObject blobMoon2A;
+    public GameObject levelMoon2ADFIdle;
+    public GameObject levelMoon2ADFTalk;
+    public GameObject levelMoon2ADFCheer;
+    public GameObject levelMoon2ADFTrap;
+
     public GameObject sun2BGameNode;
+    public GameObject blobSun2B;
+    public GameObject levelSun2BDFIdle;
+    public GameObject levelSun2BDFTalk;
+    public GameObject levelSun2BDFCheer;
+    public GameObject levelSun2BDFTrap;
+
     public GameObject moon2BGameNode;
+    public GameObject blobMoon2B;
+    public GameObject levelMoon2BDFIdle;
+    public GameObject levelMoon2BDFTalk;
+    public GameObject levelMoon2BDFCheer;
+    public GameObject levelMoon2BDFTrap;
+
     public GameObject sun2CGameNode;
+    public GameObject blobSun2C;
+    public GameObject levelSun2CDFIdle;
+    public GameObject levelSun2CDFTalk;
+    public GameObject levelSun2CDFCheer;
+    public GameObject levelSun2CDFTrap;
+
     public GameObject moon2CGameNode;
+    public GameObject blobMoon2C;
+    public GameObject levelMoon2CDFIdle;
+    public GameObject levelMoon2CDFTalk;
+    public GameObject levelMoon2CDFCheer;
+    public GameObject levelMoon2CDFTrap;
+
     public GameObject sun2DGameNode;
+    public GameObject blobSun2D;
+    public GameObject levelSun2DDFIdle;
+    public GameObject levelSun2DDFTalk;
+    public GameObject levelSun2DDFCheer;
+    public GameObject levelSun2DDFTrap;
+
     public GameObject moon2DGameNode;
+    public GameObject blobMoon2D;
+    public GameObject levelMoon2DDFIdle;
+    public GameObject levelMoon2DDFTalk;
+    public GameObject levelMoon2DDFCheer;
+    public GameObject levelMoon2DDFTrap;
 
     public GameObject finalGameNode;
+    public GameObject blobFinal;
 
     // spell cards
     public GameObject spellCardT;
@@ -243,6 +335,8 @@ public class BM_LevelManager : MonoBehaviour
     public GameObject levelFinalMapNode_Final;
 
     // text Ref
+    public GameObject textBackBox;
+
     public TextMeshProUGUI correctText;
     public TextMeshProUGUI incorrectText;
 
@@ -329,6 +423,7 @@ public class BM_LevelManager : MonoBehaviour
     // runs at start
     private void Start()
     {
+        textBackBox.gameObject.SetActive(false);
 
         correctText.gameObject.SetActive(false);
         incorrectText.gameObject.SetActive(false);
@@ -337,8 +432,6 @@ public class BM_LevelManager : MonoBehaviour
         submitButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
-        newGameButton.gameObject.SetActive(true);
-        continueButton.gameObject.SetActive(true);
         clearButton.gameObject.SetActive(false);
 
         questionT_Text.gameObject.SetActive(false);
@@ -448,6 +541,7 @@ public class BM_LevelManager : MonoBehaviour
         finalGameNode.gameObject.SetActive(false);
 
         Helper.StateButtonInitialize<BM_SaveData>(newGameButton, continueButton, OnLoad);
+
     }
 
     // run on awake
@@ -458,6 +552,7 @@ public class BM_LevelManager : MonoBehaviour
         nextButton.onClick.AddListener(OnClickNext);
         retryButton.onClick.AddListener(OnClickRetry);
         clearButton.onClick.AddListener(OnClickClear);
+
     }
 
     private void OnDestroy()
@@ -674,21 +769,20 @@ public class BM_LevelManager : MonoBehaviour
         // You don't have to follow this pattern, you can have init methods and gameplay methods separated.
     }
 
-    // on click new button
-    //private void OnClickNew()
-    //{
-    //    spellCardT.gameObject.SetActive(true);
-    //    BM_newGameButton.gameObject.SetActive(false);
-    //    BM_continueButton.gameObject.SetActive(false);
+    private void OnClickNew()
+    {
+        spellCardT.gameObject.SetActive(true);
+        newGameButton.gameObject.SetActive(false);
+        continueButton.gameObject.SetActive(false);
 
-    //    bm_SaveData.level = 0.1f;
-    //}
+        bm_SaveData.level = 0.1f;
+    }
 
-    //// on click continue button
-    //private void OnClickContinue()
-    //{
-    //    Debug.Log("Clicked Continue");
-    //}
+    // on click continue button
+    private void OnClickContinue()
+    {
+        Debug.Log("Clicked Continue");
+    }
 
     // on click retry button
     private void OnClickRetry()
@@ -699,6 +793,8 @@ public class BM_LevelManager : MonoBehaviour
         questionNodeSmolFraction.gameObject.SetActive(false);
         questionNodeSurveyThou.gameObject.SetActive(false);
         questionNodeSurveyHun.gameObject.SetActive(false);
+
+        textBackBox.gameObject.SetActive(false);
 
         if (bm_SaveData.level == 0.1f)
         {
@@ -1326,7 +1422,7 @@ public class BM_LevelManager : MonoBehaviour
             flipMap.gameObject.SetActive(false);
 
             questionNodeSurveyHun.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             question0Text.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
@@ -1360,7 +1456,7 @@ public class BM_LevelManager : MonoBehaviour
             flipMap.gameObject.SetActive(false);
 
             questionNodeSurveyHun.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             question0Text.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
@@ -1415,7 +1511,7 @@ public class BM_LevelManager : MonoBehaviour
                 flipMap.gameObject.SetActive(false);
 
                 questionNodeBigFraction.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 questionSun0Text.gameObject.SetActive(false);
                 sun0Image0.gameObject.SetActive(false);
                 sun0Image1.gameObject.SetActive(false);
@@ -1460,6 +1556,7 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeBigFraction.gameObject.SetActive(false);
                 sun0Image0.gameObject.SetActive(false);
                 sun0Image1.gameObject.SetActive(false);
+                textBackBox.gameObject.SetActive(false);
                 questionSun0Text.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
@@ -1505,7 +1602,7 @@ public class BM_LevelManager : MonoBehaviour
                 flipMap.gameObject.SetActive(false);
 
                 questionNodeBigFraction.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 questionMoon0Text.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
@@ -1546,7 +1643,7 @@ public class BM_LevelManager : MonoBehaviour
                 flipMap.gameObject.SetActive(false);
 
                 questionNodeBigFraction.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 questionMoon0Text.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
@@ -1612,7 +1709,7 @@ public class BM_LevelManager : MonoBehaviour
                 questionSun1AText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 bm_SaveData.level = 3.3f;
 
                 spellCardSun2B_0.gameObject.SetActive(true);
@@ -1659,7 +1756,7 @@ public class BM_LevelManager : MonoBehaviour
                 questionSun1AText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 bm_SaveData.level = 3.4f;
 
                 spellCardMoon2B_0.gameObject.SetActive(true);
@@ -1709,7 +1806,7 @@ public class BM_LevelManager : MonoBehaviour
                 questionMoon1AText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 bm_SaveData.level = 3.1f;
 
                 spellCardSun2A_0.gameObject.SetActive(true);
@@ -1756,7 +1853,7 @@ public class BM_LevelManager : MonoBehaviour
                 questionMoon1AText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 bm_SaveData.level = 3.2f;
 
                 spellCardMoon2A_0.gameObject.SetActive(true);
@@ -1806,7 +1903,7 @@ public class BM_LevelManager : MonoBehaviour
                 questionSun1BText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 bm_SaveData.level = 3.8f;
 
                 spellCardSun2D_0.gameObject.SetActive(true);
@@ -1854,7 +1951,7 @@ public class BM_LevelManager : MonoBehaviour
                 sun0Image1.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 bm_SaveData.level = 3.7f;
 
                 spellCardMoon2D_0.gameObject.SetActive(true);
@@ -1906,7 +2003,7 @@ public class BM_LevelManager : MonoBehaviour
                 moon1BImage1.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 bm_SaveData.level = 3.5f;
 
                 spellCardSun2C_0.gameObject.SetActive(true);
@@ -1955,7 +2052,7 @@ public class BM_LevelManager : MonoBehaviour
                 moon1BImage1.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
-
+                textBackBox.gameObject.SetActive(false);
                 bm_SaveData.level = 3.6f;
 
                 spellCardMoon2C_0.gameObject.SetActive(true);
@@ -2030,7 +2127,7 @@ public class BM_LevelManager : MonoBehaviour
         incorrectText.gameObject.SetActive(false);
 
         bm_SaveData.level = 0.5f;
-
+        textBackBox.gameObject.SetActive(false);
         flipMap.gameObject.SetActive(false);
         spellCard0.gameObject.SetActive(true);
 
@@ -2059,7 +2156,7 @@ public class BM_LevelManager : MonoBehaviour
             questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             spellCardSun2A_1.gameObject.SetActive(true);
 
             bm_SaveData.level = 3.15f;
@@ -2081,7 +2178,7 @@ public class BM_LevelManager : MonoBehaviour
             questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             spellCardMoon2A_1.gameObject.SetActive(true);
 
             bm_SaveData.level = 3.25f;
@@ -2102,7 +2199,7 @@ public class BM_LevelManager : MonoBehaviour
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             spellCardSun2B_1.gameObject.SetActive(true);
-
+            textBackBox.gameObject.SetActive(false);
             bm_SaveData.level = 3.35f;
         }
 
@@ -2120,7 +2217,7 @@ public class BM_LevelManager : MonoBehaviour
             questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             spellCardMoon2B_1.gameObject.SetActive(true);
 
             bm_SaveData.level = 3.45f;
@@ -2141,7 +2238,7 @@ public class BM_LevelManager : MonoBehaviour
             questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             spellCardSun2C_1.gameObject.SetActive(true);
 
             bm_SaveData.level = 3.55f;
@@ -2160,7 +2257,7 @@ public class BM_LevelManager : MonoBehaviour
             questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             spellCardMoon2C_1.gameObject.SetActive(true);
 
             bm_SaveData.level = 3.65f;
@@ -2179,7 +2276,7 @@ public class BM_LevelManager : MonoBehaviour
             questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             spellCardSun2D_1.gameObject.SetActive(true);
 
             bm_SaveData.level = 3.75f;
@@ -2199,7 +2296,7 @@ public class BM_LevelManager : MonoBehaviour
             questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             spellCardMoon2D_1.gameObject.SetActive(true);
 
             bm_SaveData.level = 3.85f;
@@ -2270,7 +2367,7 @@ public class BM_LevelManager : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(3);
             questionSun2A_1Text.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
 
@@ -2339,7 +2436,7 @@ public class BM_LevelManager : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(3);
             questionMoon2A_1Text.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
 
@@ -2408,7 +2505,7 @@ public class BM_LevelManager : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(3);
             questionSun2B_1Text.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
 
@@ -2477,7 +2574,7 @@ public class BM_LevelManager : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(3);
             questionMoon2B_1Text.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
 
@@ -2546,7 +2643,7 @@ public class BM_LevelManager : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(3);
             questionSun2C_1Text.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
 
@@ -2618,7 +2715,7 @@ public class BM_LevelManager : MonoBehaviour
             moon2CImage0.gameObject.SetActive(false);
             moon2CImage1.gameObject.SetActive(false);
             questionMoon2C_1Text.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
 
@@ -2687,7 +2784,7 @@ public class BM_LevelManager : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(3);
             questionSun2D_1Text.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
 
@@ -2756,7 +2853,7 @@ public class BM_LevelManager : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(3);
             questionMoon2D_1Text.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
 
@@ -2787,7 +2884,7 @@ public class BM_LevelManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(3);
             questionFinalFractionText0.gameObject.SetActive(false);
             finalImage0.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
 
@@ -2815,7 +2912,7 @@ public class BM_LevelManager : MonoBehaviour
             nextButton.gameObject.SetActive(false);
             yield return new WaitForSecondsRealtime(3);
             questionFinalSurveyText0.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             spellCardFractionFinal_1.gameObject.SetActive(true);
@@ -2842,7 +2939,7 @@ public class BM_LevelManager : MonoBehaviour
             questionNodeSurveyThou.gameObject.SetActive(false);
             questionNodeSurveyHun.gameObject.SetActive(false);
             questionFinalFractionText1.gameObject.SetActive(false);
-
+            textBackBox.gameObject.SetActive(false);
             finalImage1.gameObject.SetActive(false);
 
             correctText.gameObject.SetActive(false);
@@ -3203,6 +3300,11 @@ public class BM_LevelManager : MonoBehaviour
 
                 flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
+
+                blob0.gameObject.SetActive(false);
+                level0DFTrap.gameObject.SetActive(false);
+                level0DFCheer.gameObject.SetActive(true);
+
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3244,6 +3346,11 @@ public class BM_LevelManager : MonoBehaviour
 
                     flipMap.gameObject.SetActive(true);
                     Debug.Log("Correct");
+
+                    blobSun0.gameObject.SetActive(false);
+                    levelSun0DFTrap.gameObject.SetActive(false);
+                    levelSun0DFCheer.gameObject.SetActive(true);
+
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                     levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3293,6 +3400,10 @@ public class BM_LevelManager : MonoBehaviour
                     Debug.Log("Correct");
                     flipMap.gameObject.SetActive(true);
 
+                    blobMoon0.gameObject.SetActive(false);
+                    levelMoon0DFTrap.gameObject.SetActive(false);
+                    levelMoon0DFCheer.gameObject.SetActive(true);
+
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                     levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3335,6 +3446,10 @@ public class BM_LevelManager : MonoBehaviour
                     submitButton.gameObject.SetActive(false);
                     Debug.Log("Correct");
                     flipMap.gameObject.SetActive(true);
+
+                    blobSun1A.gameObject.SetActive(false);
+                    levelSun1ADFTrap.gameObject.SetActive(false);
+                    levelSun1ADFCheer.gameObject.SetActive(true);
 
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                     levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3384,6 +3499,10 @@ public class BM_LevelManager : MonoBehaviour
                     submitButton.gameObject.SetActive(false);
                     Debug.Log("Correct");
                     flipMap.gameObject.SetActive(true);
+
+                    blobMoon1A.gameObject.SetActive(false);
+                    levelMoon1ADFTrap.gameObject.SetActive(false);
+                    levelMoon1ADFCheer.gameObject.SetActive(true);
 
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                     levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3439,6 +3558,10 @@ public class BM_LevelManager : MonoBehaviour
                     Debug.Log("Correct");
                     flipMap.gameObject.SetActive(true);
 
+                    blobSun1B.gameObject.SetActive(false);
+                    levelSun1BDFTrap.gameObject.SetActive(false);
+                    levelSun1BDFCheer.gameObject.SetActive(true);
+
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                     levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3492,6 +3615,10 @@ public class BM_LevelManager : MonoBehaviour
                     submitButton.gameObject.SetActive(false);
                     Debug.Log("Correct");
                     flipMap.gameObject.SetActive(true);
+
+                    blobMoon1B.gameObject.SetActive(false);
+                    levelMoon1BDFTrap.gameObject.SetActive(false);
+                    levelMoon1BDFCheer.gameObject.SetActive(true);
 
                     connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                     levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3569,6 +3696,10 @@ public class BM_LevelManager : MonoBehaviour
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
                 flipMap.gameObject.SetActive(true);
+
+                blobSun2A.gameObject.SetActive(false);
+                levelSun2ADFTrap.gameObject.SetActive(false);
+                levelSun2ADFCheer.gameObject.SetActive(true);
 
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3651,6 +3782,10 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("Correct");
                 flipMap.gameObject.SetActive(true);
 
+                blobMoon2A.gameObject.SetActive(false);
+                levelMoon2ADFTrap.gameObject.SetActive(false);
+                levelMoon2ADFCheer.gameObject.SetActive(true);
+
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3731,6 +3866,10 @@ public class BM_LevelManager : MonoBehaviour
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
                 flipMap.gameObject.SetActive(true);
+
+                blobSun2B.gameObject.SetActive(false);
+                levelSun2BDFTrap.gameObject.SetActive(false);
+                levelSun2BDFCheer.gameObject.SetActive(true);
 
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
@@ -3813,6 +3952,11 @@ public class BM_LevelManager : MonoBehaviour
 
                 flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
+
+                blobMoon2B.gameObject.SetActive(false);
+                levelMoon2BDFTrap.gameObject.SetActive(false);
+                levelMoon2BDFCheer.gameObject.SetActive(true);
+
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3894,6 +4038,11 @@ public class BM_LevelManager : MonoBehaviour
 
                 flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
+
+                blobSun2C.gameObject.SetActive(false);
+                levelSun2CDFTrap.gameObject.SetActive(false);
+                levelSun2CDFCheer.gameObject.SetActive(true);
+
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -3974,6 +4123,11 @@ public class BM_LevelManager : MonoBehaviour
 
                 flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
+
+                blobMoon2C.gameObject.SetActive(false);
+                levelMoon2CDFTrap.gameObject.SetActive(false);
+                levelMoon2CDFCheer.gameObject.SetActive(true);
+
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -4055,6 +4209,11 @@ public class BM_LevelManager : MonoBehaviour
 
                 flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
+
+                blobSun2D.gameObject.SetActive(false);
+                levelSun2DDFTrap.gameObject.SetActive(false);
+                levelSun2DDFCheer.gameObject.SetActive(true);
+
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -4136,6 +4295,11 @@ public class BM_LevelManager : MonoBehaviour
 
                 flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
+
+                blobMoon2D.gameObject.SetActive(false);
+                levelMoon2DDFTrap.gameObject.SetActive(false);
+                levelMoon2DDFCheer.gameObject.SetActive(true);
+
                 connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
                 levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
 
@@ -4239,6 +4403,8 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                blobFinal.gameObject.SetActive(false);
             }
 
             else
