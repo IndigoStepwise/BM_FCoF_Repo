@@ -26,6 +26,11 @@ public class BM_LevelManager : MonoBehaviour
     [SerializeField] Button newGameButton;
     [SerializeField] Button continueButton;
     public Button clearButton;
+    public Button tutorNextButton0;
+    public Button tutorNextButton1;
+    public Button tutorNextButton2;
+    public Button tutorNextButton3;
+    public Button tutorNextButton4;
 
     // question nodes
     public GameObject questionNodeSurveyHun;
@@ -246,101 +251,81 @@ public class BM_LevelManager : MonoBehaviour
     public GameObject spellCardFractionFinal_1;
 
     // map
-    public GameObject flipMap;
+    public GameObject mapT_0;
+    public GameObject map0Confirm;
 
-    public GameObject levelTNode;
-    public GameObject connect_T_0;
+    public GameObject map0_Sun0_Moon0;
+    public GameObject map0_Sun0Confirm;
+    public GameObject map0_Moon0Confirm;
+    public GameObject mapSun0_Sun1A_Moon1A;
+    public GameObject mapSun0_Sun1AConfirm;
+    public GameObject mapSun0_Moon1AConfirm;
+    public GameObject mapMoon0_Sun1B_Moon1B;
+    public GameObject mapMoon0_Sun1BConfirm;
+    public GameObject mapMoon0_Moon1BConfirm;
 
-    public GameObject level0MapNode;
-    public GameObject connect0_Sun0;
-    public GameObject connect0_Moon0;
-    public GameObject levelSun0MapNode;
-    public GameObject levelMoon0MapNode;
+    public GameObject mapSun1A_Sun2B_Moon2B;
+    public GameObject mapSun1A_Sun2BConfirm;
+    public GameObject mapSun1A_Moon2BConfirm;
+    public GameObject mapMoon1A_Sun2A_Moon2A;
+    public GameObject mapMoon1A_Sun2AConfirm;
+    public GameObject mapMoon1A_Moon2AConfirm;
 
-    public GameObject connectSun0_Sun1A;
-    public GameObject connectSun0_Moon1A;
-    public GameObject connectMoon0_Sun1B;
-    public GameObject connectMoon0_Moon1B;
-    public GameObject levelSun1AMapNode;
-    public GameObject levelMoon1AMapNode;
-    public GameObject levelSun1BMapNode;
-    public GameObject levelMoon1BMapNode;
+    public GameObject mapSun1B_Sun2D_Moon2D;
+    public GameObject mapSun1B_Sun2DConfirm;
+    public GameObject mapSun1B_Moon2DConfirm;
+    public GameObject mapMoon1B_Sun2C_Moon2C;
+    public GameObject mapMoon1B_Sun2CConfirm;
+    public GameObject mapMoon1B_Moon2CConfirm;
 
-    public GameObject connectSun1A_Sun2B;
-    public GameObject connectSun1A_Moon2B;
-    public GameObject connectMoon1A_Sun2A;
-    public GameObject connectMoon1A_Moon2A;
-    public GameObject connectSun1B_Sun2D;
-    public GameObject connectSun1B_Moon2D;
-    public GameObject connectMoon1B_Sun2C;
-    public GameObject connectMoon1B_Moon2C;
-    public GameObject levelSun2AMapNode;
-    public GameObject levelMoon2AMapNode;
-    public GameObject levelSun2BMapNode;
-    public GameObject levelMoon2BMapNode;
-    public GameObject levelSun2CMapNode;
-    public GameObject levelMoon2CMapNode;
-    public GameObject levelSun2DMapNode;
-    public GameObject levelMoon2DMapNode;
+    public GameObject mapSun2A_Final;
+    public GameObject mapSun2A_FinalConfirm;
+    public GameObject mapMoon2A_Final;
+    public GameObject mapMoon2A_FinalConfirm;
+    public GameObject mapSun2B_Final;
+    public GameObject mapSun2B_FinalConfirm;
+    public GameObject mapMoon2B_Final;
+    public GameObject mapMoon2B_FinalConfirm;
+    public GameObject mapSun2C_Final;
+    public GameObject mapSun2C_FinalConfirm;
+    public GameObject mapMoon2C_Final;
+    public GameObject mapMoon2C_FinalConfirm;
+    public GameObject mapSun2D_Final;
+    public GameObject mapSun2D_FinalConfirm;
+    public GameObject mapMoon2D_Final;
+    public GameObject mapMoon2D_FinalConfirm;
 
-    public GameObject connectFinal0;
-    public GameObject connectFinal1;
-    public GameObject levelFinalMapNode;
+    public GameObject finalMap_Sun2AFinal;
+    public GameObject finalMap_Moon2AFinal;
+    public GameObject finalMap_Sun2BFinal;
+    public GameObject finalMap_Moon2BFinal;
+    public GameObject finalMap_Sun2CFinal;
+    public GameObject finalMap_Moon2CFinal;
+    public GameObject finalMap_Sun2DFinal;
+    public GameObject finalMap_Moon2DFinal;
 
-    // final map
+
+    // final map text
     public TextMeshProUGUI congratsText;
     public TextMeshProUGUI finalMath0Text;
     public TextMeshProUGUI finalMath1Text;
     public TextMeshProUGUI finalMath2Text;
 
-    public GameObject flipMap_Final;
-
-    public GameObject levelTNode_Final;
-    public GameObject connect_T_0_Final;
-
-    public GameObject level0MapNode_Final;
-    public GameObject connect0_Sun0_Final;
-    public GameObject connect0_Moon0_Final;
-    public GameObject levelSun0MapNode_Final;
-    public GameObject levelMoon0MapNode_Final;
-
-    public GameObject connectSun0_Sun1A_Final;
-    public GameObject connectSun0_Moon1A_Final;
-    public GameObject connectMoon0_Sun1B_Final;
-    public GameObject connectMoon0_Moon1B_Final;
-    public GameObject levelSun1AMapNode_Final;
-    public GameObject levelMoon1AMapNode_Final;
-    public GameObject levelSun1BMapNode_Final;
-    public GameObject levelMoon1BMapNode_Final;
-
-    public GameObject connectSun1A_Sun2B_Final;
-    public GameObject connectSun1A_Moon2B_Final;
-    public GameObject connectMoon1A_Sun2A_Final;
-    public GameObject connectMoon1A_Moon2A_Final;
-    public GameObject connectSun1B_Sun2D_Final;
-    public GameObject connectSun1B_Moon2D_Final;
-    public GameObject connectMoon1B_Sun2C_Final;
-    public GameObject connectMoon1B_Moon2C_Final;
-    public GameObject levelSun2AMapNode_Final;
-    public GameObject levelMoon2AMapNode_Final;
-    public GameObject levelSun2BMapNode_Final;
-    public GameObject levelMoon2BMapNode_Final;
-    public GameObject levelSun2CMapNode_Final;
-    public GameObject levelMoon2CMapNode_Final;
-    public GameObject levelSun2DMapNode_Final;
-    public GameObject levelMoon2DMapNode_Final;
-
-    public GameObject connectFinal0_Final;
-    public GameObject connectFinal1_Final;
-    public GameObject levelFinalMapNode_Final;
-
     // text Ref
     public GameObject textBackBox;
+    public GameObject textBackBoxTutor;
 
     public TextMeshProUGUI correctText;
     public TextMeshProUGUI incorrectText;
 
     public TextMeshProUGUI questionT_Text;
+    public TextMeshProUGUI tutorText0;
+    public TextMeshProUGUI tutorText1;
+    public TextMeshProUGUI tutorText2;
+    public TextMeshProUGUI tutorText3;
+    public TextMeshProUGUI tutorText4;
+    public TextMeshProUGUI tutorText5;
+    public TextMeshProUGUI tutorText6;
 
     public TextMeshProUGUI question0Text;
     public TextMeshProUGUI questionSun0Text;
@@ -424,6 +409,7 @@ public class BM_LevelManager : MonoBehaviour
     private void Start()
     {
         textBackBox.gameObject.SetActive(false);
+        textBackBoxTutor.gameObject.SetActive(false);
 
         correctText.gameObject.SetActive(false);
         incorrectText.gameObject.SetActive(false);
@@ -434,8 +420,21 @@ public class BM_LevelManager : MonoBehaviour
         retryButton.gameObject.SetActive(false);
         clearButton.gameObject.SetActive(false);
 
+        tutorNextButton0.gameObject.SetActive(false);
+        tutorNextButton1.gameObject.SetActive(false);
+        tutorNextButton2.gameObject.SetActive(false);
+        tutorNextButton3.gameObject.SetActive(false);
+        tutorNextButton4.gameObject.SetActive(false);
+
         questionT_Text.gameObject.SetActive(false);
-        
+        tutorText0.gameObject.SetActive(false);
+        tutorText1.gameObject.SetActive(false);
+        tutorText2.gameObject.SetActive(false);
+        tutorText3.gameObject.SetActive(false);
+        tutorText4.gameObject.SetActive(false);
+        tutorText5.gameObject.SetActive(false);
+        tutorText6.gameObject.SetActive(false);
+
         question0Text.gameObject.SetActive(false);
         questionSun0Text.gameObject.SetActive(false);
         questionMoon0Text.gameObject.SetActive(false);
@@ -503,7 +502,6 @@ public class BM_LevelManager : MonoBehaviour
         spellCardFinalSurvey.gameObject.SetActive(false);
         spellCardFractionFinal_1.gameObject.SetActive(false);
 
-        flipMap.gameObject.SetActive(false);
         sunCoin.gameObject.SetActive(false);
         moonCoin.gameObject.SetActive(false);
 
@@ -511,8 +509,6 @@ public class BM_LevelManager : MonoBehaviour
         questionNodeSurveyThou.SetActive(false);
         questionNodeBigFraction.SetActive(false);
         questionNodeSmolFraction.SetActive(false);
-
-        flipMap_Final.gameObject.SetActive(false);
 
         congratsText.gameObject.SetActive(false);
         finalMath0Text.gameObject.SetActive(false);
@@ -540,7 +536,60 @@ public class BM_LevelManager : MonoBehaviour
 
         finalGameNode.gameObject.SetActive(false);
 
-        Helper.StateButtonInitialize<BM_SaveData>(newGameButton, continueButton, OnLoad);
+        mapT_0.gameObject.SetActive(false);
+        map0Confirm.gameObject.SetActive(false);
+
+        map0_Sun0_Moon0.gameObject.SetActive(false);
+        map0_Sun0Confirm.gameObject.SetActive(false);
+        map0_Moon0Confirm.gameObject.SetActive(false);
+        mapSun0_Sun1A_Moon1A.gameObject.SetActive(false);
+        mapSun0_Sun1AConfirm.gameObject.SetActive(false);
+        mapSun0_Moon1AConfirm.gameObject.SetActive(false);
+        mapMoon0_Sun1B_Moon1B.gameObject.SetActive(false);
+        mapMoon0_Sun1BConfirm.gameObject.SetActive(false);
+        mapMoon0_Moon1BConfirm.gameObject.SetActive(false);
+
+        mapSun1A_Sun2B_Moon2B.gameObject.SetActive(false);
+        mapSun1A_Sun2BConfirm.gameObject.SetActive(false);
+        mapSun1A_Moon2BConfirm.gameObject.SetActive(false);
+        mapMoon1A_Sun2A_Moon2A.gameObject.SetActive(false);
+        mapMoon1A_Sun2AConfirm.gameObject.SetActive(false);
+        mapMoon1A_Moon2AConfirm.gameObject.SetActive(false);
+
+        mapSun1B_Sun2D_Moon2D.gameObject.SetActive(false);
+        mapSun1B_Sun2DConfirm.gameObject.SetActive(false);
+        mapSun1B_Moon2DConfirm.gameObject.SetActive(false);
+        mapMoon1B_Sun2C_Moon2C.gameObject.SetActive(false);
+        mapMoon1B_Sun2CConfirm.gameObject.SetActive(false);
+        mapMoon1B_Moon2CConfirm.gameObject.SetActive(false);
+
+        mapSun2A_Final.gameObject.SetActive(false);
+        mapSun2A_FinalConfirm.gameObject.SetActive(false);
+        mapMoon2A_Final.gameObject.SetActive(false);
+        mapMoon2A_FinalConfirm.gameObject.SetActive(false);
+        mapSun2B_Final.gameObject.SetActive(false);
+        mapSun2B_FinalConfirm.gameObject.SetActive(false);
+        mapMoon2B_Final.gameObject.SetActive(false);
+        mapMoon2B_FinalConfirm.gameObject.SetActive(false);
+        mapSun2C_Final.gameObject.SetActive(false);
+        mapSun2C_FinalConfirm.gameObject.SetActive(false);
+        mapMoon2C_Final.gameObject.SetActive(false);
+        mapMoon2C_FinalConfirm.gameObject.SetActive(false);
+        mapSun2D_Final.gameObject.SetActive(false);
+        mapSun2D_FinalConfirm.gameObject.SetActive(false);
+        mapMoon2D_Final.gameObject.SetActive(false);
+        mapMoon2D_FinalConfirm.gameObject.SetActive(false);
+
+        finalMap_Sun2AFinal.gameObject.SetActive(false);
+        finalMap_Moon2AFinal.gameObject.SetActive(false);
+        finalMap_Sun2BFinal.gameObject.SetActive(false);
+        finalMap_Moon2BFinal.gameObject.SetActive(false);
+        finalMap_Sun2CFinal.gameObject.SetActive(false);
+        finalMap_Moon2CFinal.gameObject.SetActive(false);
+        finalMap_Sun2DFinal.gameObject.SetActive(false);
+        finalMap_Moon2DFinal.gameObject.SetActive(false);
+
+    Helper.StateButtonInitialize<BM_SaveData>(newGameButton, continueButton, OnLoad);
 
     }
 
@@ -552,6 +601,12 @@ public class BM_LevelManager : MonoBehaviour
         nextButton.onClick.AddListener(OnClickNext);
         retryButton.onClick.AddListener(OnClickRetry);
         clearButton.onClick.AddListener(OnClickClear);
+        newGameButton.onClick.AddListener(OnClickNew);
+        tutorNextButton0.onClick.AddListener(OnClickNextT0);
+        tutorNextButton1.onClick.AddListener(OnClickNextT1);
+        tutorNextButton2.onClick.AddListener(OnClickNextT2);
+        tutorNextButton3.onClick.AddListener(OnClickNextT3);
+        tutorNextButton4.onClick.AddListener(OnClickNextT4);
 
     }
 
@@ -604,190 +659,302 @@ public class BM_LevelManager : MonoBehaviour
 
     public void PickLevel()
     {
+
         if (bm_SaveData.level == 0.1f)
         {
+            Debug.Log("LoadTutor");
             spellCardT.gameObject.SetActive(true);
             tutorGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 0.5f)
         {
+            Debug.Log("LoadLevel0");
             spellCard0.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 1.1f)
         {
+            Debug.Log("LoadSun0");
             spellCardSun0.gameObject.SetActive(true);
             sun0GameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 1.2f)
         {
+            Debug.Log("LoadMoon0");
             spellCardMoon0.gameObject.SetActive(true);
             moon0GameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 2.1f)
         {
+            Debug.Log("LoadSun1A");
             spellCardSun1A.gameObject.SetActive(true);
             sun1AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 2.2f)
         {
+            Debug.Log("LoadMoon1A");
             spellCardMoon1A.gameObject.SetActive(true);
             moon1AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 2.3f)
         {
+            Debug.Log("LoadSun1B");
             spellCardSun1B.gameObject.SetActive(true);
             sun1BGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 2.4f)
         {
+            Debug.Log("LoadMoon1B");
             spellCardMoon1B.gameObject.SetActive(true);
             moon1BGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.1f)
         {
+            Debug.Log("LoadSun2A");
             spellCardSun2A_0.gameObject.SetActive(true);
             sun2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.15f)
         {
+            Debug.Log("LoadSun2A");
             spellCardSun2A_1.gameObject.SetActive(true);
             sun2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.2f)
         {
+            Debug.Log("LoadMoon2A");
             spellCardMoon2A_0.gameObject.SetActive(true);
             moon2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.25f)
         {
+            Debug.Log("LoadMoon2A");
             spellCardMoon2A_1.gameObject.SetActive(true);
             moon2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.3f)
         {
+            Debug.Log("LoadSun2B");
             spellCardSun2B_0.gameObject.SetActive(true);
             sun2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.35f)
         {
+            Debug.Log("LoadSun2B");
             spellCardSun2B_1.gameObject.SetActive(true);
             sun2AGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.4f)
         {
+            Debug.Log("LoadMoon2B");
             spellCardMoon2B_0.gameObject.SetActive(true);
             moon2BGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.45f)
         {
+            Debug.Log("LoadMoon2B");
             spellCardMoon2B_1.gameObject.SetActive(true);
             moon2BGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.5f)
         {
+            Debug.Log("LoadSun2C");
             spellCardSun2C_0.gameObject.SetActive(true);
             sun2CGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.55f)
         {
+            Debug.Log("LoadSun2C");
             spellCardSun2C_1.gameObject.SetActive(true);
             sun2CGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.6f)
         {
+            Debug.Log("LoadMoon2C");
             spellCardMoon2C_0.gameObject.SetActive(true);
             moon2CGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.65f)
         {
+            Debug.Log("LoadMoon2C");
             spellCardMoon2C_1.gameObject.SetActive(true);
             moon2CGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.7f)
         {
+            Debug.Log("LoadSun2D");
             spellCardSun2D_0.gameObject.SetActive(true);
             sun2DGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.75f)
         {
+            Debug.Log("LoadSun2D");
             spellCardSun2D_1.gameObject.SetActive(true);
             sun2DGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.8f)
         {
+            Debug.Log("LoadMoon2D");
             spellCardMoon2D_0.gameObject.SetActive(true);
             moon2DGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 3.85f)
         {
+            Debug.Log("LoadMoon2D");
             spellCardMoon2D_1.gameObject.SetActive(true);
             moon2DGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 4.1f)
         {
+            Debug.Log("LoadFinal 1");
             spellCardFractionFinal_0.gameObject.SetActive(true);
             finalGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 4.2f)
         {
+            Debug.Log("LoadFinal 2");
             spellCardFinalSurvey.gameObject.SetActive(true);
             finalGameNode.gameObject.SetActive(true);
         }
 
         if (bm_SaveData.level == 4.3f)
         {
+            Debug.Log("LoadFinal 3");
             spellCardFractionFinal_1.gameObject.SetActive(true);
             finalGameNode.gameObject.SetActive(true);
         }
-        // I use an init flag so I can call the same Set methods during initial load and during gameplay.
-        // You don't have to follow this pattern, you can have init methods and gameplay methods separated.
+    }
+
+    private void OnClickNextT0()
+    {
+        StartCoroutine(TutorText1());
+    }
+
+    private void OnClickNextT1()
+    {
+        StartCoroutine(TutorText2());
+    }
+
+    private void OnClickNextT2()
+    {
+        StartCoroutine(TutorText3());
+    }
+
+    private void OnClickNextT3()
+    {
+        StartCoroutine(TutorText4());
+    }
+
+    private void OnClickNextT4()
+    {
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton4.gameObject.SetActive(false);
+        tutorText4.gameObject.SetActive(false);
+        textBackBoxTutor.gameObject.SetActive(false);
+        tutorDFTalk.gameObject.SetActive(false);
+        tutorDFCheer.gameObject.SetActive(false);
+        tutorDFIdle.gameObject.SetActive(true);
+        bm_SaveData.level = 0.1f;
+        spellCardT.gameObject.SetActive(true);
     }
 
     private void OnClickNew()
     {
-        spellCardT.gameObject.SetActive(true);
-        newGameButton.gameObject.SetActive(false);
-        continueButton.gameObject.SetActive(false);
-
-        bm_SaveData.level = 0.1f;
+        Debug.Log("New Game");
+        BM_AudioManager.instance.Play("Button");
+        StartCoroutine(TutorText0());
     }
 
-    // on click continue button
-    private void OnClickContinue()
+    IEnumerator TutorText0()
     {
-        Debug.Log("Clicked Continue");
+        BM_AudioManager.instance.Play("Button");
+        newGameButton.gameObject.SetActive(false);
+        continueButton.gameObject.SetActive(false);
+        tutorDFTalk.gameObject.SetActive(true);
+        tutorDFCheer.gameObject.SetActive(false);
+        tutorDFIdle.gameObject.SetActive(false);
+        textBackBoxTutor.gameObject.SetActive(true);
+        tutorText0.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(5);
+        tutorNextButton0.gameObject.SetActive(true);
+
+    }
+
+    IEnumerator TutorText1()
+    {
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton0.gameObject.SetActive(false);
+        tutorText0.gameObject.SetActive(false);
+        tutorText1.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(5);
+        tutorNextButton1.gameObject.SetActive(true);
+    }
+
+    IEnumerator TutorText2()
+    {
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton1.gameObject.SetActive(false);
+        tutorText1.gameObject.SetActive(false);
+        tutorText2.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(5);
+        tutorNextButton2.gameObject.SetActive(true);
+
+    }
+
+    IEnumerator TutorText3()
+    {
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton2.gameObject.SetActive(false);
+        tutorText2.gameObject.SetActive(false);
+        tutorText3.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(5);
+        tutorNextButton3.gameObject.SetActive(true);
+    }
+
+    IEnumerator TutorText4()
+    {
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton3.gameObject.SetActive(false);
+        tutorText3.gameObject.SetActive(false);
+        tutorText4.gameObject.SetActive(true);
+        tutorDFTalk.gameObject.SetActive(false);
+        tutorDFCheer.gameObject.SetActive(true);
+        tutorDFIdle.gameObject.SetActive(false);
+        yield return new WaitForSecondsRealtime(5);
+        tutorNextButton4.gameObject.SetActive(true);
+
     }
 
     // on click retry button
     private void OnClickRetry()
     {
         Clear();
+        BM_AudioManager.instance.Play("Button");
 
         questionNodeBigFraction.gameObject.SetActive(false);
         questionNodeSmolFraction.gameObject.SetActive(false);
@@ -799,7 +966,12 @@ public class BM_LevelManager : MonoBehaviour
         if (bm_SaveData.level == 0.1f)
         {
             spellCardT.gameObject.SetActive(true);
-
+            tutorText4.gameObject.SetActive(false);
+            tutorText6.gameObject.SetActive(false);
+            textBackBoxTutor.gameObject.SetActive(false);
+            tutorDFTalk.gameObject.SetActive(false);
+            tutorDFCheer.gameObject.SetActive(false);
+            tutorDFIdle.gameObject.SetActive(true);
             questionT_Text.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
@@ -1367,13 +1539,28 @@ public class BM_LevelManager : MonoBehaviour
     private void OnClickClear()
     {
         Clear();
-
+        BM_AudioManager.instance.Play("Button");
     }
 
     // runs on click flip button
     private void OnClickFlip()
     {
         Clear();
+        map0_Sun0_Moon0.gameObject.SetActive(false);
+        mapSun0_Sun1A_Moon1A.gameObject.SetActive(false);
+        mapMoon0_Sun1B_Moon1B.gameObject.SetActive(false);
+        mapSun1A_Sun2B_Moon2B.gameObject.SetActive(false);
+        mapMoon1A_Sun2A_Moon2A.gameObject.SetActive(false);
+        mapSun1B_Sun2D_Moon2D.gameObject.SetActive(false);
+        mapMoon1B_Sun2C_Moon2C.gameObject.SetActive(false);
+        mapSun2A_Final.gameObject.SetActive(false);
+        mapMoon2A_Final.gameObject.SetActive(false);
+        mapSun2B_Final.gameObject.SetActive(false);
+        mapMoon2B_Final.gameObject.SetActive(false);
+        mapSun2C_Final.gameObject.SetActive(false);
+        mapMoon2C_Final.gameObject.SetActive(false);
+        mapSun2D_Final.gameObject.SetActive(false);
+        mapMoon2D_Final.gameObject.SetActive(false);
 
         if (bm_SaveData.level == 0.5f)
         {
@@ -1397,31 +1584,25 @@ public class BM_LevelManager : MonoBehaviour
         float randomNumber = Random.Range(0, 2);
         flipButton.gameObject.SetActive(false);
         BM_AudioManager.instance.Play("Button");
+        questionNodeBigFraction.gameObject.SetActive(false);
+        questionNodeSmolFraction.gameObject.SetActive(false);
+        questionNodeSurveyThou.gameObject.SetActive(false);
+        questionNodeSurveyHun.gameObject.SetActive(false);
 
         // and ranNum is 0, output Sun
         if (randomNumber == 0)
         {
             sunCoin.gameObject.SetActive(true);
 
-            connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
+            map0_Sun0Confirm.gameObject.SetActive(true);
 
             yield return new WaitForSecondsRealtime(3);
             sun0GameNode.gameObject.SetActive(true);
             Debug.Log("SUN0");
             sunCoin.gameObject.SetActive(false);
 
-            flipMap.gameObject.SetActive(false);
+            map0_Sun0Confirm.gameObject.SetActive(false);
 
-            questionNodeSurveyHun.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             question0Text.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
@@ -1437,25 +1618,15 @@ public class BM_LevelManager : MonoBehaviour
         {
             moonCoin.gameObject.SetActive(true);
 
-            connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+            map0_Moon0Confirm.gameObject.SetActive(true);
 
             yield return new WaitForSecondsRealtime(3);
             moon0GameNode.gameObject.SetActive(true);
             Debug.Log("MOON0");
             moonCoin.gameObject.SetActive(false);
 
-            flipMap.gameObject.SetActive(false);
+            map0_Moon0Confirm.gameObject.SetActive(false);
 
-            questionNodeSurveyHun.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             question0Text.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
@@ -1477,6 +1648,10 @@ public class BM_LevelManager : MonoBehaviour
         float randomNumber = Random.Range(0, 2);
         flipButton.gameObject.SetActive(false);
         BM_AudioManager.instance.Play("Button");
+        questionNodeBigFraction.gameObject.SetActive(false);
+        questionNodeSmolFraction.gameObject.SetActive(false);
+        questionNodeSurveyThou.gameObject.SetActive(false);
+        questionNodeSurveyHun.gameObject.SetActive(false);
 
         // if current state is Sun0
         if (sun0GameNode.gameObject.activeInHierarchy)
@@ -1486,38 +1661,22 @@ public class BM_LevelManager : MonoBehaviour
             {
                 sunCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
+                mapSun0_Sun1AConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 sun1AGameNode.gameObject.SetActive(true);
 
                 sunCoin.gameObject.SetActive(false);
                 Debug.Log("SUN1A");
-                flipMap.gameObject.SetActive(false);
 
-                questionNodeBigFraction.gameObject.SetActive(false);
-                textBackBox.gameObject.SetActive(false);
-                questionSun0Text.gameObject.SetActive(false);
+                mapSun0_Sun1AConfirm.gameObject.SetActive(false);
+
                 sun0Image0.gameObject.SetActive(false);
                 sun0Image1.gameObject.SetActive(false);
+                textBackBox.gameObject.SetActive(false);
+                questionSun0Text.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
-
                 spellCardSun1A.gameObject.SetActive(true);
 
                 bm_SaveData.level = 2.1f;
@@ -1528,22 +1687,7 @@ public class BM_LevelManager : MonoBehaviour
             {
                 moonCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapSun0_Moon1AConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 moon1AGameNode.gameObject.SetActive(true);
@@ -1551,9 +1695,8 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("MOON1A");
                 moonCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
+                mapSun0_Moon1AConfirm.gameObject.SetActive(false);
 
-                questionNodeBigFraction.gameObject.SetActive(false);
                 sun0Image0.gameObject.SetActive(false);
                 sun0Image1.gameObject.SetActive(false);
                 textBackBox.gameObject.SetActive(false);
@@ -1574,24 +1717,7 @@ public class BM_LevelManager : MonoBehaviour
             // and ranNum is 0, output Sun
             if (randomNumber == 0)
             {
-                sunCoin.gameObject.SetActive(true);
-
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapMoon0_Sun1BConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 sun1BGameNode.gameObject.SetActive(true);
@@ -1599,9 +1725,8 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("SUN1B");
                 sunCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
+                mapMoon0_Sun1BConfirm.gameObject.SetActive(false);
 
-                questionNodeBigFraction.gameObject.SetActive(false);
                 textBackBox.gameObject.SetActive(false);
                 questionMoon0Text.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
@@ -1617,22 +1742,7 @@ public class BM_LevelManager : MonoBehaviour
             {
                 moonCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
+                mapMoon0_Moon1BConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 moon1BGameNode.gameObject.SetActive(true);
@@ -1640,9 +1750,9 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("MOON1B");
                 moonCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
 
-                questionNodeBigFraction.gameObject.SetActive(false);
+                mapMoon0_Moon1BConfirm.gameObject.SetActive(false);
+
                 textBackBox.gameObject.SetActive(false);
                 questionMoon0Text.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
@@ -1665,6 +1775,10 @@ public class BM_LevelManager : MonoBehaviour
         float randomNumber = Random.Range(0, 2);
         flipButton.gameObject.SetActive(false);
         BM_AudioManager.instance.Play("Button");
+        questionNodeBigFraction.gameObject.SetActive(false);
+        questionNodeSmolFraction.gameObject.SetActive(false);
+        questionNodeSurveyThou.gameObject.SetActive(false);
+        questionNodeSurveyHun.gameObject.SetActive(false);
 
         // if world state is Sun1A
         if (sun1AGameNode.gameObject.activeInHierarchy)
@@ -1674,28 +1788,7 @@ public class BM_LevelManager : MonoBehaviour
             {
                 sunCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectSun1A_Moon2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectSun1A_Sun2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapSun1A_Sun2BConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 sun2BGameNode.gameObject.SetActive(true);
@@ -1703,9 +1796,8 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("SUN2B");
                 sunCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
+                mapSun1A_Sun2BConfirm.gameObject.SetActive(false);
 
-                questionNodeSurveyHun.gameObject.SetActive(false);
                 questionSun1AText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
@@ -1721,28 +1813,7 @@ public class BM_LevelManager : MonoBehaviour
             {
                 moonCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun1A_Moon2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectSun1A_Sun2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
+                mapSun1A_Moon2BConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);;
                 moon2BGameNode.gameObject.SetActive(true);
@@ -1750,9 +1821,8 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("MOON2B");
                 moonCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
+                mapSun1A_Moon2BConfirm.gameObject.SetActive(false);
 
-                questionNodeSurveyHun.gameObject.SetActive(false);
                 questionSun1AText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
@@ -1771,28 +1841,7 @@ public class BM_LevelManager : MonoBehaviour
             {
                 sunCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectMoon1A_Sun2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectMoon1A_Moon2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
+                mapMoon1A_Sun2AConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 sun2AGameNode.gameObject.SetActive(true);
@@ -1800,9 +1849,8 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("SUN2A");
                 sunCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
+                mapMoon1A_Sun2AConfirm.gameObject.SetActive(false);
 
-                questionNodeSurveyHun.gameObject.SetActive(false);
                 questionMoon1AText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
@@ -1818,28 +1866,7 @@ public class BM_LevelManager : MonoBehaviour
             {
                 moonCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon1A_Sun2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectMoon1A_Moon2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapMoon1A_Moon2AConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 moon2AGameNode.gameObject.SetActive(true);
@@ -1847,9 +1874,8 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("MOON2A");
                 moonCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
+                mapMoon1A_Moon2AConfirm.gameObject.SetActive(false);
 
-                questionNodeSurveyHun.gameObject.SetActive(false);
                 questionMoon1AText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
@@ -1868,28 +1894,7 @@ public class BM_LevelManager : MonoBehaviour
             {
                 sunCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectSun1B_Sun2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectSun1B_Moon2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
+                mapSun1B_Sun2DConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 sun2DGameNode.gameObject.SetActive(true);
@@ -1897,14 +1902,14 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("SUN2D");
                 sunCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
+                mapSun1B_Sun2DConfirm.gameObject.SetActive(false);
+
                 sun1BImage0.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
                 questionSun1BText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
                 textBackBox.gameObject.SetActive(false);
-                bm_SaveData.level = 3.8f;
+                bm_SaveData.level = 3.7f;
 
                 spellCardSun2D_0.gameObject.SetActive(true);
 
@@ -1915,28 +1920,7 @@ public class BM_LevelManager : MonoBehaviour
             {
                 moonCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun1B_Sun2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectSun1B_Moon2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapSun1B_Moon2DConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 moon2DGameNode.gameObject.SetActive(true);
@@ -1944,15 +1928,15 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("MOON2D");
                 moonCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
+                mapSun1B_Moon2DConfirm.gameObject.SetActive(false);
+
                 sun1BImage0.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
                 questionSun1BText.gameObject.SetActive(false);
                 sun0Image1.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(false);
                 correctText.gameObject.SetActive(false);
                 textBackBox.gameObject.SetActive(false);
-                bm_SaveData.level = 3.7f;
+                bm_SaveData.level = 3.8f;
 
                 spellCardMoon2D_0.gameObject.SetActive(true);
             }
@@ -1966,28 +1950,7 @@ public class BM_LevelManager : MonoBehaviour
             {
                 sunCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectMoon1B_Sun2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectMoon1B_Moon2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
+                mapMoon1B_Sun2CConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 sun2CGameNode.gameObject.SetActive(true);
@@ -1995,9 +1958,8 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("SUN2C");
                 sunCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
+                mapMoon1B_Sun2CConfirm.gameObject.SetActive(false);
 
-                questionNodeBigFraction.gameObject.SetActive(false);
                 questionMoon1BText.gameObject.SetActive(false);
                 moon1BImage0.gameObject.SetActive(false);
                 moon1BImage1.gameObject.SetActive(false);
@@ -2015,28 +1977,7 @@ public class BM_LevelManager : MonoBehaviour
             {
                 moonCoin.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon1B_Sun2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectMoon1B_Moon2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapMoon1B_Moon2CConfirm.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(3);
                 moon2CGameNode.gameObject.SetActive(true);
@@ -2044,9 +1985,8 @@ public class BM_LevelManager : MonoBehaviour
                 Debug.Log("MOON2C");
                 moonCoin.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(false);
+                mapMoon1B_Moon2CConfirm.gameObject.SetActive(false);
 
-                questionNodeBigFraction.gameObject.SetActive(false);
                 questionMoon1BText.gameObject.SetActive(false);
                 moon1BImage0.gameObject.SetActive(false);
                 moon1BImage1.gameObject.SetActive(false);
@@ -2110,16 +2050,27 @@ public class BM_LevelManager : MonoBehaviour
 
     IEnumerator Next_T()
     {
-        flipMap.gameObject.SetActive(true);
+        questionNodeBigFraction.gameObject.SetActive(false);
+        questionNodeSmolFraction.gameObject.SetActive(false);
+        questionNodeSurveyThou.gameObject.SetActive(false);
+        questionNodeSurveyHun.gameObject.SetActive(false);
 
         nextButton.gameObject.SetActive(false);
 
-        connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-        levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-        level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+        map0Confirm.gameObject.SetActive(true);
+        mapT_0.gameObject.SetActive(false);
 
         yield return new WaitForSecondsRealtime(3);
+        textBackBox.gameObject.SetActive(false);
+        questionT_Text.gameObject.SetActive(false);
+        questionNodeSmolFraction.gameObject.SetActive(false);
+
+        tutorText5.gameObject.SetActive(false);
+        textBackBoxTutor.gameObject.SetActive(false);
+        tutorDFTalk.gameObject.SetActive(false);
+        tutorDFCheer.gameObject.SetActive(false);
+        tutorDFIdle.gameObject.SetActive(false);
+
         level0GameNode.gameObject.SetActive(true);
         questionT_Text.gameObject.SetActive(false);
         questionNodeSmolFraction.gameObject.SetActive(false);
@@ -2128,7 +2079,7 @@ public class BM_LevelManager : MonoBehaviour
 
         bm_SaveData.level = 0.5f;
         textBackBox.gameObject.SetActive(false);
-        flipMap.gameObject.SetActive(false);
+        map0Confirm.gameObject.SetActive(false);
         spellCard0.gameObject.SetActive(true);
 
         LOLSDK.Instance.SubmitProgress(100, 10, 100);
@@ -2138,6 +2089,10 @@ public class BM_LevelManager : MonoBehaviour
 
     IEnumerator Next_4()
     {
+        questionNodeBigFraction.gameObject.SetActive(false);
+        questionNodeSmolFraction.gameObject.SetActive(false);
+        questionNodeSurveyThou.gameObject.SetActive(false);
+        questionNodeSurveyHun.gameObject.SetActive(false);
 
         if (bm_SaveData.level == 3.1f)
         {
@@ -2149,11 +2104,6 @@ public class BM_LevelManager : MonoBehaviour
             sun2AImage0.gameObject.SetActive(false);
             sun2AImage1.gameObject.SetActive(false);
             questionSun2A_0Text.gameObject.SetActive(false);
-
-            questionNodeBigFraction.gameObject.SetActive(false);
-            questionNodeSmolFraction.gameObject.SetActive(false);
-            questionNodeSurveyThou.gameObject.SetActive(false);
-            questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
@@ -2171,11 +2121,6 @@ public class BM_LevelManager : MonoBehaviour
             moon2AImage0.gameObject.SetActive(false);
             moon2AImage1.gameObject.SetActive(false);
             questionMoon2A_0Text.gameObject.SetActive(false);
-
-            questionNodeBigFraction.gameObject.SetActive(false);
-            questionNodeSmolFraction.gameObject.SetActive(false);
-            questionNodeSurveyThou.gameObject.SetActive(false);
-            questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
@@ -2192,10 +2137,6 @@ public class BM_LevelManager : MonoBehaviour
 
             questionSun2B_0Text.gameObject.SetActive(false);
             sun2BImage0.gameObject.SetActive(false);
-            questionNodeBigFraction.gameObject.SetActive(false);
-            questionNodeSmolFraction.gameObject.SetActive(false);
-            questionNodeSurveyThou.gameObject.SetActive(false);
-            questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             spellCardSun2B_1.gameObject.SetActive(true);
@@ -2211,10 +2152,6 @@ public class BM_LevelManager : MonoBehaviour
 
             moon2BImage0.gameObject.SetActive(false);
             questionMoon2B_0Text.gameObject.SetActive(false);
-            questionNodeBigFraction.gameObject.SetActive(false);
-            questionNodeSmolFraction.gameObject.SetActive(false);
-            questionNodeSurveyThou.gameObject.SetActive(false);
-            questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
@@ -2232,10 +2169,6 @@ public class BM_LevelManager : MonoBehaviour
             sun2CImage0.gameObject.SetActive(false);
             sun2CImage1.gameObject.SetActive(false);
             questionSun2C_0Text.gameObject.SetActive(false);
-            questionNodeBigFraction.gameObject.SetActive(false);
-            questionNodeSmolFraction.gameObject.SetActive(false);
-            questionNodeSurveyThou.gameObject.SetActive(false);
-            questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
@@ -2251,10 +2184,6 @@ public class BM_LevelManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(3);
 
             questionMoon2C_0Text.gameObject.SetActive(false);
-            questionNodeBigFraction.gameObject.SetActive(false);
-            questionNodeSmolFraction.gameObject.SetActive(false);
-            questionNodeSurveyThou.gameObject.SetActive(false);
-            questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
@@ -2270,10 +2199,6 @@ public class BM_LevelManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(3);
 
             questionSun2D_0Text.gameObject.SetActive(false);
-            questionNodeBigFraction.gameObject.SetActive(false);
-            questionNodeSmolFraction.gameObject.SetActive(false);
-            questionNodeSurveyThou.gameObject.SetActive(false);
-            questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
@@ -2290,10 +2215,6 @@ public class BM_LevelManager : MonoBehaviour
 
             moon2DImage0.gameObject.SetActive(false);
             questionMoon2D_0Text.gameObject.SetActive(false);
-            questionNodeBigFraction.gameObject.SetActive(false);
-            questionNodeSmolFraction.gameObject.SetActive(false);
-            questionNodeSurveyThou.gameObject.SetActive(false);
-            questionNodeSurveyHun.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
@@ -2309,9 +2230,28 @@ public class BM_LevelManager : MonoBehaviour
 
     IEnumerator Next_4_5()
     {
+        questionNodeBigFraction.gameObject.SetActive(false);
+        questionNodeSmolFraction.gameObject.SetActive(false);
+        questionNodeSurveyThou.gameObject.SetActive(false);
+        questionNodeSurveyHun.gameObject.SetActive(false);
+
+        mapSun2A_Final.gameObject.SetActive(false);
+        mapMoon2A_Final.gameObject.SetActive(false);
+        mapSun2B_Final.gameObject.SetActive(false);
+        mapMoon2B_Final.gameObject.SetActive(false);
+        mapSun2C_Final.gameObject.SetActive(false);
+        mapMoon2C_Final.gameObject.SetActive(false);
+        mapSun2D_Final.gameObject.SetActive(false);
+        mapMoon2D_Final.gameObject.SetActive(false);
 
         if (bm_SaveData.level == 3.15f)
         {
+            nextButton.gameObject.SetActive(false);
+
+            mapSun2A_FinalConfirm.gameObject.SetActive(true);
+
+            yield return new WaitForSecondsRealtime(3);
+
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2334,44 +2274,12 @@ public class BM_LevelManager : MonoBehaviour
 
             finalGameNode.gameObject.SetActive(true);
 
-            flipMap.gameObject.SetActive(true);
-
-            nextButton.gameObject.SetActive(false);
-
-            connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectMoon1A_Sun2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectMoon1A_Moon2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            yield return new WaitForSecondsRealtime(3);
             questionSun2A_1Text.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
+            mapSun2A_FinalConfirm.gameObject.SetActive(false);
 
-            flipMap.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
             bm_SaveData.level = 4.1f;
@@ -2381,6 +2289,12 @@ public class BM_LevelManager : MonoBehaviour
 
         if (bm_SaveData.level == 3.25f)
         {
+            nextButton.gameObject.SetActive(false);
+
+            mapMoon2A_FinalConfirm.gameObject.SetActive(true);
+
+            yield return new WaitForSecondsRealtime(3);
+
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2403,44 +2317,11 @@ public class BM_LevelManager : MonoBehaviour
 
             finalGameNode.gameObject.SetActive(true);
 
-            flipMap.gameObject.SetActive(true);
-
-            nextButton.gameObject.SetActive(false);
-
-            connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectMoon1A_Sun2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connectMoon1A_Moon2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            yield return new WaitForSecondsRealtime(3);
             questionMoon2A_1Text.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
-            flipMap.gameObject.SetActive(false);
+            mapMoon2A_FinalConfirm.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
             bm_SaveData.level = 4.1f;
@@ -2450,6 +2331,11 @@ public class BM_LevelManager : MonoBehaviour
 
         if (bm_SaveData.level == 3.35f)
         {
+            nextButton.gameObject.SetActive(false);
+            mapSun2B_FinalConfirm.gameObject.SetActive(true);
+
+            yield return new WaitForSecondsRealtime(3);
+
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2472,44 +2358,11 @@ public class BM_LevelManager : MonoBehaviour
 
             finalGameNode.gameObject.SetActive(true);
 
-            flipMap.gameObject.SetActive(true);
-
-            nextButton.gameObject.SetActive(false);
-
-            connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            levelSun2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectSun1A_Moon2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connectSun1A_Sun2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            yield return new WaitForSecondsRealtime(3);
             questionSun2B_1Text.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
-            flipMap.gameObject.SetActive(false);
+            mapSun2B_FinalConfirm.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
             bm_SaveData.level = 4.1f;
@@ -2519,6 +2372,12 @@ public class BM_LevelManager : MonoBehaviour
 
         if (bm_SaveData.level == 3.45f)
         {
+            nextButton.gameObject.SetActive(false);
+
+            mapMoon2B_FinalConfirm.gameObject.SetActive(true);
+
+            yield return new WaitForSecondsRealtime(3);
+
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2541,44 +2400,11 @@ public class BM_LevelManager : MonoBehaviour
 
             finalGameNode.gameObject.SetActive(true);
 
-            flipMap.gameObject.SetActive(true);
-
-            nextButton.gameObject.SetActive(false);
-
-            connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            levelSun2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectSun1A_Moon2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectSun1A_Sun2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            yield return new WaitForSecondsRealtime(3);
             questionMoon2B_1Text.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
-            flipMap.gameObject.SetActive(false);
+            mapMoon2B_FinalConfirm.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
             bm_SaveData.level = 4.1f;
@@ -2588,6 +2414,11 @@ public class BM_LevelManager : MonoBehaviour
 
         if (bm_SaveData.level == 3.55f)
         {
+            nextButton.gameObject.SetActive(false);
+            mapSun2C_FinalConfirm.gameObject.SetActive(true);
+
+            yield return new WaitForSecondsRealtime(3);
+
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2610,44 +2441,11 @@ public class BM_LevelManager : MonoBehaviour
 
             finalGameNode.gameObject.SetActive(true);
 
-            flipMap.gameObject.SetActive(true);
-
-            nextButton.gameObject.SetActive(false);
-
-            connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectMoon1B_Sun2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectMoon1B_Moon2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            yield return new WaitForSecondsRealtime(3);
             questionSun2C_1Text.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
-            flipMap.gameObject.SetActive(false);
+            mapSun2C_FinalConfirm.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
             bm_SaveData.level = 4.1f;
@@ -2657,6 +2455,12 @@ public class BM_LevelManager : MonoBehaviour
 
         if (bm_SaveData.level == 3.65f)
         {
+            nextButton.gameObject.SetActive(false);
+
+            mapMoon2C_FinalConfirm.gameObject.SetActive(true);
+
+            yield return new WaitForSecondsRealtime(3);
+
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2679,47 +2483,13 @@ public class BM_LevelManager : MonoBehaviour
 
             finalGameNode.gameObject.SetActive(true);
 
-            flipMap.gameObject.SetActive(true);
-
-            nextButton.gameObject.SetActive(false);
-
-            connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectMoon1B_Sun2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connectMoon1B_Moon2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            yield return new WaitForSecondsRealtime(3);
-
             moon2CImage0.gameObject.SetActive(false);
             moon2CImage1.gameObject.SetActive(false);
             questionMoon2C_1Text.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
-            flipMap.gameObject.SetActive(false);
+            mapMoon2C_FinalConfirm.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
             bm_SaveData.level = 4.1f;
@@ -2729,6 +2499,11 @@ public class BM_LevelManager : MonoBehaviour
 
         if (bm_SaveData.level == 3.75f)
         {
+            nextButton.gameObject.SetActive(false);
+            mapSun2D_FinalConfirm.gameObject.SetActive(true);
+
+            yield return new WaitForSecondsRealtime(3);
+
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2751,44 +2526,11 @@ public class BM_LevelManager : MonoBehaviour
 
             finalGameNode.gameObject.SetActive(true);
 
-            flipMap.gameObject.SetActive(true);
-
-            nextButton.gameObject.SetActive(false);
-
-            connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            levelSun2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectSun1B_Sun2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectSun1B_Moon2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            yield return new WaitForSecondsRealtime(3);
             questionSun2D_1Text.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
-            flipMap.gameObject.SetActive(false);
+            mapSun2D_FinalConfirm.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
             bm_SaveData.level = 4.1f;
@@ -2798,6 +2540,12 @@ public class BM_LevelManager : MonoBehaviour
 
         if (bm_SaveData.level == 3.85f)
         {
+            nextButton.gameObject.SetActive(false);
+
+            mapMoon2D_FinalConfirm.gameObject.SetActive(true);
+
+            yield return new WaitForSecondsRealtime(3);
+
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2820,44 +2568,11 @@ public class BM_LevelManager : MonoBehaviour
 
             finalGameNode.gameObject.SetActive(true);
 
-            flipMap.gameObject.SetActive(true);
-
-            nextButton.gameObject.SetActive(false);
-
-            connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-            levelSun2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            levelMoon2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectSun1B_Sun2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-            connectSun1B_Moon2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-            yield return new WaitForSecondsRealtime(3);
             questionMoon2D_1Text.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
-            flipMap.gameObject.SetActive(false);
+            mapMoon2D_FinalConfirm.gameObject.SetActive(false);
             spellCardFractionFinal_0.gameObject.SetActive(true);
 
             bm_SaveData.level = 4.1f;
@@ -2867,16 +2582,15 @@ public class BM_LevelManager : MonoBehaviour
 
         LOLSDK.Instance.SubmitProgress(100, 80, 100);
 
-        questionNodeBigFraction.gameObject.SetActive(false);
-        questionNodeSmolFraction.gameObject.SetActive(false);
-        questionNodeSurveyThou.gameObject.SetActive(false);
-        questionNodeSurveyHun.gameObject.SetActive(false);
-
         Save();
     }
 
     IEnumerator Next_Final0()
     {
+        questionNodeBigFraction.gameObject.SetActive(false);
+        questionNodeSmolFraction.gameObject.SetActive(false);
+        questionNodeSurveyThou.gameObject.SetActive(false);
+        questionNodeSurveyHun.gameObject.SetActive(false);
 
         if (bm_SaveData.level == 4.1f)
         {
@@ -2896,16 +2610,17 @@ public class BM_LevelManager : MonoBehaviour
 
         LOLSDK.Instance.SubmitProgress(100, 90, 100);
 
-        questionNodeBigFraction.gameObject.SetActive(false);
-        questionNodeSmolFraction.gameObject.SetActive(false);
-        questionNodeSurveyThou.gameObject.SetActive(false);
-        questionNodeSurveyHun.gameObject.SetActive(false);
 
         Save();
     }
 
     IEnumerator Next_Final1()
     {
+
+        questionNodeBigFraction.gameObject.SetActive(false);
+        questionNodeSmolFraction.gameObject.SetActive(false);
+        questionNodeSurveyThou.gameObject.SetActive(false);
+        questionNodeSurveyHun.gameObject.SetActive(false);
 
         if (bm_SaveData.level == 4.2f)
         {
@@ -2922,22 +2637,18 @@ public class BM_LevelManager : MonoBehaviour
             LOLSDK.Instance.SubmitProgress(100, 95, 100);
         }
 
-        questionNodeBigFraction.gameObject.SetActive(false);
-        questionNodeSmolFraction.gameObject.SetActive(false);
-        questionNodeSurveyThou.gameObject.SetActive(false);
-        questionNodeSurveyHun.gameObject.SetActive(false);
         Save();
     }
 
     IEnumerator Next_Final2()
     {
+        questionNodeBigFraction.gameObject.SetActive(false);
+        questionNodeSmolFraction.gameObject.SetActive(false);
+        questionNodeSurveyThou.gameObject.SetActive(false);
+        questionNodeSurveyHun.gameObject.SetActive(false);
 
         if (bm_SaveData.level == 4.3f)
         {
-            questionNodeBigFraction.gameObject.SetActive(false);
-            questionNodeSmolFraction.gameObject.SetActive(false);
-            questionNodeSurveyThou.gameObject.SetActive(false);
-            questionNodeSurveyHun.gameObject.SetActive(false);
             questionFinalFractionText1.gameObject.SetActive(false);
             textBackBox.gameObject.SetActive(false);
             finalImage1.gameObject.SetActive(false);
@@ -2950,31 +2661,9 @@ public class BM_LevelManager : MonoBehaviour
             // if final was reach through sun2A
             if (sun2AGameNode.gameObject.activeInHierarchy)
             {
-                flipMap_Final.gameObject.SetActive(true);
                 congratsText.gameObject.SetActive(true);
 
-                connect_T_0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelMoon1AMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun0_Moon1A_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2AMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon1A_Sun2A_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectFinal1_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelFinalMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                finalMap_Sun2AFinal.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(1);
                 finalMath0Text.gameObject.SetActive(true);
@@ -2989,30 +2678,10 @@ public class BM_LevelManager : MonoBehaviour
             // if final was reach through moon2A
             if (moon2AGameNode.gameObject.activeInHierarchy)
             {
-                flipMap_Final.gameObject.SetActive(true);
                 congratsText.gameObject.SetActive(true);
                 finalImage1.gameObject.SetActive(false);
 
-                connect_T_0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelMoon1AMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun0_Moon1A_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelMoon2AMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon1A_Moon2A_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectFinal1_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelFinalMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                finalMap_Moon2AFinal.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(1);
                 finalMath0Text.gameObject.SetActive(true);
@@ -3026,29 +2695,9 @@ public class BM_LevelManager : MonoBehaviour
             // if final was reach through sun2B
             if (sun2BGameNode.gameObject.activeInHierarchy)
             {
-                flipMap_Final.gameObject.SetActive(true);
                 congratsText.gameObject.SetActive(true);
 
-                connect_T_0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1AMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun0_Sun1A_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2BMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun1A_Sun2B_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectFinal1_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelFinalMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                finalMap_Sun2BFinal.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(1);
                 finalMath0Text.gameObject.SetActive(true);
@@ -3062,29 +2711,9 @@ public class BM_LevelManager : MonoBehaviour
             // if final was reach through moon2B
             if (moon2BGameNode.gameObject.activeInHierarchy)
             {
-                flipMap_Final.gameObject.SetActive(true);
                 congratsText.gameObject.SetActive(true);
 
-                connect_T_0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1AMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun0_Sun1A_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelMoon2BMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun1A_Moon2B_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectFinal1_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelFinalMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                finalMap_Moon2BFinal.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(1);
                 finalMath0Text.gameObject.SetActive(true);
@@ -3098,35 +2727,9 @@ public class BM_LevelManager : MonoBehaviour
             // if final was reach through sun2C
             if (sun2CGameNode.gameObject.activeInHierarchy)
             {
-                flipMap_Final.gameObject.SetActive(true);
                 congratsText.gameObject.SetActive(true);
 
-                connect_T_0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1BMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon0_Sun1B_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectMoon0_Moon1B_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2CMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon2CMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectMoon1B_Sun2C_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectMoon1B_Moon2C_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectFinal0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectFinal1_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelFinalMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                finalMap_Sun2CFinal.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(1);
                 finalMath0Text.gameObject.SetActive(true);
@@ -3140,29 +2743,9 @@ public class BM_LevelManager : MonoBehaviour
             // if final was reach through moon2C
             if (moon2CGameNode.gameObject.activeInHierarchy)
             {
-                flipMap_Final.gameObject.SetActive(true);
                 congratsText.gameObject.SetActive(true);
 
-                connect_T_0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelMoon0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Moon0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelMoon1BMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon0_Moon1B_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelMoon2CMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon1B_Moon2C_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectFinal1_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelFinalMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                finalMap_Moon2CFinal.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(1);
                 finalMath0Text.gameObject.SetActive(true);
@@ -3176,29 +2759,9 @@ public class BM_LevelManager : MonoBehaviour
             // if final was reach through sun2D
             if (sun2DGameNode.gameObject.activeInHierarchy)
             {
-                flipMap_Final.gameObject.SetActive(true);
                 congratsText.gameObject.SetActive(true);
 
-                connect_T_0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelMoon0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Moon0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon0_Sun1B_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2DMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun1B_Sun2D_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectFinal1_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelFinalMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                finalMap_Sun2DFinal.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(1);
                 finalMath0Text.gameObject.SetActive(true);
@@ -3212,29 +2775,9 @@ public class BM_LevelManager : MonoBehaviour
             // if final was reach through moon2D
             if (moon2DGameNode.gameObject.activeInHierarchy)
             {
-                flipMap_Final.gameObject.SetActive(true);
                 congratsText.gameObject.SetActive(true);
 
-                connect_T_0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                level0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelMoon0MapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Moon0_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon0_Sun1B_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelMoon2DMapNode_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun1B_Moon2D_Final.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                finalMap_Moon2DFinal.gameObject.SetActive(true);
 
                 yield return new WaitForSecondsRealtime(1);
                 finalMath0Text.gameObject.SetActive(true);
@@ -3264,25 +2807,53 @@ public class BM_LevelManager : MonoBehaviour
                 smolTop0[1].gameObject.activeInHierarchy && smolTop1[1].gameObject.activeInHierarchy && smolTop2[1].gameObject.activeInHierarchy &&
                 smolBottom0[2].gameObject.activeInHierarchy && smolBottom1[2].gameObject.activeInHierarchy && smolBottom2[4].gameObject.activeInHierarchy)
             {
+                BM_AudioManager.instance.Play("MagicWork");
                 correctText.gameObject.SetActive(true);
                 incorrectText.gameObject.SetActive(false);
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
-                flipMap.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                textBackBox.gameObject.SetActive(false);
+                questionT_Text.gameObject.SetActive(false);
 
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                tutorText5.gameObject.SetActive(true);
+                textBackBoxTutor.gameObject.SetActive(true);
+                tutorDFTalk.gameObject.SetActive(false);
+                tutorDFCheer.gameObject.SetActive(true);
+                tutorDFIdle.gameObject.SetActive(false);
+
+                mapT_0.gameObject.SetActive(true);
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
             }
 
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
+
+                textBackBox.gameObject.SetActive(false);
+                questionT_Text.gameObject.SetActive(false);
+
+                tutorText6.gameObject.SetActive(true);
+                textBackBoxTutor.gameObject.SetActive(true);
+                tutorDFTalk.gameObject.SetActive(true);
+                tutorDFCheer.gameObject.SetActive(false);
+                tutorDFIdle.gameObject.SetActive(false);
                 Debug.Log("Incorrect");
             }
         }
@@ -3293,33 +2864,35 @@ public class BM_LevelManager : MonoBehaviour
             if (// 110
                 hunHundredNum[1].gameObject.activeInHierarchy && hunTenNum[1].gameObject.activeInHierarchy && hunOneNum[0].gameObject.activeInHierarchy)
             {
+                BM_AudioManager.instance.Play("MagicWork");
                 correctText.gameObject.SetActive(true);
                 incorrectText.gameObject.SetActive(false);
                 flipButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
-
-                flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
 
                 blob0.gameObject.SetActive(false);
                 level0DFTrap.gameObject.SetActive(false);
                 level0DFCheer.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                map0_Sun0_Moon0.gameObject.SetActive(true);
 
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
 
             }
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -3339,40 +2912,36 @@ public class BM_LevelManager : MonoBehaviour
                     bigTop0[1].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
                     bigBottom0[8].gameObject.activeInHierarchy && bigBottom1[4].gameObject.activeInHierarchy && bigBottom2_0[3].gameObject.activeInHierarchy && bigBottom2_1[2].gameObject.activeInHierarchy )
                 {
+                    BM_AudioManager.instance.Play("MagicWork");
                     correctText.gameObject.SetActive(true);
                     incorrectText.gameObject.SetActive(false);
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
-
-                    flipMap.gameObject.SetActive(true);
                     Debug.Log("Correct");
+
+                    mapSun0_Sun1A_Moon1A.gameObject.SetActive(true);
 
                     blobSun0.gameObject.SetActive(false);
                     levelSun0DFTrap.gameObject.SetActive(false);
                     levelSun0DFCheer.gameObject.SetActive(true);
 
-                    connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                    connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                    levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-
-                    connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
                 }
 
                 // wrong input
                 else
                 {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
                     correctText.gameObject.SetActive(false);
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
@@ -3393,39 +2962,36 @@ public class BM_LevelManager : MonoBehaviour
                     bigTop0[1].gameObject.activeInHierarchy && bigTop1[1].gameObject.activeInHierarchy && bigTop2[1].gameObject.activeInHierarchy &&
                     bigBottom0[6].gameObject.activeInHierarchy && bigBottom1[2].gameObject.activeInHierarchy && bigBottom2_0[1].gameObject.activeInHierarchy && bigBottom2_1[2].gameObject.activeInHierarchy)
                 {
+                    BM_AudioManager.instance.Play("MagicWork");
                     correctText.gameObject.SetActive(true);
                     incorrectText.gameObject.SetActive(false);
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
                     Debug.Log("Correct");
-                    flipMap.gameObject.SetActive(true);
+
+                    mapMoon0_Sun1B_Moon1B.gameObject.SetActive(true);
 
                     blobMoon0.gameObject.SetActive(false);
                     levelMoon0DFTrap.gameObject.SetActive(false);
                     levelMoon0DFCheer.gameObject.SetActive(true);
 
-                    connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                    levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                    connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-
-                    connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
                 }
 
                 // wrong input
                 else
                 {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
                     correctText.gameObject.SetActive(false);
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
@@ -3440,45 +3006,36 @@ public class BM_LevelManager : MonoBehaviour
                 if (// 400
                 hunHundredNum[4].gameObject.activeInHierarchy && hunTenNum[0].gameObject.activeInHierarchy && hunOneNum[0].gameObject.activeInHierarchy)
                 {
+                    BM_AudioManager.instance.Play("MagicWork");
                     correctText.gameObject.SetActive(true);
                     incorrectText.gameObject.SetActive(false);
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
                     Debug.Log("Correct");
-                    flipMap.gameObject.SetActive(true);
 
                     blobSun1A.gameObject.SetActive(false);
                     levelSun1ADFTrap.gameObject.SetActive(false);
                     levelSun1ADFCheer.gameObject.SetActive(true);
 
-                    connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                    mapSun1A_Sun2B_Moon2B.gameObject.SetActive(true);
 
-                    level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                    connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                    levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                    connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                    levelSun2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    levelMoon2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-
-                    connectSun1A_Sun2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    connectSun1A_Moon2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
                 }
 
                 // wrong input
                 else
                 {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
                     correctText.gameObject.SetActive(false);
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
@@ -3498,40 +3055,32 @@ public class BM_LevelManager : MonoBehaviour
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
                     Debug.Log("Correct");
-                    flipMap.gameObject.SetActive(true);
+                    //flipMap.gameObject.SetActive(true);
 
                     blobMoon1A.gameObject.SetActive(false);
                     levelMoon1ADFTrap.gameObject.SetActive(false);
                     levelMoon1ADFCheer.gameObject.SetActive(true);
 
-                    connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                    mapMoon1A_Sun2A_Moon2A.gameObject.SetActive(true);
 
-                    level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                    BM_AudioManager.instance.Play("MagicWork");
 
-                    levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                    connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                    levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                    levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                    connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    levelSun2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    levelMoon2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-
-                    connectMoon1A_Sun2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    connectMoon1A_Moon2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
                 }
 
                 // wrong input
                 else
                 {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
                     correctText.gameObject.SetActive(false);
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
@@ -3556,40 +3105,33 @@ public class BM_LevelManager : MonoBehaviour
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
                     Debug.Log("Correct");
-                    flipMap.gameObject.SetActive(true);
+                    //flipMap.gameObject.SetActive(true);
 
                     blobSun1B.gameObject.SetActive(false);
                     levelSun1BDFTrap.gameObject.SetActive(false);
                     levelSun1BDFCheer.gameObject.SetActive(true);
 
-                    connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                    mapSun1B_Sun2D_Moon2D.gameObject.SetActive(true);
 
-                    level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                    BM_AudioManager.instance.Play("MagicWork");
 
-                    levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                    levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                    connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                    connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                    connectSun1B_Sun2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    connectSun1B_Moon2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-
-                    levelMoon2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    levelSun2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
                 }
 
                 // wrong input
                 else
                 {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
                     correctText.gameObject.SetActive(false);
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
@@ -3614,39 +3156,32 @@ public class BM_LevelManager : MonoBehaviour
                     flipButton.gameObject.SetActive(true);
                     submitButton.gameObject.SetActive(false);
                     Debug.Log("Correct");
-                    flipMap.gameObject.SetActive(true);
+                    //flipMap.gameObject.SetActive(true);
 
                     blobMoon1B.gameObject.SetActive(false);
                     levelMoon1BDFTrap.gameObject.SetActive(false);
                     levelMoon1BDFCheer.gameObject.SetActive(true);
 
-                    connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                    mapMoon1B_Sun2C_Moon2C.gameObject.SetActive(true);
 
-                    level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                    BM_AudioManager.instance.Play("MagicWork");
 
-                    levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                    levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                    connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                    connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                    levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                    levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                    connectMoon1B_Sun2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    connectMoon1B_Moon2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-
-                    levelMoon2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                    levelSun2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                }
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+            }
 
                 // wrong input
                 else
                 {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
                     correctText.gameObject.SetActive(false);
                     incorrectText.gameObject.SetActive(true);
                     retryButton.gameObject.SetActive(true);
@@ -3671,11 +3206,25 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -3695,43 +3244,33 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
-                flipMap.gameObject.SetActive(true);
+                //flipMap.gameObject.SetActive(true);
 
                 blobSun2A.gameObject.SetActive(false);
                 levelSun2ADFTrap.gameObject.SetActive(false);
                 levelSun2ADFCheer.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapSun2A_Final.gameObject.SetActive(true);
 
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                BM_AudioManager.instance.Play("MagicWork");
 
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectMoon1A_Sun2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectMoon1A_Moon2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
             }
 
             // wrong input
             else
             {
+
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -3756,11 +3295,26 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -3780,43 +3334,32 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
-                flipMap.gameObject.SetActive(true);
+                //flipMap.gameObject.SetActive(true);
 
                 blobMoon2A.gameObject.SetActive(false);
                 levelMoon2ADFTrap.gameObject.SetActive(false);
                 levelMoon2ADFCheer.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapMoon2A_Final.gameObject.SetActive(true);
 
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                BM_AudioManager.instance.Play("MagicWork");
 
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon2AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon1A_Sun2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectMoon1A_Moon2A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -3841,11 +3384,26 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -3865,43 +3423,32 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
-                flipMap.gameObject.SetActive(true);
+                //flipMap.gameObject.SetActive(true);
 
                 blobSun2B.gameObject.SetActive(false);
                 levelSun2BDFTrap.gameObject.SetActive(false);
                 levelSun2BDFCheer.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapSun2B_Final.gameObject.SetActive(true);
 
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                BM_AudioManager.instance.Play("MagicWork");
 
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectSun1A_Moon2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectSun1A_Sun2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -3926,11 +3473,25 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -3950,44 +3511,33 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(true);
+                //flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
 
                 blobMoon2B.gameObject.SetActive(false);
                 levelMoon2BDFTrap.gameObject.SetActive(false);
                 levelMoon2BDFCheer.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapMoon2B_Final.gameObject.SetActive(true);
 
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                BM_AudioManager.instance.Play("MagicWork");
 
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon1AMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectSun0_Sun1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectSun0_Moon1A.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon2BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun1A_Moon2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectSun1A_Sun2B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4012,11 +3562,26 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4036,43 +3601,32 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(true);
+                //flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
 
                 blobSun2C.gameObject.SetActive(false);
                 levelSun2CDFTrap.gameObject.SetActive(false);
                 levelSun2CDFCheer.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapSun2C_Final.gameObject.SetActive(true);
 
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                BM_AudioManager.instance.Play("MagicWork");
 
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectMoon1B_Sun2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectMoon1B_Moon2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
             }
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4092,11 +3646,26 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4121,44 +3690,33 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(true);
+                //flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
 
                 blobMoon2C.gameObject.SetActive(false);
                 levelMoon2CDFTrap.gameObject.SetActive(false);
                 levelMoon2CDFCheer.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapMoon2C_Final.gameObject.SetActive(true);
 
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                BM_AudioManager.instance.Play("MagicWork");
 
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon2CMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectMoon1B_Sun2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectMoon1B_Moon2C.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4183,11 +3741,26 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4207,44 +3780,33 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(true);
+                //flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
 
                 blobSun2D.gameObject.SetActive(false);
                 levelSun2DDFTrap.gameObject.SetActive(false);
                 levelSun2DDFCheer.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapSun2D_Final.gameObject.SetActive(true);
 
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                BM_AudioManager.instance.Play("MagicWork");
 
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectSun1B_Sun2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectSun1B_Moon2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4269,11 +3831,26 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
             }
 
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4293,44 +3870,33 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
 
-                flipMap.gameObject.SetActive(true);
+                //flipMap.gameObject.SetActive(true);
                 Debug.Log("Correct");
 
                 blobMoon2D.gameObject.SetActive(false);
                 levelMoon2DDFTrap.gameObject.SetActive(false);
                 levelMoon2DDFCheer.gameObject.SetActive(true);
 
-                connect_T_0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelTNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                mapMoon2D_Final.gameObject.SetActive(true);
 
-                level0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                BM_AudioManager.instance.Play("MagicWork");
 
-                levelSun0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon0MapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connect0_Sun0.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connect0_Moon0.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                levelSun1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                levelMoon1BMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                connectMoon0_Sun1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                connectMoon0_Moon1B.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-
-                levelSun2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                levelMoon2DMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectSun1B_Sun2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.grey;
-                connectSun1B_Moon2D.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-
-                connectFinal0.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                connectFinal1.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
-                levelFinalMapNode.gameObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
 
             }
             // wrong input
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4354,10 +3920,25 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
             }
 
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4376,10 +3957,25 @@ public class BM_LevelManager : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
             }
 
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
@@ -4404,11 +4000,25 @@ public class BM_LevelManager : MonoBehaviour
                 submitButton.gameObject.SetActive(false);
                 Debug.Log("Correct");
 
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 blobFinal.gameObject.SetActive(false);
             }
 
             else
             {
+                BM_AudioManager.instance.Play("MagicNotWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
                 correctText.gameObject.SetActive(false);
                 incorrectText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
