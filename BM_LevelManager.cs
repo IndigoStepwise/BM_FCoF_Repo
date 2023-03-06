@@ -11,11 +11,15 @@ using TMPro;
 public class BM_SaveData
 {
     public float level = 0.0f;
+
+    public float sunWallet = 0.0f;
+    public float moonWallet = 0.0f;
 }
 public class BM_LevelManager : MonoBehaviour
 {
     [SerializeField] BM_SaveData bm_SaveData;
     JSONNode _langNode;
+    string _langCode = "en";
     bool _init;
 
     // Buttons
@@ -25,12 +29,25 @@ public class BM_LevelManager : MonoBehaviour
     public Button retryButton;
     [SerializeField] Button newGameButton;
     [SerializeField] Button continueButton;
+    [SerializeField] TextMeshProUGUI 
+    continueText, newGameText, retryText, clearText, submitText, nextText, flipText, speakTutorButtonText, cancelQuestButtonText,
+    cancelTutorButtonText, speakQuestButtonText, tutorButtonText0, tutorButtonText1, tutorButtonText2, tutorButtonText2_1, tutorButtonText3,
+    tutorButtonText3_1, tutorButtonText3_2, tutorButtonText4;
+    public Button speakTutorButton;
+    public Button cancelSpeakTutorButton;
+    public Button speakQuestionButton;
+    public Button cancelSpeakQuestButton;
     public Button clearButton;
     public Button tutorNextButton0;
     public Button tutorNextButton1;
     public Button tutorNextButton2;
+    public Button tutorNextButton2_1;
     public Button tutorNextButton3;
+    public Button tutorNextButton3_1;
+    public Button tutorNextButton3_2;
     public Button tutorNextButton4;
+
+    AudioSource _ttsAudioSource;
 
     // question nodes
     public GameObject questionNodeSurveyHun;
@@ -69,39 +86,38 @@ public class BM_LevelManager : MonoBehaviour
     public GameObject finalImage1;
 
     // Hundred Snap Box Ref
-    public GameObject snapHunHundred;
-    public GameObject snapHunTen;
-    public GameObject snapHunOne;
+    public Button snapHunHundred;
+    public Button snapHunTen;
+    public Button snapHunOne;
 
     // Thousand Snap Box Ref
-    public GameObject snapThouThousand;
-    public GameObject snapThouHundred;
-    public GameObject snapThouTen;
-    public GameObject snapThouOne;
+    public Button snapThouThousand;
+    public Button snapThouHundred;
+    public Button snapThouTen;
+    public Button snapThouOne;
 
     // Smol Fraction snap box Ref
-    public GameObject smolBoxTop0;
-    public GameObject smolBoxTop1;
-    public GameObject smolBoxTop2;
-    public GameObject smolBoxBot0;
-    public GameObject smolBoxBot1;
-    public GameObject smolBoxBot2;
+    public Button smolBoxTop0;
+    public Button smolBoxTop1;
+    public Button smolBoxTop2;
+    public Button smolBoxBot0;
+    public Button smolBoxBot1;
+    public Button smolBoxBot2;
 
     // Big Fraction snap box Ref
-    public GameObject bigBoxTop0;
-    public GameObject bigBoxTop1;
-    public GameObject bigBoxTop2;
-    public GameObject bigBoxBot0;
-    public GameObject bigBoxBot1;
-    public GameObject bigBoxBot2_0;
-    public GameObject bigBoxBot2_1;
+    public Button bigBoxTop0;
+    public Button bigBoxTop1;
+    public Button bigBoxTop2;
+    public Button bigBoxBot0;
+    public Button bigBoxBot1;
+    public Button bigBoxBot2_0;
+    public Button bigBoxBot2_1;
 
     // coin reference
     public GameObject sunCoin;
     public GameObject moonCoin;
 
     // world state level
-
     public GameObject tutorGameNode;
     public GameObject tutorDFIdle;
     public GameObject tutorDFTalk;
@@ -110,85 +126,85 @@ public class BM_LevelManager : MonoBehaviour
 
     public GameObject level0GameNode;
     public GameObject blob0;
-    public GameObject level0DFIdle;
-    public GameObject level0DFTalk;
+    //public GameObject level0DFIdle;
+    //public GameObject level0DFTalk;
     public GameObject level0DFCheer;
     public GameObject level0DFTrap;
 
     public GameObject sun0GameNode;
     public GameObject blobSun0;
-    public GameObject levelSun0DFIdle;
-    public GameObject levelSun0DFTalk;
+    //public GameObject levelSun0DFIdle;
+    //public GameObject levelSun0DFTalk;
     public GameObject levelSun0DFCheer;
     public GameObject levelSun0DFTrap;
 
     public GameObject moon0GameNode;
     public GameObject blobMoon0;
-    public GameObject levelMoon0DFIdle;
-    public GameObject levelMoon0DFTalk;
+    //public GameObject levelMoon0DFIdle;
+    //public GameObject levelMoon0DFTalk;
     public GameObject levelMoon0DFCheer;
     public GameObject levelMoon0DFTrap;
 
     public GameObject sun1AGameNode;
     public GameObject blobSun1A;
-    public GameObject levelSun1ADFIdle;
-    public GameObject levelSun1ADFTalk;
+    //public GameObject levelSun1ADFIdle;
+    //public GameObject levelSun1ADFTalk;
     public GameObject levelSun1ADFCheer;
     public GameObject levelSun1ADFTrap;
 
     public GameObject moon1AGameNode;
     public GameObject blobMoon1A;
-    public GameObject levelMoon1ADFIdle;
-    public GameObject levelMoon1ADFTalk;
+    //public GameObject levelMoon1ADFIdle;
+    //public GameObject levelMoon1ADFTalk;
     public GameObject levelMoon1ADFCheer;
     public GameObject levelMoon1ADFTrap;
 
     public GameObject sun1BGameNode;
     public GameObject blobSun1B;
-    public GameObject levelSun1BDFIdle;
-    public GameObject levelSun1BDFTalk;
+    //public GameObject levelSun1BDFIdle;
+    //public GameObject levelSun1BDFTalk;
     public GameObject levelSun1BDFCheer;
     public GameObject levelSun1BDFTrap;
 
     public GameObject moon1BGameNode;
     public GameObject blobMoon1B;
-    public GameObject levelMoon1BDFIdle;
-    public GameObject levelMoon1BDFTalk;
+    //public GameObject levelMoon1BDFIdle;
+    //public GameObject levelMoon1BDFTalk;
     public GameObject levelMoon1BDFCheer;
     public GameObject levelMoon1BDFTrap;
 
     public GameObject sun2AGameNode;
     public GameObject blobSun2A;
-    public GameObject levelSun2ADFIdle;
-    public GameObject levelSun2ADFTalk;
+    //public GameObject levelSun2ADFIdle;
+    //public GameObject levelSun2ADFTalk;
     public GameObject levelSun2ADFCheer;
     public GameObject levelSun2ADFTrap;
 
     public GameObject moon2AGameNode;
     public GameObject blobMoon2A;
-    public GameObject levelMoon2ADFIdle;
-    public GameObject levelMoon2ADFTalk;
+    //public GameObject levelMoon2ADFIdle;
+    //public GameObject levelMoon2ADFTalk;
     public GameObject levelMoon2ADFCheer;
     public GameObject levelMoon2ADFTrap;
 
     public GameObject sun2BGameNode;
     public GameObject blobSun2B;
-    public GameObject levelSun2BDFIdle;
-    public GameObject levelSun2BDFTalk;
+    //public GameObject levelSun2BDFIdle;
+    //public GameObject levelSun2BDFTalk;
     public GameObject levelSun2BDFCheer;
     public GameObject levelSun2BDFTrap;
 
     public GameObject moon2BGameNode;
     public GameObject blobMoon2B;
-    public GameObject levelMoon2BDFIdle;
-    public GameObject levelMoon2BDFTalk;
+    //public GameObject levelMoon2BDFIdle;
+    //public GameObject levelMoon2BDFTalk;
     public GameObject levelMoon2BDFCheer;
     public GameObject levelMoon2BDFTrap;
 
     public GameObject sun2CGameNode;
     public GameObject blobSun2C;
-    public GameObject levelSun2CDFIdle;
-    public GameObject levelSun2CDFTalk;
+    //public GameObject levelSun2CDFIdle;
+    //public GameObject levelSun2CDFTalk;
     public GameObject levelSun2CDFCheer;
     public GameObject levelSun2CDFTrap;
 
@@ -201,15 +217,15 @@ public class BM_LevelManager : MonoBehaviour
 
     public GameObject sun2DGameNode;
     public GameObject blobSun2D;
-    public GameObject levelSun2DDFIdle;
-    public GameObject levelSun2DDFTalk;
+    //public GameObject levelSun2DDFIdle;
+    //public GameObject levelSun2DDFTalk;
     public GameObject levelSun2DDFCheer;
     public GameObject levelSun2DDFTrap;
 
     public GameObject moon2DGameNode;
     public GameObject blobMoon2D;
-    public GameObject levelMoon2DDFIdle;
-    public GameObject levelMoon2DDFTalk;
+    //public GameObject levelMoon2DDFIdle;
+    //public GameObject levelMoon2DDFTalk;
     public GameObject levelMoon2DDFCheer;
     public GameObject levelMoon2DDFTrap;
 
@@ -314,6 +330,10 @@ public class BM_LevelManager : MonoBehaviour
     // text Ref
     public GameObject textBackBox;
     public GameObject textBackBoxTutor;
+    public GameObject walletBackdrop;
+
+    public TextMeshProUGUI textSunWallet;
+    public TextMeshProUGUI textMoonWallet;
 
     public TextMeshProUGUI correctText;
     public TextMeshProUGUI incorrectText;
@@ -322,7 +342,10 @@ public class BM_LevelManager : MonoBehaviour
     public TextMeshProUGUI tutorText0;
     public TextMeshProUGUI tutorText1;
     public TextMeshProUGUI tutorText2;
+    public TextMeshProUGUI tutorText2_1;
     public TextMeshProUGUI tutorText3;
+    public TextMeshProUGUI tutorText3_1;
+    public TextMeshProUGUI tutorText3_2;
     public TextMeshProUGUI tutorText4;
     public TextMeshProUGUI tutorText5;
     public TextMeshProUGUI tutorText6;
@@ -364,6 +387,15 @@ public class BM_LevelManager : MonoBehaviour
     public TextMeshProUGUI questionFinalFractionText0;
     public TextMeshProUGUI questionFinalFractionText1;
 
+    public TextMeshProUGUI hint1Text;
+    public TextMeshProUGUI hint2Text;
+
+    public TextMeshProUGUI skipButtonText;
+    public TextMeshProUGUI hintButtonText;
+
+    public TextMeshProUGUI skipButtonTextSample;
+    public TextMeshProUGUI hintButtonTextSample;
+
     // Big Fraction number arrays
     public GameObject[] bigTop0;
     public GameObject[] bigTop1;
@@ -400,37 +432,70 @@ public class BM_LevelManager : MonoBehaviour
     // level variable
     public float level = 0f;
 
+    // wallet variable
+    public float sunWallet = 0f;
+    public float moonWallet = 0f;
+
+    // hint objects
+    public Button hintButton;
+    public Button skipButton;
+    public Button hintButtonSample;
+    public Button skipButtonSample;
+    public GameObject hintTextBox;
+
     // attempt bools
-    public bool attempt1;
-    public bool attempt2;
-    public bool attempt3;
+    public bool attempt1 = true;
+    public bool attempt2 = false;
+    public bool attempt3 = false;
 
     // runs at start
     private void Start()
     {
+        _ttsAudioSource = gameObject.AddComponent<AudioSource>();
+
+        textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+        textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+        walletBackdrop.gameObject.SetActive(false);
+
         textBackBox.gameObject.SetActive(false);
         textBackBoxTutor.gameObject.SetActive(false);
 
         correctText.gameObject.SetActive(false);
         incorrectText.gameObject.SetActive(false);
 
+        hintButton.gameObject.SetActive(false);
+        hintTextBox.gameObject.SetActive(false);
+        skipButton.gameObject.SetActive(false);
+        skipButtonSample.gameObject.SetActive(false);
+        hintButtonSample.gameObject.SetActive(false);
+
         flipButton.gameObject.SetActive(false);
         submitButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
         clearButton.gameObject.SetActive(false);
+        speakTutorButton.gameObject.SetActive(false);
+        speakQuestionButton.gameObject.SetActive(false);
+        cancelSpeakTutorButton.gameObject.SetActive(false);
+        cancelSpeakQuestButton.gameObject.SetActive(false);
 
         tutorNextButton0.gameObject.SetActive(false);
         tutorNextButton1.gameObject.SetActive(false);
         tutorNextButton2.gameObject.SetActive(false);
+        tutorNextButton2_1.gameObject.SetActive(false);
         tutorNextButton3.gameObject.SetActive(false);
+        tutorNextButton3_1.gameObject.SetActive(false);
+        tutorNextButton3_2.gameObject.SetActive(false);
         tutorNextButton4.gameObject.SetActive(false);
 
         questionT_Text.gameObject.SetActive(false);
         tutorText0.gameObject.SetActive(false);
         tutorText1.gameObject.SetActive(false);
         tutorText2.gameObject.SetActive(false);
+        tutorText2_1.gameObject.SetActive(false);
         tutorText3.gameObject.SetActive(false);
+        tutorText3_1.gameObject.SetActive(false);
+        tutorText3_2.gameObject.SetActive(false);
         tutorText4.gameObject.SetActive(false);
         tutorText5.gameObject.SetActive(false);
         tutorText6.gameObject.SetActive(false);
@@ -467,6 +532,9 @@ public class BM_LevelManager : MonoBehaviour
         questionFinalSurveyText0.gameObject.SetActive(false);
         questionFinalFractionText0.gameObject.SetActive(false);
         questionFinalFractionText1.gameObject.SetActive(false);
+
+        hint1Text.gameObject.SetActive(false);
+        hint2Text.gameObject.SetActive(false);
 
         spellCardT.gameObject.SetActive(false);
 
@@ -589,23 +657,34 @@ public class BM_LevelManager : MonoBehaviour
         finalMap_Sun2DFinal.gameObject.SetActive(false);
         finalMap_Moon2DFinal.gameObject.SetActive(false);
 
-    Helper.StateButtonInitialize<BM_SaveData>(newGameButton, continueButton, OnLoad);
+        LOLSDK.Instance.LanguageDefsReceived += new LanguageDefsReceivedHandler(LanguageUpdate);
+
+        Helper.StateButtonInitialize<BM_SaveData>(newGameButton, continueButton, OnLoad);
 
     }
 
     // run on awake
     private void Awake()
     {
+        hintButton.onClick.AddListener(OnClickHint);
+        skipButton.onClick.AddListener(OnClickSkip);
         flipButton.onClick.AddListener(OnClickFlip);
         submitButton.onClick.AddListener(OnClickSubmit);
         nextButton.onClick.AddListener(OnClickNext);
         retryButton.onClick.AddListener(OnClickRetry);
         clearButton.onClick.AddListener(OnClickClear);
         newGameButton.onClick.AddListener(OnClickNew);
+        speakTutorButton.onClick.AddListener(OnClickSpeakTutor);
+        speakQuestionButton.onClick.AddListener(OnClickSpeakQuestion);
+        cancelSpeakTutorButton.onClick.AddListener(OnClickCancelTutor);
+        cancelSpeakQuestButton.onClick.AddListener(OnClickCancelQuestion);
         tutorNextButton0.onClick.AddListener(OnClickNextT0);
         tutorNextButton1.onClick.AddListener(OnClickNextT1);
         tutorNextButton2.onClick.AddListener(OnClickNextT2);
+        tutorNextButton2_1.onClick.AddListener(OnClickNextT2_1);
         tutorNextButton3.onClick.AddListener(OnClickNextT3);
+        tutorNextButton3_1.onClick.AddListener(OnClickNextT3_1);
+        tutorNextButton3_2.onClick.AddListener(OnClickNextT3_2);
         tutorNextButton4.onClick.AddListener(OnClickNextT4);
 
     }
@@ -638,10 +717,109 @@ public class BM_LevelManager : MonoBehaviour
         _feedbackMethod = StartCoroutine(_Feedback(GetText("autoSave")));
     }
 
+    void StartGame(string startGameJSON)
+    {
+        if (string.IsNullOrEmpty(startGameJSON))
+            return;
+
+        JSONNode startGamePayload = JSON.Parse(startGameJSON);
+        // Capture the language code from the start payload. Use this to switch fonts
+        _langCode = startGamePayload["languageCode"];
+    }
+
+    void LanguageUpdate(string langJSON)
+    {
+        if (string.IsNullOrEmpty(langJSON))
+            return;
+
+        _langNode = JSON.Parse(langJSON);
+
+        TextDisplayUpdate();
+    }
+
     string GetText(string key)
     {
         string value = _langNode?[key];
         return value ?? "--missing--";
+    }
+
+    void TextDisplayUpdate()
+    {
+        newGameText.text = GetText("newGame");
+        continueText.text = GetText("continue");
+        retryText.text = GetText("retry");
+        clearText.text = GetText("clear");
+        submitText.text = GetText("submit");
+        nextText.text = GetText("next");
+        flipText.text = GetText("flip");
+
+        correctText.text = GetText("correct");
+        incorrectText.text = GetText("incorrect");
+
+        skipButtonText.text = GetText("SkipButtonText");
+        hintButtonText.text = GetText("HintButtonText");
+
+        skipButtonTextSample.text = GetText("SkipButtonTextSample");
+        hintButtonTextSample.text = GetText("HintButtonTextSample");
+
+        speakTutorButtonText.text = GetText("Speak");
+        speakQuestButtonText.text = GetText("Speak");
+        cancelTutorButtonText.text = GetText("Cancel");
+        cancelQuestButtonText.text = GetText("Cancel");
+        tutorButtonText0.text = GetText("next");
+        tutorButtonText1.text = GetText("next");
+        tutorButtonText2.text = GetText("next");
+        tutorButtonText2_1.text = GetText("next");
+        tutorButtonText3.text = GetText("next");
+        tutorButtonText3_1.text = GetText("next");
+        tutorButtonText3_2.text = GetText("next");
+        tutorButtonText4.text = GetText("next");
+
+        tutorText0.text = GetText("TutorText0");
+        tutorText1.text = GetText("TutorText1");
+        tutorText2.text = GetText("TutorText2");
+        tutorText2_1.text = GetText("TutorText2_1");
+        tutorText3.text = GetText("TutorText3");
+        tutorText3_1.text = GetText("TutorText3_1");
+        tutorText3_2.text = GetText("TutorText3_2");
+        tutorText4.text = GetText("TutorText4");
+        tutorText5.text = GetText("TutorText5");
+        tutorText6.text = GetText("TutorText6");
+
+        hint1Text.text = GetText("HintText1");
+        hint2Text.text = GetText("HintText2");
+
+        questionT_Text.text = GetText("TutorQuestionText");
+        question0Text.text = GetText("Question0Text");
+        questionSun0Text.text = GetText("QuestionSun0Text");
+        questionMoon0Text.text = GetText("QuestionMoon0Text");
+        questionSun1AText.text = GetText("QuestionSun1AText");
+        questionMoon1AText.text = GetText("QuestionMoon1AText");
+        questionSun1BText.text = GetText("QuestionSun1BText");
+        questionMoon1BText.text = GetText("QuestionMoon1BText");
+
+        questionSun2A_0Text.text = GetText("QuestionSun2AText_0");
+        questionSun2A_1Text.text = GetText("QuestionSun2AText_1");
+        questionMoon2A_0Text.text = GetText("QuestionMoon2AText_0");
+        questionMoon2A_1Text.text = GetText("QuestionMoon2AText_1");
+        questionSun2B_0Text.text = GetText("QuestionSun2BText_0");
+        questionSun2B_1Text.text = GetText("QuestionSun2BText_1");
+        questionMoon2B_0Text.text = GetText("QuestionMoon2BText_0");
+        questionMoon2B_1Text.text = GetText("QuestionMoon2BText_1");
+        questionSun2C_0Text.text = GetText("QuestionSun2CText_0");
+        questionSun2C_1Text.text = GetText("QuestionSun2CText_1");
+        questionMoon2C_0Text.text = GetText("QuestionMoon2CText_0");
+        questionMoon2C_1Text.text = GetText("QuestionMoon2CText_1");
+        questionSun2D_0Text.text = GetText("QuestionSun2DText_0");
+        questionSun2D_1Text.text = GetText("QuestionSun2DText_1");
+        questionMoon2D_0Text.text = GetText("QuestionMoon2DText_0");
+        questionMoon2D_1Text.text = GetText("QuestionMoon2DText_1");
+
+        questionFinalFractionText0.text = GetText("QuestionFinalText_0");
+        questionFinalSurveyText0.text = GetText("QuestionFinalText_1");
+        questionFinalFractionText1.text = GetText("QuestionFinalText_2");
+
+
     }
 
     void OnLoad(BM_SaveData loadedSaveData)
@@ -651,7 +829,7 @@ public class BM_LevelManager : MonoBehaviour
             bm_SaveData = loadedSaveData;
 
             level = bm_SaveData.level;
-
+            
             PickLevel();
 
             _init = true;
@@ -659,6 +837,7 @@ public class BM_LevelManager : MonoBehaviour
 
     public void PickLevel()
     {
+        BM_AudioManager.instance.Play("Button");
 
         if (bm_SaveData.level == 0.1f)
         {
@@ -850,29 +1029,402 @@ public class BM_LevelManager : MonoBehaviour
         }
     }
 
+    private void OnClickSpeakTutor()
+    {
+        if (tutorText0.gameObject.activeInHierarchy)
+        {
+
+            LOLSDK.Instance.SpeakText("TutorText0");
+
+        }
+
+        if (tutorText1.gameObject.activeInHierarchy)
+        {
+
+            LOLSDK.Instance.SpeakText("TutorText1");
+
+        }
+
+        if (tutorText2.gameObject.activeInHierarchy)
+        {
+
+            LOLSDK.Instance.SpeakText("TutorText2");
+
+        }
+
+        if (tutorText2_1.gameObject.activeInHierarchy)
+        {
+            LOLSDK.Instance.SpeakText("TutorText2_1");
+        }
+
+        if (tutorText3.gameObject.activeInHierarchy)
+        {
+
+            LOLSDK.Instance.SpeakText("TutorText3");
+
+        }
+
+        if (tutorText3_1.gameObject.activeInHierarchy)
+        {
+
+            LOLSDK.Instance.SpeakText("TutorText3_1");
+
+        }
+
+        if (tutorText3_2.gameObject.activeInHierarchy)
+        {
+
+            LOLSDK.Instance.SpeakText("TutorText3_2");
+
+        }
+
+        if (tutorText4.gameObject.activeInHierarchy)
+        {
+
+            LOLSDK.Instance.SpeakText("TutorText4");
+
+        }
+
+        if (tutorText5.gameObject.activeInHierarchy)
+        {
+
+            LOLSDK.Instance.SpeakText("TutorText5");
+
+        }
+
+        if (tutorText6.gameObject.activeInHierarchy)
+        {
+
+            LOLSDK.Instance.SpeakText("TutorText6");
+
+        }
+    }
+
+    private void OnClickSpeakQuestion()
+    {
+        if (bm_SaveData.level == 0.1f)
+        {
+
+            LOLSDK.Instance.SpeakText("TutorQuestionText");
+
+        }
+
+        if (bm_SaveData.level == 0.5f)
+        {
+
+            LOLSDK.Instance.SpeakText("Question0Text");
+
+        }
+
+        if (bm_SaveData.level == 1.1f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun0Text");
+
+        }
+
+        if (bm_SaveData.level == 1.2f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon0Text");
+        }
+
+        if (bm_SaveData.level == 2.1f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun1AText");
+        }
+
+        if (bm_SaveData.level == 2.2f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon1AText");
+            
+        }
+
+        if (bm_SaveData.level == 2.3f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun1BText");
+
+        }
+
+        if (bm_SaveData.level == 2.4f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon1BText");
+
+        }
+
+        if (bm_SaveData.level == 3.1f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun2AText_0");
+
+        }
+
+        if (bm_SaveData.level == 3.15f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun2AText_1");
+
+        }
+
+        if (bm_SaveData.level == 3.2f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon2AText_0");
+
+        }
+
+        if (bm_SaveData.level == 3.25f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon2AText_1");
+
+        }
+
+        if (bm_SaveData.level == 3.3f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun2BText_0");
+
+        }
+
+        if (bm_SaveData.level == 3.35f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun2BText_1");
+
+        }
+
+        if (bm_SaveData.level == 3.4f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon2BText_0");
+
+        }
+
+        if (bm_SaveData.level == 3.45f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon2BText_1");
+
+        }
+
+        if (bm_SaveData.level == 3.5f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun2CText_0");
+
+        }
+
+        if (bm_SaveData.level == 3.55f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun2CText_1");
+
+        }
+
+        if (bm_SaveData.level == 3.6f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon2CText_0");
+
+        }
+
+        if (bm_SaveData.level == 3.65f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon2CText_1");
+
+        }
+
+        if (bm_SaveData.level == 3.7f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun2DText_0");
+
+        }
+
+        if (bm_SaveData.level == 3.75f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionSun2DText_1");
+
+        }
+
+        if (bm_SaveData.level == 3.8f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon2DText_0");
+
+        }
+
+        if (bm_SaveData.level == 3.85f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionMoon2DText_1");
+
+        }
+
+        if (bm_SaveData.level == 4.1f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionFinalText_0");
+
+        }
+
+
+        if (bm_SaveData.level == 4.2f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionFinalText_1");
+
+        }
+
+        if (bm_SaveData.level == 4.3f)
+        {
+
+            LOLSDK.Instance.SpeakText("QuestionFinalText_2");
+
+        }
+
+    }
+
+    private void OnClickCancelTutor()
+    {
+        LOLSDK.Instance.SpeakText("Cancel");
+    }
+
+    private void OnClickCancelQuestion()
+    {
+        LOLSDK.Instance.SpeakText("Cancel");
+
+    }
+
     private void OnClickNextT0()
     {
-        StartCoroutine(TutorText1());
+      //StartCoroutine(TutorText1());
+
+        LOLSDK.Instance.SpeakText("Next");
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton0.gameObject.SetActive(false);
+        tutorText0.gameObject.SetActive(false);
+        tutorText1.gameObject.SetActive(true);
+        speakTutorButton.gameObject.SetActive(true);
+        cancelSpeakTutorButton.gameObject.SetActive(true);
+      //yield return new WaitForSecondsRealtime(5);
+        tutorNextButton1.gameObject.SetActive(true);
+
     }
 
     private void OnClickNextT1()
     {
-        StartCoroutine(TutorText2());
+      //StartCoroutine(TutorText2());
+
+        LOLSDK.Instance.SpeakText("Next");
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton1.gameObject.SetActive(false);
+        tutorText1.gameObject.SetActive(false);
+        tutorText2.gameObject.SetActive(true);
+        speakTutorButton.gameObject.SetActive(true);
+        cancelSpeakTutorButton.gameObject.SetActive(true);
+      //yield return new WaitForSecondsRealtime(5);
+        tutorNextButton2.gameObject.SetActive(true);
     }
 
     private void OnClickNextT2()
     {
-        StartCoroutine(TutorText3());
+      //StartCoroutine(TutorText3());
+
+        LOLSDK.Instance.SpeakText("Next");
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton2.gameObject.SetActive(false);
+        tutorText2.gameObject.SetActive(false);
+        tutorText2_1.gameObject.SetActive(true);
+        speakTutorButton.gameObject.SetActive(true);
+        cancelSpeakTutorButton.gameObject.SetActive(true);
+        //yield return new WaitForSecondsRealtime(5);
+        tutorNextButton2_1.gameObject.SetActive(true);
+    }
+
+    private void OnClickNextT2_1()
+    {
+        LOLSDK.Instance.SpeakText("Next");
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton2_1.gameObject.SetActive(false);
+        tutorText2_1.gameObject.SetActive(false);
+        tutorText3.gameObject.SetActive(true);
+        speakTutorButton.gameObject.SetActive(true);
+        cancelSpeakTutorButton.gameObject.SetActive(true);
+        tutorNextButton3.gameObject.SetActive(true);
     }
 
     private void OnClickNextT3()
     {
-        StartCoroutine(TutorText4());
+      //StartCoroutine(TutorText4());
+
+        LOLSDK.Instance.SpeakText("Next");
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton3.gameObject.SetActive(false);
+        tutorText3.gameObject.SetActive(false);
+        tutorText3_1.gameObject.SetActive(true);
+        tutorDFTalk.gameObject.SetActive(false);
+        tutorDFCheer.gameObject.SetActive(false);
+        tutorDFIdle.gameObject.SetActive(true);
+        speakTutorButton.gameObject.SetActive(true);
+        cancelSpeakTutorButton.gameObject.SetActive(true);
+        //yield return new WaitForSecondsRealtime(5);
+        tutorNextButton3_1.gameObject.SetActive(true);
+        walletBackdrop.gameObject.SetActive(true);
+   
+    }
+
+    private void OnClickNextT3_1()
+    {
+        LOLSDK.Instance.SpeakText("Next");
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton3_1.gameObject.SetActive(false);
+        tutorText3_1.gameObject.SetActive(false);
+        tutorText3_2.gameObject.SetActive(true);
+        tutorDFTalk.gameObject.SetActive(true);
+        tutorDFCheer.gameObject.SetActive(false);
+        tutorDFIdle.gameObject.SetActive(false);
+        speakTutorButton.gameObject.SetActive(true);
+        cancelSpeakTutorButton.gameObject.SetActive(true);
+        //yield return new WaitForSecondsRealtime(5);
+        tutorNextButton3_2.gameObject.SetActive(true);
+        hintTextBox.gameObject.SetActive(true);
+        hintButtonSample.gameObject.SetActive(true);
+        skipButtonSample.gameObject.SetActive(true);
+    }
+
+    private void OnClickNextT3_2()
+    {
+        LOLSDK.Instance.SpeakText("Next");
+        BM_AudioManager.instance.Play("Button");
+        tutorNextButton3_2.gameObject.SetActive(false);
+        tutorText3_2.gameObject.SetActive(false);
+        tutorText4.gameObject.SetActive(true);
+        tutorDFTalk.gameObject.SetActive(false);
+        tutorDFCheer.gameObject.SetActive(true);
+        tutorDFIdle.gameObject.SetActive(false);
+        speakTutorButton.gameObject.SetActive(true);
+        cancelSpeakTutorButton.gameObject.SetActive(true);
+        //yield return new WaitForSecondsRealtime(5);
+        tutorNextButton4.gameObject.SetActive(true);
+        hintTextBox.gameObject.SetActive(false);
+        hintButtonSample.gameObject.SetActive(false);
+        skipButtonSample.gameObject.SetActive(false);
     }
 
     private void OnClickNextT4()
     {
         BM_AudioManager.instance.Play("Button");
+
+        LOLSDK.Instance.SpeakText("Next");
+
         tutorNextButton4.gameObject.SetActive(false);
         tutorText4.gameObject.SetActive(false);
         textBackBoxTutor.gameObject.SetActive(false);
@@ -880,6 +1432,8 @@ public class BM_LevelManager : MonoBehaviour
         tutorDFCheer.gameObject.SetActive(false);
         tutorDFIdle.gameObject.SetActive(true);
         bm_SaveData.level = 0.1f;
+        speakTutorButton.gameObject.SetActive(false);
+        cancelSpeakTutorButton.gameObject.SetActive(false);
         spellCardT.gameObject.SetActive(true);
     }
 
@@ -887,12 +1441,7 @@ public class BM_LevelManager : MonoBehaviour
     {
         Debug.Log("New Game");
         BM_AudioManager.instance.Play("Button");
-        StartCoroutine(TutorText0());
-    }
-
-    IEnumerator TutorText0()
-    {
-        BM_AudioManager.instance.Play("Button");
+        //StartCoroutine(TutorText0());
         newGameButton.gameObject.SetActive(false);
         continueButton.gameObject.SetActive(false);
         tutorDFTalk.gameObject.SetActive(true);
@@ -900,68 +1449,97 @@ public class BM_LevelManager : MonoBehaviour
         tutorDFIdle.gameObject.SetActive(false);
         textBackBoxTutor.gameObject.SetActive(true);
         tutorText0.gameObject.SetActive(true);
-        yield return new WaitForSecondsRealtime(5);
+        speakTutorButton.gameObject.SetActive(true);
+        cancelSpeakTutorButton.gameObject.SetActive(true);
+        //yield return new WaitForSecondsRealtime(5);
         tutorNextButton0.gameObject.SetActive(true);
-
     }
 
-    IEnumerator TutorText1()
-    {
-        BM_AudioManager.instance.Play("Button");
-        tutorNextButton0.gameObject.SetActive(false);
-        tutorText0.gameObject.SetActive(false);
-        tutorText1.gameObject.SetActive(true);
-        yield return new WaitForSecondsRealtime(5);
-        tutorNextButton1.gameObject.SetActive(true);
-    }
+    //IEnumerator TutorText0()
+    //{
+    //    BM_AudioManager.instance.Play("Button");
+    //    newGameButton.gameObject.SetActive(false);
+    //    continueButton.gameObject.SetActive(false);
+    //    tutorDFTalk.gameObject.SetActive(true);
+    //    tutorDFCheer.gameObject.SetActive(false);
+    //    tutorDFIdle.gameObject.SetActive(false);
+    //    textBackBoxTutor.gameObject.SetActive(true);
+    //    tutorText0.gameObject.SetActive(true);
+    //    speakTutorButton.gameObject.SetActive(true);
+    //    cancelSpeakTutorButton.gameObject.SetActive(true);
+    //    yield return new WaitForSecondsRealtime(5);
+    //    tutorNextButton0.gameObject.SetActive(true);
 
-    IEnumerator TutorText2()
-    {
-        BM_AudioManager.instance.Play("Button");
-        tutorNextButton1.gameObject.SetActive(false);
-        tutorText1.gameObject.SetActive(false);
-        tutorText2.gameObject.SetActive(true);
-        yield return new WaitForSecondsRealtime(5);
-        tutorNextButton2.gameObject.SetActive(true);
+    //}
 
-    }
+    //IEnumerator TutorText1()
+    //{
+    //    BM_AudioManager.instance.Play("Button");
+    //    tutorNextButton0.gameObject.SetActive(false);
+    //    tutorText0.gameObject.SetActive(false);
+    //    tutorText1.gameObject.SetActive(true);
+    //    speakTutorButton.gameObject.SetActive(true);
+    //    cancelSpeakTutorButton.gameObject.SetActive(true);
+    //    yield return new WaitForSecondsRealtime(5);
+    //    tutorNextButton1.gameObject.SetActive(true);
+    //}
 
-    IEnumerator TutorText3()
-    {
-        BM_AudioManager.instance.Play("Button");
-        tutorNextButton2.gameObject.SetActive(false);
-        tutorText2.gameObject.SetActive(false);
-        tutorText3.gameObject.SetActive(true);
-        yield return new WaitForSecondsRealtime(5);
-        tutorNextButton3.gameObject.SetActive(true);
-    }
+    //IEnumerator TutorText2()
+    //{
+    //    BM_AudioManager.instance.Play("Button");
+    //    tutorNextButton1.gameObject.SetActive(false);
+    //    tutorText1.gameObject.SetActive(false);
+    //    tutorText2.gameObject.SetActive(true);
+    //    speakTutorButton.gameObject.SetActive(true);
+    //    cancelSpeakTutorButton.gameObject.SetActive(true);
+    //    yield return new WaitForSecondsRealtime(5);
+    //    tutorNextButton2.gameObject.SetActive(true);
+    //}
 
-    IEnumerator TutorText4()
-    {
-        BM_AudioManager.instance.Play("Button");
-        tutorNextButton3.gameObject.SetActive(false);
-        tutorText3.gameObject.SetActive(false);
-        tutorText4.gameObject.SetActive(true);
-        tutorDFTalk.gameObject.SetActive(false);
-        tutorDFCheer.gameObject.SetActive(true);
-        tutorDFIdle.gameObject.SetActive(false);
-        yield return new WaitForSecondsRealtime(5);
-        tutorNextButton4.gameObject.SetActive(true);
+    //IEnumerator TutorText3()
+    //{
+    //    BM_AudioManager.instance.Play("Button");
+    //    tutorNextButton2.gameObject.SetActive(false);
+    //    tutorText2.gameObject.SetActive(false);
+    //    tutorText3.gameObject.SetActive(true);
+    //    speakTutorButton.gameObject.SetActive(true);
+    //    cancelSpeakTutorButton.gameObject.SetActive(true);
+    //    yield return new WaitForSecondsRealtime(5);
+    //    tutorNextButton3.gameObject.SetActive(true);
+    //}
 
-    }
+    //IEnumerator TutorText4()
+    //{
+    //    BM_AudioManager.instance.Play("Button");
+    //    tutorNextButton3.gameObject.SetActive(false);
+    //    tutorText3.gameObject.SetActive(false);
+    //    tutorText4.gameObject.SetActive(true);
+    //    tutorDFTalk.gameObject.SetActive(false);
+    //    tutorDFCheer.gameObject.SetActive(true);
+    //    tutorDFIdle.gameObject.SetActive(false);
+    //    speakTutorButton.gameObject.SetActive(true);
+    //    cancelSpeakTutorButton.gameObject.SetActive(true);
+    //    yield return new WaitForSecondsRealtime(5);
+    //    tutorNextButton4.gameObject.SetActive(true);
+
+    //}
 
     // on click retry button
     private void OnClickRetry()
     {
         Clear();
         BM_AudioManager.instance.Play("Button");
-
         questionNodeBigFraction.gameObject.SetActive(false);
         questionNodeSmolFraction.gameObject.SetActive(false);
         questionNodeSurveyThou.gameObject.SetActive(false);
         questionNodeSurveyHun.gameObject.SetActive(false);
-
+        speakQuestionButton.gameObject.SetActive(false);
+        cancelSpeakQuestButton.gameObject.SetActive(false);
         textBackBox.gameObject.SetActive(false);
+
+        //_ttsAudioSource.Stop();
+        LOLSDK.Instance.SpeakText("Retry");
+        //((ILOLSDK_EXTENSION)LOLSDK.Instance.PostMessage).CancelSpeakText();
 
         if (bm_SaveData.level == 0.1f)
         {
@@ -1290,9 +1868,9 @@ public class BM_LevelManager : MonoBehaviour
 
     private void Clear()
     {
-        snapHunHundred.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        snapHunTen.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        snapHunOne.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //snapHunHundred.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //snapHunTen.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //snapHunOne.gameObject.GetComponent<BoxCollider>().enabled = enabled;
 
         snapHunHundred.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         snapHunHundred.gameObject.transform.GetChild(1).gameObject.SetActive(false);
@@ -1327,10 +1905,10 @@ public class BM_LevelManager : MonoBehaviour
         snapHunOne.gameObject.transform.GetChild(8).gameObject.SetActive(false);
         snapHunOne.gameObject.transform.GetChild(9).gameObject.SetActive(false);
 
-        snapThouThousand.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        snapThouHundred.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        snapThouTen.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        snapThouOne.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //snapThouThousand.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //snapThouHundred.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //snapThouTen.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //snapThouOne.gameObject.GetComponent<BoxCollider>().enabled = enabled;
 
         snapThouThousand.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         snapThouThousand.gameObject.transform.GetChild(1).gameObject.SetActive(false);
@@ -1376,12 +1954,12 @@ public class BM_LevelManager : MonoBehaviour
         snapThouOne.gameObject.transform.GetChild(8).gameObject.SetActive(false);
         snapThouOne.gameObject.transform.GetChild(9).gameObject.SetActive(false);
 
-        smolBoxTop0.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        smolBoxTop1.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        smolBoxTop2.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        smolBoxBot0.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        smolBoxBot1.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        smolBoxBot2.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //smolBoxTop0.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //smolBoxTop1.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //smolBoxTop2.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //smolBoxBot0.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //smolBoxBot1.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //smolBoxBot2.gameObject.GetComponent<BoxCollider>().enabled = enabled;
 
         smolBoxTop0.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         smolBoxTop0.gameObject.transform.GetChild(1).gameObject.SetActive(false);
@@ -1449,13 +2027,13 @@ public class BM_LevelManager : MonoBehaviour
         smolBoxBot2.gameObject.transform.GetChild(8).gameObject.SetActive(false);
         smolBoxBot2.gameObject.transform.GetChild(9).gameObject.SetActive(false);
 
-        bigBoxTop0.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        bigBoxTop1.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        bigBoxTop2.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        bigBoxBot0.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        bigBoxBot1.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        bigBoxBot2_0.gameObject.GetComponent<BoxCollider>().enabled = enabled;
-        bigBoxBot2_1.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //bigBoxTop0.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //bigBoxTop1.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //bigBoxTop2.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //bigBoxBot0.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //bigBoxBot1.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //bigBoxBot2_0.gameObject.GetComponent<BoxCollider>().enabled = enabled;
+        //bigBoxBot2_1.gameObject.GetComponent<BoxCollider>().enabled = enabled;
 
         bigBoxTop0.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         bigBoxTop0.gameObject.transform.GetChild(1).gameObject.SetActive(false);
@@ -1562,6 +2140,10 @@ public class BM_LevelManager : MonoBehaviour
         mapSun2D_Final.gameObject.SetActive(false);
         mapMoon2D_Final.gameObject.SetActive(false);
 
+        attempt1 = true;
+        attempt2 = false;
+        attempt3 = false;
+
         if (bm_SaveData.level == 0.5f)
         {
             StartCoroutine(CoinFlip0());
@@ -1600,7 +2182,7 @@ public class BM_LevelManager : MonoBehaviour
             sun0GameNode.gameObject.SetActive(true);
             Debug.Log("SUN0");
             sunCoin.gameObject.SetActive(false);
-
+            walletBackdrop.gameObject.SetActive(true);
             map0_Sun0Confirm.gameObject.SetActive(false);
 
             textBackBox.gameObject.SetActive(false);
@@ -1624,7 +2206,7 @@ public class BM_LevelManager : MonoBehaviour
             moon0GameNode.gameObject.SetActive(true);
             Debug.Log("MOON0");
             moonCoin.gameObject.SetActive(false);
-
+            walletBackdrop.gameObject.SetActive(true);
             map0_Moon0Confirm.gameObject.SetActive(false);
 
             textBackBox.gameObject.SetActive(false);
@@ -1668,7 +2250,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 sunCoin.gameObject.SetActive(false);
                 Debug.Log("SUN1A");
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapSun0_Sun1AConfirm.gameObject.SetActive(false);
 
                 sun0Image0.gameObject.SetActive(false);
@@ -1694,7 +2276,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 Debug.Log("MOON1A");
                 moonCoin.gameObject.SetActive(false);
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapSun0_Moon1AConfirm.gameObject.SetActive(false);
 
                 sun0Image0.gameObject.SetActive(false);
@@ -1718,13 +2300,13 @@ public class BM_LevelManager : MonoBehaviour
             if (randomNumber == 0)
             {
                 mapMoon0_Sun1BConfirm.gameObject.SetActive(true);
-
+                sunCoin.gameObject.SetActive(true);
                 yield return new WaitForSecondsRealtime(3);
                 sun1BGameNode.gameObject.SetActive(true);
 
                 Debug.Log("SUN1B");
-                sunCoin.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
                 mapMoon0_Sun1BConfirm.gameObject.SetActive(false);
 
                 textBackBox.gameObject.SetActive(false);
@@ -1749,8 +2331,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 Debug.Log("MOON1B");
                 moonCoin.gameObject.SetActive(false);
-
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapMoon0_Moon1BConfirm.gameObject.SetActive(false);
 
                 textBackBox.gameObject.SetActive(false);
@@ -1795,7 +2376,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 Debug.Log("SUN2B");
                 sunCoin.gameObject.SetActive(false);
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapSun1A_Sun2BConfirm.gameObject.SetActive(false);
 
                 questionSun1AText.gameObject.SetActive(false);
@@ -1820,7 +2401,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 Debug.Log("MOON2B");
                 moonCoin.gameObject.SetActive(false);
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapSun1A_Moon2BConfirm.gameObject.SetActive(false);
 
                 questionSun1AText.gameObject.SetActive(false);
@@ -1848,7 +2429,7 @@ public class BM_LevelManager : MonoBehaviour
  
                 Debug.Log("SUN2A");
                 sunCoin.gameObject.SetActive(false);
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapMoon1A_Sun2AConfirm.gameObject.SetActive(false);
 
                 questionMoon1AText.gameObject.SetActive(false);
@@ -1873,7 +2454,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 Debug.Log("MOON2A");
                 moonCoin.gameObject.SetActive(false);
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapMoon1A_Moon2AConfirm.gameObject.SetActive(false);
 
                 questionMoon1AText.gameObject.SetActive(false);
@@ -1901,7 +2482,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 Debug.Log("SUN2D");
                 sunCoin.gameObject.SetActive(false);
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapSun1B_Sun2DConfirm.gameObject.SetActive(false);
 
                 sun1BImage0.gameObject.SetActive(false);
@@ -1927,7 +2508,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 Debug.Log("MOON2D");
                 moonCoin.gameObject.SetActive(false);
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapSun1B_Moon2DConfirm.gameObject.SetActive(false);
 
                 sun1BImage0.gameObject.SetActive(false);
@@ -1957,7 +2538,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 Debug.Log("SUN2C");
                 sunCoin.gameObject.SetActive(false);
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapMoon1B_Sun2CConfirm.gameObject.SetActive(false);
 
                 questionMoon1BText.gameObject.SetActive(false);
@@ -1984,7 +2565,7 @@ public class BM_LevelManager : MonoBehaviour
 
                 Debug.Log("MOON2C");
                 moonCoin.gameObject.SetActive(false);
-
+                walletBackdrop.gameObject.SetActive(true);
                 mapMoon1B_Moon2CConfirm.gameObject.SetActive(false);
 
                 questionMoon1BText.gameObject.SetActive(false);
@@ -2012,6 +2593,15 @@ public class BM_LevelManager : MonoBehaviour
         Debug.Log("Next");
         BM_AudioManager.instance.Play("Button");
         clearButton.gameObject.SetActive(false);
+
+        speakQuestionButton.gameObject.SetActive(false);
+        speakTutorButton.gameObject.SetActive(false);
+        cancelSpeakQuestButton.gameObject.SetActive(false);
+        cancelSpeakTutorButton.gameObject.SetActive(false);
+
+        //_ttsAudioSource.Stop();
+        LOLSDK.Instance.SpeakText("Next");
+        //((ILOLSDK_EXTENSION)LOLSDK.Instance.PostMessage).CancelSpeakText();
 
         Clear();
 
@@ -2094,13 +2684,20 @@ public class BM_LevelManager : MonoBehaviour
         questionNodeSurveyThou.gameObject.SetActive(false);
         questionNodeSurveyHun.gameObject.SetActive(false);
 
+        attempt1 = true;
+        attempt2 = false;
+        attempt3 = false;
+
         if (bm_SaveData.level == 3.1f)
         {
 
             nextButton.gameObject.SetActive(false);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
+            bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+            textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+            textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             sun2AImage0.gameObject.SetActive(false);
             sun2AImage1.gameObject.SetActive(false);
             questionSun2A_0Text.gameObject.SetActive(false);
@@ -2117,7 +2714,10 @@ public class BM_LevelManager : MonoBehaviour
             nextButton.gameObject.SetActive(false);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
+            bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+            textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+            textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             moon2AImage0.gameObject.SetActive(false);
             moon2AImage1.gameObject.SetActive(false);
             questionMoon2A_0Text.gameObject.SetActive(false);
@@ -2134,7 +2734,10 @@ public class BM_LevelManager : MonoBehaviour
             nextButton.gameObject.SetActive(false);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
+            bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+            textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+            textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             questionSun2B_0Text.gameObject.SetActive(false);
             sun2BImage0.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
@@ -2149,7 +2752,10 @@ public class BM_LevelManager : MonoBehaviour
             nextButton.gameObject.SetActive(false);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
+            bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+            textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+            textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             moon2BImage0.gameObject.SetActive(false);
             questionMoon2B_0Text.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
@@ -2165,7 +2771,10 @@ public class BM_LevelManager : MonoBehaviour
             nextButton.gameObject.SetActive(false);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
+            bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+            textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+            textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             sun2CImage0.gameObject.SetActive(false);
             sun2CImage1.gameObject.SetActive(false);
             questionSun2C_0Text.gameObject.SetActive(false);
@@ -2182,7 +2791,10 @@ public class BM_LevelManager : MonoBehaviour
             nextButton.gameObject.SetActive(false);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
+            bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+            textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+            textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             questionMoon2C_0Text.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
@@ -2197,7 +2809,10 @@ public class BM_LevelManager : MonoBehaviour
             nextButton.gameObject.SetActive(false);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
+            bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+            textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+            textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             questionSun2D_0Text.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
@@ -2212,7 +2827,10 @@ public class BM_LevelManager : MonoBehaviour
             nextButton.gameObject.SetActive(false);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
+            bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+            textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+            textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             moon2DImage0.gameObject.SetActive(false);
             questionMoon2D_0Text.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
@@ -2244,6 +2862,10 @@ public class BM_LevelManager : MonoBehaviour
         mapSun2D_Final.gameObject.SetActive(false);
         mapMoon2D_Final.gameObject.SetActive(false);
 
+        attempt1 = true;
+        attempt2 = false;
+        attempt3 = false;
+
         if (bm_SaveData.level == 3.15f)
         {
             nextButton.gameObject.SetActive(false);
@@ -2251,7 +2873,7 @@ public class BM_LevelManager : MonoBehaviour
             mapSun2A_FinalConfirm.gameObject.SetActive(true);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2294,7 +2916,7 @@ public class BM_LevelManager : MonoBehaviour
             mapMoon2A_FinalConfirm.gameObject.SetActive(true);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2335,7 +2957,7 @@ public class BM_LevelManager : MonoBehaviour
             mapSun2B_FinalConfirm.gameObject.SetActive(true);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2377,7 +2999,7 @@ public class BM_LevelManager : MonoBehaviour
             mapMoon2B_FinalConfirm.gameObject.SetActive(true);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2418,7 +3040,7 @@ public class BM_LevelManager : MonoBehaviour
             mapSun2C_FinalConfirm.gameObject.SetActive(true);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2460,7 +3082,7 @@ public class BM_LevelManager : MonoBehaviour
             mapMoon2C_FinalConfirm.gameObject.SetActive(true);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2503,7 +3125,7 @@ public class BM_LevelManager : MonoBehaviour
             mapSun2D_FinalConfirm.gameObject.SetActive(true);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2545,7 +3167,7 @@ public class BM_LevelManager : MonoBehaviour
             mapMoon2D_FinalConfirm.gameObject.SetActive(true);
 
             yield return new WaitForSecondsRealtime(3);
-
+            walletBackdrop.gameObject.SetActive(true);
             tutorGameNode.gameObject.SetActive(true);
             level0GameNode.gameObject.SetActive(true);
 
@@ -2592,6 +3214,10 @@ public class BM_LevelManager : MonoBehaviour
         questionNodeSurveyThou.gameObject.SetActive(false);
         questionNodeSurveyHun.gameObject.SetActive(false);
 
+        attempt1 = true;
+        attempt2 = false;
+        attempt3 = false;
+
         if (bm_SaveData.level == 4.1f)
         {
             nextButton.gameObject.SetActive(false);
@@ -2601,15 +3227,13 @@ public class BM_LevelManager : MonoBehaviour
             textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
-
+            walletBackdrop.gameObject.SetActive(true);
             spellCardFinalSurvey.gameObject.SetActive(true);
 
             bm_SaveData.level = 4.2f;
-
         }
 
         LOLSDK.Instance.SubmitProgress(100, 90, 100);
-
 
         Save();
     }
@@ -2622,6 +3246,10 @@ public class BM_LevelManager : MonoBehaviour
         questionNodeSurveyThou.gameObject.SetActive(false);
         questionNodeSurveyHun.gameObject.SetActive(false);
 
+        attempt1 = true;
+        attempt2 = false;
+        attempt3 = false;
+
         if (bm_SaveData.level == 4.2f)
         {
             nextButton.gameObject.SetActive(false);
@@ -2630,6 +3258,7 @@ public class BM_LevelManager : MonoBehaviour
             textBackBox.gameObject.SetActive(false);
             correctText.gameObject.SetActive(false);
             incorrectText.gameObject.SetActive(false);
+            walletBackdrop.gameObject.SetActive(true);
             spellCardFractionFinal_1.gameObject.SetActive(true);
 
             bm_SaveData.level = 4.3f;
@@ -2646,6 +3275,14 @@ public class BM_LevelManager : MonoBehaviour
         questionNodeSmolFraction.gameObject.SetActive(false);
         questionNodeSurveyThou.gameObject.SetActive(false);
         questionNodeSurveyHun.gameObject.SetActive(false);
+
+        //walletBackdrop.gameObject.SetActive(true);
+        //textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+        //textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
+        attempt1 = true;
+        attempt2 = false;
+        attempt3 = false;
 
         if (bm_SaveData.level == 4.3f)
         {
@@ -2672,7 +3309,6 @@ public class BM_LevelManager : MonoBehaviour
                 yield return new WaitForSecondsRealtime(1);
                 finalMath2Text.gameObject.SetActive(true);
                 yield return new WaitForSecondsRealtime(1);
-
             }
 
             // if final was reach through moon2A
@@ -2793,12 +3429,944 @@ public class BM_LevelManager : MonoBehaviour
         LOLSDK.Instance.CompleteGame();
     }
 
+    // runs on click hint
+    private void OnClickHint()
+    {
+        if (attempt2 == true || attempt3 == true)
+        {
+            Debug.Log("HINT");
+            hintButton.gameObject.SetActive(false);
+            hintTextBox.gameObject.SetActive(false);
+            skipButton.gameObject.SetActive(false);
+
+            // level 0
+            if (bm_SaveData.level == 0.5f)
+            {
+                hunHundredNum[1].gameObject.SetActive(true);
+            }
+            
+            // level sun0
+            if (bm_SaveData.level == 1.1f)
+            {
+                bigTop0[1].gameObject.SetActive(true);
+                bigBottom1[8].gameObject.SetActive(true);
+                bigBottom2_0[3].gameObject.SetActive(true);
+            }
+            
+            // level moon0
+            if (bm_SaveData.level == 1.2f)
+            {
+                bigBottom0[2].gameObject.SetActive(true);
+                bigTop1[1].gameObject.SetActive(true);
+                bigBottom2_1[2].gameObject.SetActive(true);
+
+            }
+
+            // level sun1A
+            if (bm_SaveData.level == 2.1f)
+            {
+                hunOneNum[0].gameObject.SetActive(true);
+            }
+
+            // level moon1A
+            if (bm_SaveData.level == 2.2f)
+            {
+                hunTenNum[7].gameObject.SetActive(true);
+            }
+
+            // level sun1B
+            if (bm_SaveData.level == 2.3f)
+            {
+                bigTop0[3].gameObject.SetActive(true);
+                bigBottom1[8].gameObject.SetActive(true);
+                bigBottom2_0[6].gameObject.SetActive(true);
+            }
+
+            // level moon1B
+            if (bm_SaveData.level == 2.4f)
+            {
+                bigTop0[3].gameObject.SetActive(true);
+                bigBottom1[6].gameObject.SetActive(true);
+                bigBottom2_1[8].gameObject.SetActive(true);
+            }
+
+            // level sun2A question 1
+            if (bm_SaveData.level == 3.1f)
+            {
+                bigTop0[3].gameObject.SetActive(true);
+                bigBottom1[5].gameObject.SetActive(true);
+                bigBottom2_1[0].gameObject.SetActive(true);
+            }
+
+            // level sun2A question 2
+            if (bm_SaveData.level == 3.15f)
+            {
+                hunTenNum[6].gameObject.SetActive(true);
+            }
+
+            // level moon2A question 1
+            if (bm_SaveData.level == 3.2f)
+            {
+                bigBottom0[9].gameObject.SetActive(true);
+                bigTop1[2].gameObject.SetActive(true);
+                bigBottom2_0[4].gameObject.SetActive(true);
+            }
+
+            // level moon2A question 2
+            if (bm_SaveData.level == 3.25f)
+            {
+                thouHundredNum[3].gameObject.SetActive(true);
+                thouOneNum[5].gameObject.SetActive(true);
+            }
+
+            // level sun2B question 1
+            if (bm_SaveData.level == 3.3f)
+            {
+                bigBottom0[8].gameObject.SetActive(true);
+                bigTop1[3].gameObject.SetActive(true);
+                bigBottom2_1[4].gameObject.SetActive(true);
+            }
+
+            // level sun2B question 2
+            if (bm_SaveData.level == 3.35f)
+            {
+                hunTenNum[2].gameObject.SetActive(true);
+            }
+
+            // level moon2B question 1
+            if (bm_SaveData.level == 3.4f)
+            {
+                bigBottom0[8].gameObject.SetActive(true);
+                bigTop1[1].gameObject.SetActive(true);
+                bigBottom2_1[2].gameObject.SetActive(true);
+            }
+
+            // level moon2B question 2
+            if (bm_SaveData.level == 3.45f)
+            {
+                hunOneNum[8].gameObject.SetActive(true);
+            }
+
+            // level sun2C question 1
+            if (bm_SaveData.level == 3.5f)
+            {
+                bigBottom0[8].gameObject.SetActive(true);
+                bigTop1[2].gameObject.SetActive(true);
+                bigBottom2_0[2].gameObject.SetActive(true);
+            }
+
+            // level sun2C question 2
+            if (bm_SaveData.level == 3.55f)
+            {
+                thouThousandNum[1].gameObject.SetActive(true);
+                thouOneNum[0].gameObject.SetActive(true);
+            }
+            // level moon2C question 1
+            if (bm_SaveData.level == 3.6f)
+            {
+                hunTenNum[4].gameObject.SetActive(true);
+            }
+
+            // level moon2C question 2
+            if (bm_SaveData.level == 3.65f)
+            {
+                bigTop0[1].gameObject.SetActive(true);
+                bigBottom1[5].gameObject.SetActive(true);
+                bigBottom2_0[4].gameObject.SetActive(true);
+            }
+
+            // level sun2D question 1
+            if (bm_SaveData.level == 3.7f)
+            {
+                smolBottom0[2].gameObject.SetActive(true);
+                smolTop1[1].gameObject.SetActive(true);
+                smolTop2[1].gameObject.SetActive(true);
+            }
+            // level sun2D question 2
+            if (bm_SaveData.level == 3.75f)
+            {
+                hunTenNum[7].gameObject.SetActive(true);
+            }
+
+            // level moon2D question 1
+            if (bm_SaveData.level == 3.8f)
+            {
+                bigTop0[1].gameObject.SetActive(true);
+                bigBottom1[4].gameObject.SetActive(true);
+                bigBottom2_0[3].gameObject.SetActive(true);
+            }
+
+            // level moon2D question 2
+            if (bm_SaveData.level == 3.85f)
+            {
+                thouThousandNum[1].gameObject.SetActive(true);
+                thouHundredNum[8].gameObject.SetActive(true);
+            }
+
+            //final question 1
+            if (bm_SaveData.level == 4.1f)
+            {
+                bigTop0[1].gameObject.SetActive(true);
+                bigBottom1[4].gameObject.SetActive(true);
+                bigBottom2_1[0].gameObject.SetActive(true);
+            }
+
+            // final question 2
+            if (bm_SaveData.level == 4.2f)
+            {
+                thouHundredNum[1].gameObject.SetActive(true);
+                thouOneNum[4].gameObject.SetActive(true);
+            }
+
+            // final question 3
+            if (bm_SaveData.level == 4.3f)
+            {
+                bigBottom0[9].gameObject.SetActive(true);
+                bigTop1[3].gameObject.SetActive(true);
+                bigBottom2_1[4].gameObject.SetActive(true);
+            }
+        }
+    }
+    //runs on click skip
+    private void OnClickSkip()
+    {
+        if (attempt3 == true)
+        {
+            Debug.Log("SKIP");
+            BM_AudioManager.instance.Play("Button");
+
+            hintButton.gameObject.SetActive(false);
+            hintTextBox.gameObject.SetActive(false);
+            skipButton.gameObject.SetActive(false);
+
+            clearButton.gameObject.SetActive(false);
+
+            speakQuestionButton.gameObject.SetActive(false);
+            cancelSpeakQuestButton.gameObject.SetActive(false);
+            hintButton.gameObject.SetActive(false);
+            hintTextBox.gameObject.SetActive(false);
+            skipButton.gameObject.SetActive(false);
+
+            sun0Image0.gameObject.SetActive(false);
+            sun0Image1.gameObject.SetActive(false);
+            sun1BImage0.gameObject.SetActive(false);
+            sun2AImage0.gameObject.SetActive(false);
+            sun2AImage1.gameObject.SetActive(false);
+            sun2BImage0.gameObject.SetActive(false);
+            sun2CImage0.gameObject.SetActive(false);
+            sun2CImage1.gameObject.SetActive(false);
+
+            moon1BImage0.gameObject.SetActive(false);
+            moon1BImage1.gameObject.SetActive(false);
+            moon2AImage0.gameObject.SetActive(false);
+            moon2AImage1.gameObject.SetActive(false);
+            moon2BImage0.gameObject.SetActive(false);
+            moon2CImage0.gameObject.SetActive(false);
+            moon2CImage1.gameObject.SetActive(false);
+            moon2DImage0.gameObject.SetActive(false);
+
+            finalImage0.gameObject.SetActive(false);
+            finalImage1.gameObject.SetActive(false);
+
+            // level 0
+            if (bm_SaveData.level == 0.5f)
+            {
+                BM_AudioManager.instance.Play("MagicWork");
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                flipButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blob0.gameObject.SetActive(false);
+                level0DFTrap.gameObject.SetActive(false);
+                level0DFCheer.gameObject.SetActive(true);
+
+                map0_Sun0_Moon0.gameObject.SetActive(true);
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level sun0
+            if (bm_SaveData.level == 1.1f)
+            {
+                BM_AudioManager.instance.Play("MagicWork");
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                flipButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                mapSun0_Sun1A_Moon1A.gameObject.SetActive(true);
+
+                blobSun0.gameObject.SetActive(false);
+                levelSun0DFTrap.gameObject.SetActive(false);
+                levelSun0DFCheer.gameObject.SetActive(true);
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level moon0
+            if (bm_SaveData.level == 1.2f)
+            {
+                BM_AudioManager.instance.Play("MagicWork");
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                flipButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                mapMoon0_Sun1B_Moon1B.gameObject.SetActive(true);
+
+                blobMoon0.gameObject.SetActive(false);
+                levelMoon0DFTrap.gameObject.SetActive(false);
+                levelMoon0DFCheer.gameObject.SetActive(true);
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
+            }
+
+            // level sun1A
+            if (bm_SaveData.level == 2.1f)
+            {
+                BM_AudioManager.instance.Play("MagicWork");
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                flipButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobSun1A.gameObject.SetActive(false);
+                levelSun1ADFTrap.gameObject.SetActive(false);
+                levelSun1ADFCheer.gameObject.SetActive(true);
+
+                mapSun1A_Sun2B_Moon2B.gameObject.SetActive(true);
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level moon1A
+            if (bm_SaveData.level == 2.2f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                flipButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobMoon1A.gameObject.SetActive(false);
+                levelMoon1ADFTrap.gameObject.SetActive(false);
+                levelMoon1ADFCheer.gameObject.SetActive(true);
+
+                mapMoon1A_Sun2A_Moon2A.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level sun1B
+            if (bm_SaveData.level == 2.3f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                flipButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobSun1B.gameObject.SetActive(false);
+                levelSun1BDFTrap.gameObject.SetActive(false);
+                levelSun1BDFCheer.gameObject.SetActive(true);
+
+                mapSun1B_Sun2D_Moon2D.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level moon1B
+            if (bm_SaveData.level == 2.4f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                flipButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobMoon1B.gameObject.SetActive(false);
+                levelMoon1BDFTrap.gameObject.SetActive(false);
+                levelMoon1BDFCheer.gameObject.SetActive(true);
+
+                mapMoon1B_Sun2C_Moon2C.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level sun2A question 1
+            if (bm_SaveData.level == 3.1f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level sun2A question 2
+            if (bm_SaveData.level == 3.15f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobSun2A.gameObject.SetActive(false);
+                levelSun2ADFTrap.gameObject.SetActive(false);
+                levelSun2ADFCheer.gameObject.SetActive(true);
+
+                mapSun2A_Final.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level moon2A question 1
+            if (bm_SaveData.level == 3.2f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level moon2A question 2
+            if (bm_SaveData.level == 3.25f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobMoon2A.gameObject.SetActive(false);
+                levelMoon2ADFTrap.gameObject.SetActive(false);
+                levelMoon2ADFCheer.gameObject.SetActive(true);
+
+                mapMoon2A_Final.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level sun2B question 1
+            if (bm_SaveData.level == 3.3f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level sun2B question 2
+            if (bm_SaveData.level == 3.35f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobSun2B.gameObject.SetActive(false);
+                levelSun2BDFTrap.gameObject.SetActive(false);
+                levelSun2BDFCheer.gameObject.SetActive(true);
+
+                mapSun2B_Final.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level moon2B question 1
+            if (bm_SaveData.level == 3.4f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level moon2B question 2
+            if (bm_SaveData.level == 3.45f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobMoon2B.gameObject.SetActive(false);
+                levelMoon2BDFTrap.gameObject.SetActive(false);
+                levelMoon2BDFCheer.gameObject.SetActive(true);
+
+                mapMoon2B_Final.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level sun2C question 1
+            if (bm_SaveData.level == 3.5f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level sun2C question 2
+            if (bm_SaveData.level == 3.55f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobSun2C.gameObject.SetActive(false);
+                levelSun2CDFTrap.gameObject.SetActive(false);
+                levelSun2CDFCheer.gameObject.SetActive(true);
+
+                mapSun2C_Final.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+            // level moon2C question 1
+            if (bm_SaveData.level == 3.6f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level moon2C question 2
+            if (bm_SaveData.level == 3.65f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobMoon2C.gameObject.SetActive(false);
+                levelMoon2CDFTrap.gameObject.SetActive(false);
+                levelMoon2CDFCheer.gameObject.SetActive(true);
+
+                mapMoon2C_Final.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level sun2D question 1
+            if (bm_SaveData.level == 3.7f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+            // level sun2D question 2
+            if (bm_SaveData.level == 3.75f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobSun2D.gameObject.SetActive(false);
+                levelSun2DDFTrap.gameObject.SetActive(false);
+                levelSun2DDFCheer.gameObject.SetActive(true);
+
+                mapSun2D_Final.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level moon2D question 1
+            if (bm_SaveData.level == 3.8f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // level moon2D question 2
+            if (bm_SaveData.level == 3.85f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                blobMoon2D.gameObject.SetActive(false);
+                levelMoon2DDFTrap.gameObject.SetActive(false);
+                levelMoon2DDFCheer.gameObject.SetActive(true);
+
+                mapMoon2D_Final.gameObject.SetActive(true);
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            //final question 1
+            if (bm_SaveData.level == 4.1f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // final question 2
+            if (bm_SaveData.level == 4.2f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+            }
+
+            // final question 3
+            if (bm_SaveData.level == 4.3f)
+            {
+                correctText.gameObject.SetActive(true);
+                incorrectText.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
+                submitButton.gameObject.SetActive(false);
+                Debug.Log("Correct");
+
+                BM_AudioManager.instance.Play("MagicWork");
+
+                questionNodeSmolFraction.gameObject.SetActive(false);
+                questionNodeBigFraction.gameObject.SetActive(false);
+                questionNodeSurveyHun.gameObject.SetActive(false);
+                questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                //bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                //bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
+                blobFinal.gameObject.SetActive(false);
+            }
+        }
+    }
+
     // runs on click submit button
-    private void OnClickSubmit()
+    public void OnClickSubmit()
     {
         Debug.Log("Submit");
         BM_AudioManager.instance.Play("Button");
         clearButton.gameObject.SetActive(false);
+
+        speakQuestionButton.gameObject.SetActive(false);
+        cancelSpeakQuestButton.gameObject.SetActive(false);
+        hintButton.gameObject.SetActive(false);
+        hintTextBox.gameObject.SetActive(false);
+        skipButton.gameObject.SetActive(false);
+
+        sun0Image0.gameObject.SetActive(false);
+        sun0Image1.gameObject.SetActive(false);
+        sun1BImage0.gameObject.SetActive(false);
+        sun2AImage0.gameObject.SetActive(false);
+        sun2AImage1.gameObject.SetActive(false);
+        sun2BImage0.gameObject.SetActive(false);
+        sun2CImage0.gameObject.SetActive(false);
+        sun2CImage1.gameObject.SetActive(false);
+
+        moon1BImage0.gameObject.SetActive(false);
+        moon1BImage1.gameObject.SetActive(false);
+        moon2AImage0.gameObject.SetActive(false);
+        moon2AImage1.gameObject.SetActive(false);
+        moon2BImage0.gameObject.SetActive(false);
+        moon2CImage0.gameObject.SetActive(false);
+        moon2CImage1.gameObject.SetActive(false);
+        moon2DImage0.gameObject.SetActive(false);
+
+        finalImage0.gameObject.SetActive(false);
+        finalImage1.gameObject.SetActive(false);
+
+        //_ttsAudioSource.Stop();
+        LOLSDK.Instance.SpeakText("Submit");
+        //((ILOLSDK_EXTENSION)LOLSDK.Instance.PostMessage).CancelSpeakText();
 
         // if Tutorial
         if (bm_SaveData.level == 0.1f)
@@ -2882,22 +4450,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
             }
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -2930,23 +4554,78 @@ public class BM_LevelManager : MonoBehaviour
                     questionNodeSurveyHun.gameObject.SetActive(false);
                     questionNodeSurveyThou.gameObject.SetActive(false);
 
+                    walletBackdrop.gameObject.SetActive(true);
+                    bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                    textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                    textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
                 }
 
                 // wrong input
                 else
                 {
-                    BM_AudioManager.instance.Play("MagicNotWork");
+                    if (attempt3 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
 
-                    questionNodeSmolFraction.gameObject.SetActive(false);
-                    questionNodeBigFraction.gameObject.SetActive(false);
-                    questionNodeSurveyHun.gameObject.SetActive(false);
-                    questionNodeSurveyThou.gameObject.SetActive(false);
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
 
-                    correctText.gameObject.SetActive(false);
-                    incorrectText.gameObject.SetActive(true);
-                    retryButton.gameObject.SetActive(true);
-                    submitButton.gameObject.SetActive(false);
-                    Debug.Log("Incorrect");
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 3");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt2 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 2");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt1 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 1");
+
+                        attempt1 = false;
+                        attempt2 = true;
+                        attempt3 = false;
+                    }
                 }
 
             }
@@ -2980,23 +4659,78 @@ public class BM_LevelManager : MonoBehaviour
                     questionNodeSurveyHun.gameObject.SetActive(false);
                     questionNodeSurveyThou.gameObject.SetActive(false);
 
-                }
+                    walletBackdrop.gameObject.SetActive(true);
+                    bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                    textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                    textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
+            }
 
                 // wrong input
                 else
                 {
-                    BM_AudioManager.instance.Play("MagicNotWork");
+                    if (attempt3 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+    
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
 
-                    questionNodeSmolFraction.gameObject.SetActive(false);
-                    questionNodeBigFraction.gameObject.SetActive(false);
-                    questionNodeSurveyHun.gameObject.SetActive(false);
-                    questionNodeSurveyThou.gameObject.SetActive(false);
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 3");
 
-                    correctText.gameObject.SetActive(false);
-                    incorrectText.gameObject.SetActive(true);
-                    retryButton.gameObject.SetActive(true);
-                    submitButton.gameObject.SetActive(false);
-                    Debug.Log("Incorrect");
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt2 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 2");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt1 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 1");
+
+                        attempt1 = false;
+                        attempt2 = true;
+                        attempt3 = false;
+                    }
                 }
             }
 
@@ -3024,23 +4758,78 @@ public class BM_LevelManager : MonoBehaviour
                     questionNodeSurveyHun.gameObject.SetActive(false);
                     questionNodeSurveyThou.gameObject.SetActive(false);
 
+                    walletBackdrop.gameObject.SetActive(true);
+                    bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                    textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                    textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
                 }
 
-                // wrong input
+            // wrong input
                 else
                 {
-                    BM_AudioManager.instance.Play("MagicNotWork");
+                    if (attempt3 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
 
-                    questionNodeSmolFraction.gameObject.SetActive(false);
-                    questionNodeBigFraction.gameObject.SetActive(false);
-                    questionNodeSurveyHun.gameObject.SetActive(false);
-                    questionNodeSurveyThou.gameObject.SetActive(false);
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
 
-                    correctText.gameObject.SetActive(false);
-                    incorrectText.gameObject.SetActive(true);
-                    retryButton.gameObject.SetActive(true);
-                    submitButton.gameObject.SetActive(false);
-                    Debug.Log("Incorrect");
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 3");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt2 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 2");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt1 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 1");
+
+                        attempt1 = false;
+                        attempt2 = true;
+                        attempt3 = false;
+                    }
                 }
             }
 
@@ -3069,23 +4858,78 @@ public class BM_LevelManager : MonoBehaviour
                     questionNodeBigFraction.gameObject.SetActive(false);
                     questionNodeSurveyHun.gameObject.SetActive(false);
                     questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    walletBackdrop.gameObject.SetActive(true);
+                    bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                    textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                    textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
                 }
 
                 // wrong input
                 else
                 {
-                    BM_AudioManager.instance.Play("MagicNotWork");
+                    if (attempt3 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
 
-                    questionNodeSmolFraction.gameObject.SetActive(false);
-                    questionNodeBigFraction.gameObject.SetActive(false);
-                    questionNodeSurveyHun.gameObject.SetActive(false);
-                    questionNodeSurveyThou.gameObject.SetActive(false);
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
 
-                    correctText.gameObject.SetActive(false);
-                    incorrectText.gameObject.SetActive(true);
-                    retryButton.gameObject.SetActive(true);
-                    submitButton.gameObject.SetActive(false);
-                    Debug.Log("Incorrect");
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 3");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt2 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 2");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt1 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 1");
+
+                        attempt1 = false;
+                        attempt2 = true;
+                        attempt3 = false;
+                    }
                 }
             }
 
@@ -3120,23 +4964,77 @@ public class BM_LevelManager : MonoBehaviour
                     questionNodeSurveyHun.gameObject.SetActive(false);
                     questionNodeSurveyThou.gameObject.SetActive(false);
 
+                    walletBackdrop.gameObject.SetActive(true);
+                    bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                    textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                    textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
                 }
 
                 // wrong input
                 else
                 {
-                    BM_AudioManager.instance.Play("MagicNotWork");
+                    if (attempt3 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
 
-                    questionNodeSmolFraction.gameObject.SetActive(false);
-                    questionNodeBigFraction.gameObject.SetActive(false);
-                    questionNodeSurveyHun.gameObject.SetActive(false);
-                    questionNodeSurveyThou.gameObject.SetActive(false);
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
 
-                    correctText.gameObject.SetActive(false);
-                    incorrectText.gameObject.SetActive(true);
-                    retryButton.gameObject.SetActive(true);
-                    submitButton.gameObject.SetActive(false);
-                    Debug.Log("Incorrect");
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 3");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt2 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 2");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt1 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 1");
+
+                        attempt1 = false;
+                        attempt2 = true;
+                        attempt3 = false;
+                    }
                 }
             }
 
@@ -3170,23 +5068,78 @@ public class BM_LevelManager : MonoBehaviour
                     questionNodeBigFraction.gameObject.SetActive(false);
                     questionNodeSurveyHun.gameObject.SetActive(false);
                     questionNodeSurveyThou.gameObject.SetActive(false);
-            }
+
+                    walletBackdrop.gameObject.SetActive(true);
+                    bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                    textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                    textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+                }
 
                 // wrong input
                 else
                 {
-                    BM_AudioManager.instance.Play("MagicNotWork");
+                    if (attempt3 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
 
-                    questionNodeSmolFraction.gameObject.SetActive(false);
-                    questionNodeBigFraction.gameObject.SetActive(false);
-                    questionNodeSurveyHun.gameObject.SetActive(false);
-                    questionNodeSurveyThou.gameObject.SetActive(false);
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
 
-                    correctText.gameObject.SetActive(false);
-                    incorrectText.gameObject.SetActive(true);
-                    retryButton.gameObject.SetActive(true);
-                    submitButton.gameObject.SetActive(false);
-                    Debug.Log("Incorrect");
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 3");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt2 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 2");
+
+                        attempt1 = false;
+                        attempt2 = false;
+                        attempt3 = true;
+                    }
+
+                    if (attempt1 == true)
+                    {
+                        BM_AudioManager.instance.Play("MagicNotWork");
+
+                        questionNodeSmolFraction.gameObject.SetActive(false);
+                        questionNodeBigFraction.gameObject.SetActive(false);
+                        questionNodeSurveyHun.gameObject.SetActive(false);
+                        questionNodeSurveyThou.gameObject.SetActive(false);
+
+                        correctText.gameObject.SetActive(false);
+                        incorrectText.gameObject.SetActive(true);
+                        retryButton.gameObject.SetActive(true);
+                        submitButton.gameObject.SetActive(false);
+                        Debug.Log("Incorrect");
+                        Debug.Log("Attempt 1");
+
+                        attempt1 = false;
+                        attempt2 = true;
+                        attempt3 = false;
+                    }
                 }
             }
 
@@ -3213,23 +5166,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeBigFraction.gameObject.SetActive(false);
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3258,24 +5266,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeBigFraction.gameObject.SetActive(false);
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             }
 
             // wrong input
             else
             {
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                BM_AudioManager.instance.Play("MagicNotWork");
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3303,23 +5365,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3348,23 +5465,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeBigFraction.gameObject.SetActive(false);
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3392,23 +5564,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3437,23 +5664,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeBigFraction.gameObject.SetActive(false);
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3480,23 +5762,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeBigFraction.gameObject.SetActive(false);
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3526,23 +5863,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeBigFraction.gameObject.SetActive(false);
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3570,23 +5962,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3616,22 +6063,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeBigFraction.gameObject.SetActive(false);
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             }
+
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3654,23 +6157,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3705,23 +6263,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeBigFraction.gameObject.SetActive(false);
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3749,23 +6362,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3795,23 +6463,79 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeBigFraction.gameObject.SetActive(false);
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
+
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
             }
 
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3844,18 +6568,68 @@ public class BM_LevelManager : MonoBehaviour
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3863,7 +6637,7 @@ public class BM_LevelManager : MonoBehaviour
         if (moon2DGameNode.gameObject.activeInHierarchy && bm_SaveData.level == 3.85f)
         {
             if (// 1840 
-                 thouThousandNum[1].gameObject.activeInHierarchy && thouHundredNum[9].gameObject.activeInHierarchy && thouTenNum[4].gameObject.activeInHierarchy && thouOneNum[0].gameObject.activeInHierarchy)
+                 thouThousandNum[1].gameObject.activeInHierarchy && thouHundredNum[8].gameObject.activeInHierarchy && thouTenNum[4].gameObject.activeInHierarchy && thouOneNum[0].gameObject.activeInHierarchy)
             {
                 correctText.gameObject.SetActive(true);
                 incorrectText.gameObject.SetActive(false);
@@ -3886,22 +6660,78 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
             }
+
             // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3928,22 +6758,79 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
             }
 
+            // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -3965,22 +6852,79 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
             }
 
+            // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
 
@@ -4007,23 +6951,80 @@ public class BM_LevelManager : MonoBehaviour
                 questionNodeSurveyHun.gameObject.SetActive(false);
                 questionNodeSurveyThou.gameObject.SetActive(false);
 
+                walletBackdrop.gameObject.SetActive(true);
+                bm_SaveData.sunWallet = bm_SaveData.sunWallet + 50;
+                bm_SaveData.moonWallet = bm_SaveData.moonWallet + 50;
+                textSunWallet.SetText(bm_SaveData.sunWallet.ToString());
+                textMoonWallet.SetText(bm_SaveData.moonWallet.ToString());
+
                 blobFinal.gameObject.SetActive(false);
             }
 
+            // wrong input
             else
             {
-                BM_AudioManager.instance.Play("MagicNotWork");
+                if (attempt3 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
 
-                questionNodeSmolFraction.gameObject.SetActive(false);
-                questionNodeBigFraction.gameObject.SetActive(false);
-                questionNodeSurveyHun.gameObject.SetActive(false);
-                questionNodeSurveyThou.gameObject.SetActive(false);
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
 
-                correctText.gameObject.SetActive(false);
-                incorrectText.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
-                submitButton.gameObject.SetActive(false);
-                Debug.Log("Incorrect");
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 3");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt2 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 2");
+
+                    attempt1 = false;
+                    attempt2 = false;
+                    attempt3 = true;
+                }
+
+                if (attempt1 == true)
+                {
+                    BM_AudioManager.instance.Play("MagicNotWork");
+
+                    questionNodeSmolFraction.gameObject.SetActive(false);
+                    questionNodeBigFraction.gameObject.SetActive(false);
+                    questionNodeSurveyHun.gameObject.SetActive(false);
+                    questionNodeSurveyThou.gameObject.SetActive(false);
+
+                    correctText.gameObject.SetActive(false);
+                    incorrectText.gameObject.SetActive(true);
+                    retryButton.gameObject.SetActive(true);
+                    submitButton.gameObject.SetActive(false);
+                    Debug.Log("Incorrect");
+                    Debug.Log("Attempt 1");
+
+                    attempt1 = false;
+                    attempt2 = true;
+                    attempt3 = false;
+                }
             }
         }
     }
